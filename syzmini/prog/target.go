@@ -400,7 +400,10 @@ func (target *Target) AnalyzeStaticInfluence() {
 						// if target.InfluenceMatrix[call_id_src][call_id_dest] != 1 {
 						// 	count++
 						// }
-						target.InfluenceMatrix[call_id_src][call_id_dest] = 1
+						if target.InfluenceMatrix[call_id_src][call_id_dest] == 0 {
+							target.InfluenceMatrix[call_id_src][call_id_dest] = 1
+							count++
+						}
 
 						// fmt.Printf("\n%v\n%v\n", target.Syscalls[call_id_src], target.Syscalls[call_id_dest])
 					}
