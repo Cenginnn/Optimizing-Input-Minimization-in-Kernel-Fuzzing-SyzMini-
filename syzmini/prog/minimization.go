@@ -91,7 +91,8 @@ func removeCalls(p0 *Prog, callIndex0 int, crash bool, pred func(*Prog, int, int
 				for j := id - 1; j >= 0; j-- {
 					if p0.Target.InfluenceMatrix[p0.Calls[j].Meta.ID][p0.Calls[id].Meta.ID] == 1 {
 						influence_map[j] = true
-						if queue_map[j] == false {
+						if !queue_map[j] {
+							queue_map[j] = true
 							queue.Enqueue(j)
 						}
 					}
