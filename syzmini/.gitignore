@@ -24,3 +24,11 @@ executor/syscalls.h
 
 # vscode
 .vscode
+configs/v515.env
+configs/generated/
+workdir/
+experiments/results/*/manager.cfg
+experiments/results/*/manager.log
+experiments/results/*/run-info.txt
+__pycache__/
+*.pyc
