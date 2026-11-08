@@ -1,0 +1,97 @@
+2026/11/08 18:55:44 loading corpus...
+2026/11/08 18:55:45 serving http on http://127.0.0.1:56741
+2026/11/08 18:55:45 serving rpc on tcp://[::]:38703
+load array 
+4501,4501
+2026/11/08 18:55:45 booting test machines...
+2026/11/08 18:55:45 wait for the connection from test machine...
+2026/11/08 18:56:04 machine check:
+2026/11/08 18:56:04 syscalls                : 2364/4501
+2026/11/08 18:56:04 code coverage           : enabled
+2026/11/08 18:56:04 comparison tracing      : enabled
+2026/11/08 18:56:04 extra coverage          : enabled
+2026/11/08 18:56:04 delay kcov mmap         : mmap returned an invalid pointer
+2026/11/08 18:56:04 setuid sandbox          : enabled
+2026/11/08 18:56:04 namespace sandbox       : /proc/self/ns/user does not exist
+2026/11/08 18:56:04 Android sandbox         : enabled
+2026/11/08 18:56:04 fault injection         : CONFIG_FAULT_INJECTION is not enabled
+2026/11/08 18:56:04 leak checking           : CONFIG_DEBUG_KMEMLEAK is not enabled
+2026/11/08 18:56:04 net packet injection    : /dev/net/tun does not exist
+2026/11/08 18:56:04 net device setup        : enabled
+2026/11/08 18:56:04 concurrency sanitizer   : /sys/kernel/debug/kcsan does not exist
+2026/11/08 18:56:04 devlink PCI setup       : PCI device 0000:00:10.0 is not available
+2026/11/08 18:56:04 NIC VF setup            : PCI device 0000:00:11.0 is not available
+2026/11/08 18:56:04 USB emulation           : /dev/raw-gadget does not exist
+2026/11/08 18:56:04 hci packet injection    : /dev/vhci does not exist
+2026/11/08 18:56:04 wifi device emulation   : /sys/class/mac80211_hwsim/ does not exist
+2026/11/08 18:56:04 802.15.4 emulation      : /sys/bus/platform/devices/mac802154_hwsim does not exist
+2026/11/08 18:56:04 swap file               : enabled
+2026/11/08 18:56:04 corpus                  : 0 (deleted 0 broken)
+2026/11/08 18:56:13 seeds                   : 308/792
+2026/11/08 18:56:13 VMs 2, executed 0, cover 0, signal 0/0, crashes 0, repro 0, triageQLen 616
+manager:send influence successfully
+manager:send influence successfully
+2026/11/08 18:56:23 VMs 2, executed 0, cover 0, signal 0/0, crashes 0, repro 0, triageQLen 584
+manager:send influence successfully
+manager:send influence successfully
+2026/11/08 18:56:33 VMs 4, executed 556, cover 14143, signal 17503/18742, crashes 0, repro 0, triageQLen 440
+2026/11/08 18:56:43 VMs 4, executed 972, cover 16426, signal 20145/20947, crashes 0, repro 0, triageQLen 328
+2026/11/08 18:56:53 VMs 4, executed 1591, cover 18658, signal 22625/27555, crashes 0, repro 0, triageQLen 200
+2026/11/08 18:57:03 VMs 4, executed 3520, cover 20223, signal 24485/30073, crashes 0, repro 0, triageQLen 32
+2026/11/08 18:57:13 VMs 4, executed 4306, cover 20383, signal 24792/31225, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:57:23 VMs 4, executed 5072, cover 21092, signal 25758/31471, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:57:33 VMs 4, executed 5975, cover 21921, signal 26944/31707, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:57:43 VMs 4, executed 9047, cover 25140, signal 31418/36232, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:57:53 VMs 4, executed 11390, cover 26823, signal 33873/37168, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:03 VMs 4, executed 12287, cover 28015, signal 35335/39489, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:13 VMs 4, executed 12497, cover 28538, signal 36053/39503, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:23 VMs 4, executed 14722, cover 29539, signal 37670/40184, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:33 VMs 4, executed 15615, cover 30065, signal 38457/42575, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:43 VMs 4, executed 17299, cover 31190, signal 40047/42822, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:58:53 VMs 4, executed 18193, cover 31598, signal 40613/42963, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:03 VMs 4, executed 19593, cover 31737, signal 41108/44593, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:13 VMs 4, executed 20359, cover 32057, signal 41560/45180, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:23 VMs 4, executed 20743, cover 32170, signal 41724/45773, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:33 VMs 4, executed 21506, cover 32630, signal 42368/46025, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:43 VMs 4, executed 23799, cover 33742, signal 44116/46834, crashes 0, repro 0, triageQLen 0
+2026/11/08 18:59:53 VMs 4, executed 25321, cover 33949, signal 44461/48037, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:03 VMs 4, executed 26315, cover 34937, signal 45831/51053, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:13 VMs 4, executed 28778, cover 37653, signal 49842/53061, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:23 VMs 4, executed 31751, cover 38877, signal 51532/54371, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:33 VMs 4, executed 32885, cover 39227, signal 51864/54909, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:43 VMs 4, executed 34045, cover 39715, signal 52572/55119, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:00:53 VMs 4, executed 35435, cover 39992, signal 52979/56167, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:03 VMs 4, executed 36970, cover 40439, signal 53653/57149, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:13 VMs 4, executed 38735, cover 41365, signal 54987/57368, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:23 VMs 4, executed 39548, cover 41505, signal 55216/57510, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:33 VMs 4, executed 41542, cover 41752, signal 55634/58722, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:43 VMs 4, executed 43606, cover 42120, signal 56192/59944, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:01:53 VMs 4, executed 45327, cover 42802, signal 57242/60470, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:03 VMs 4, executed 48006, cover 43188, signal 57911/61181, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:13 VMs 4, executed 49848, cover 43615, signal 58535/61799, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:23 VMs 4, executed 51017, cover 43876, signal 58972/62339, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:33 VMs 4, executed 53406, cover 44349, signal 59780/62710, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:43 VMs 4, executed 54880, cover 44474, signal 59999/63541, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:02:53 VMs 4, executed 56366, cover 45069, signal 60562/64067, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:03 VMs 4, executed 58129, cover 45287, signal 61062/64921, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:13 VMs 4, executed 60701, cover 45722, signal 61777/65514, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:23 VMs 4, executed 62491, cover 45909, signal 62022/66379, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:33 VMs 4, executed 64161, cover 46376, signal 62714/66565, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:43 VMs 4, executed 65339, cover 46716, signal 63216/66629, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:03:53 VMs 4, executed 67975, cover 47221, signal 63910/67486, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:03 VMs 4, executed 68985, cover 47288, signal 64108/67995, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:13 VMs 4, executed 70481, cover 47566, signal 64538/69157, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:23 VMs 4, executed 71924, cover 47938, signal 65103/70011, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:33 VMs 4, executed 74073, cover 48626, signal 66214/70327, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:43 VMs 4, executed 76191, cover 49261, signal 67131/70968, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:04:53 VMs 4, executed 77713, cover 49395, signal 67371/71508, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:05:03 VMs 4, executed 79400, cover 49653, signal 67862/71975, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:05:13 VMs 4, executed 80889, cover 49798, signal 68098/73077, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:05:23 VMs 4, executed 82656, cover 50559, signal 69129/73557, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:05:33 VMs 4, executed 84164, cover 50778, signal 69569/73847, crashes 0, repro 0, triageQLen 0
+2026/11/08 19:05:43 VMs 4, executed 85278, cover 51030, signal 69922/74167, crashes 0, repro 0, triageQLen 0
+SIGINT: shutting down...
+2026/11/08 19:05:44 vm-0: running for 9m42.437032206s, restarting
+2026/11/08 19:05:44 vm-2: running for 9m13.611331504s, restarting
+2026/11/08 19:05:44 vm-3: running for 9m11.791452678s, restarting
+2026/11/08 19:05:44 vm-1: running for 9m32.570027766s, restarting

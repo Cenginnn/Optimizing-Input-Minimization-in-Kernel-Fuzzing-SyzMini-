@@ -1,0 +1,19 @@
+{
+  "target": "linux/amd64",
+  "name": "linux-v5.15",
+  "http": "@@HTTP_ADDR@@",
+  "workdir": "@@WORKDIR@@",
+  "kernel_obj": "@@KERNEL_DIR@@",
+  "image": "@@IMAGE_FILE@@",
+  "sshkey": "@@SSH_KEY@@",
+  "syzkaller": "@@SYZKALLER_DIR@@",
+  "procs": @@PROCS@@,
+  "type": "qemu",
+  "vm": {
+    "count": @@VM_COUNT@@,
+    "kernel": "@@KERNEL_IMAGE@@",
+    "cmdline": "net.ifnames=0",
+    "cpu": @@VM_CPU@@,
+    "mem": @@VM_MEM@@
+  }
+}
