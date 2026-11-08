@@ -720,4 +720,19 @@ func (fuzzer *Fuzzer) getInfluenceFromManager() {
 		}
 		fmt.Printf("fuzzer:load %v influence successfully\n", count)
 	}
+	if r.InfluenceMatrix[i][j] == 1 &&
+	  fuzzer.target.InfluenceMatrix[i][j] != 1 {
+
+		fmt.Printf(
+			"%v->%v\n",
+			fuzzer.target.Syscalls[i].Name,
+			fuzzer.target.Syscalls[j].Name,
+		)
+}
+	if r.InfluenceMatrix[i][j] == 1 &&
+	   fuzzer.target.InfluenceMatrix[i][j] == 0 {
+
+		fuzzer.target.InfluenceMatrix[i][j] = 1
+		count++
+	}
 }
