@@ -265,10 +265,65 @@ func RunManager(cfg *mgrconfig.Config) {
 				numFuzzing, executed, corpusCover, corpusSignal, maxSignal, crashes, numReproducing, triageQLen)
 		}
 	}()
+	
+	func validateInfluenceMatrix(
+		matrix [][]uint8,
+		expected int,
+	) error {
+		if len(matrix) == 0 {
+			return fmt.Errorf("influence matrix is empty")
+		}
+
+		if len(matrix) != expected {
+			return fmt.Errorf(
+				"invalid matrix rows: got %d, want %d",
+				len(matrix), expected,
+			)
+		}
+
+		for i, row := range matrix {
+			if len(row) != expected {
+				return fmt.Errorf(
+					"invalid matrix row %d: got %d columns, want %d",
+					i, len(row), expected,
+				)
+			}
+
+			for j, value := range row {
+				if value > 1 {
+					return fmt.Errorf(
+						"invalid matrix value at [%d][%d]: %d",
+						i, j, value,
+					)
+				}
+			}
+		}
+
+		return nil
+	}
 
 	if *flagInfluence_read != "" {
-		readArrayFromFile(*flagInfluence_read, &mgr.InfluenceMatrix)
-		fmt.Printf("load array \n%v,%v\n", len(mgr.InfluenceMatrix), len(mgr.InfluenceMatrix[0]))
+		if err := readArrayFromFile(
+			*flagInfluence_read,
+			&mgr.InfluenceMatrix,
+		); err != nil {
+			log.Fatalf("failed to load influence matrix: %v", err)
+		}
+
+		expected := len(mgr.target.Syscalls)
+
+		if err := validateInfluenceMatrix(
+			mgr.InfluenceMatrix,
+			expected,
+		); err != nil {
+			log.Fatalf("invalid influence matrix: %v", err)
+		}
+
+		fmt.Printf(
+			"Loaded influence matrix: %dx%d\n",
+			len(mgr.InfluenceMatrix),
+			expected,
+		)
 	}
 
 	if *flagBench != "" {
