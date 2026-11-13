@@ -1,0 +1,11 @@
+ioctl$sock_inet_SIOCGIFDSTADDR(r0, 0x8917, &(0x7f0000000140)={'wlan0\x00', {0x2, 0x0, @broadcast}})
+io_uring_register$IORING_UNREGISTER_BUFFERS(r2, 0x1, 0x0, 0x0)
+mmap$IORING_OFF_SQ_RING(&(0x7f0000ffc000/0x1000)=nil, 0x1000, 0x100000a, 0x4000010, r2, 0x0)
+sendfile(r2, r0, &(0x7f0000000000)=0x40, 0x10001)
+2033/05/18 03:35:45 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

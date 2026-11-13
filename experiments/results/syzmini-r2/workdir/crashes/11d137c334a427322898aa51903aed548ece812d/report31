@@ -1,0 +1,9 @@
+ 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x48}}, {{&(0x7f00000081c0)=@abs, 0x6e, &(0x7f0000009240)=[{&(0x7f0000008240)=""/4096, 0x1000}], 0x1, &(0x7f0000009280)=[@rights={{0x18, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff]}}, @cred={{0x1c}}, @rights={{0x20, 0x1, 0x1, [0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff]}}], 0x58}}], 0x8, 0x10000, &(0x7f0000009500)={0x77359400})
+socket$inet_sctp(0x2, 0x5, 0x84)
+2033/05/18 21:46:28 SYZFATAL: executor 6 failed 11 times: executor 6: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

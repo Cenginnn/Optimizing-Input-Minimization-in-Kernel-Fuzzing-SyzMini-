@@ -1,0 +1,8 @@
+sendmsg$ETHTOOL_MSG_FEATURES_GET(r0, &(0x7f00000000c0)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x80000000}, 0xc, &(0x7f0000000080)={&(0x7f0000000040)={0x20, 0x0, 0x200, 0x70bd2d, 0x25dfdbfe, {}, [@HEADER={0xc, 0x4, 0x0, 0x1, [@ETHTOOL_A_HEADER_FLAGS={0x8}]}]}, 0x20}, 0x300, 0x0, 0x0, 0x40}, 0x4)
+2026/11/12 21:51:59 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

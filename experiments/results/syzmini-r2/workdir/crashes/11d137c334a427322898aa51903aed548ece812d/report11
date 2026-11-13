@@ -1,0 +1,12 @@
+04:43:48 executing program 2:
+r0 = openat$zero(0xffffffffffffff9c, &(0x7f00000001c0), 0x7010a1, 0x0)
+r1 = openat$thread_pidfd(0xffffffffffffff9c, &(0x7f0000000040), 0x0, 0x0)
+ioctl$AUTOFS_DEV_IOCTL_TIMEOUT(r0, 0xc018937a, &(0x7f0000000000)={{0x1, 0x1, 0x18, <r2=>r1, {0x200}}, './file0\x00'})
+dup3(r2, r2, 0x80000)
+2026/11/13 04:43:48 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

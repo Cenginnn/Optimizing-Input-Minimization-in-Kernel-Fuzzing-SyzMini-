@@ -1,0 +1,10 @@
+sendmsg$TIPC_CMD_ENABLE_BEARER(r1, &(0x7f0000000140)={&(0x7f0000000080)={0x10, 0x0, 0x0, 0x200}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, 0x0, 0x300, 0x70bd26, 0x25dfdbfd, {{}, {}, {0x1c, 0x17, {0x4, 0x3, @l2={'eth', 0x3a, 'veth0_vlan\x00'}}}}, ["", "", ""]}, 0x38}, 0x1, 0x0, 0x0, 0x24040013}, 0x40000)
+17:17:26 executing program 3:
+socket(0xf, 0x6, 0x2)
+2026/11/13 17:17:26 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3243952 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,8 @@
+preadv2(r1, &(0x7f0000000340)=[{&(0x7f0000000c00)=""/4096, 0x1000}, {&(0x7f0000001c00)=""/4096, 0x1000}, {&(0x7f00000000c0)=""/159, 0x9f}, {&(0x7f0000000000)=""/68, 0x44}, {&(0x7f0000000180)=""/18, 0x12}, {&(0x7f00000001c0)=""/106, 0x6a}, {&(0x7f0000000240)=""/248, 0xf8}], 0x7, 0x81, 0x0, 0x15)
+2026/11/15 19:45:01 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=4229040 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,6 @@
+f2158ff15efeb084f23b662d51eba874eccf187df9a361f836de9c013169093f8d4043cdd79eb7cce0c7fe9587b2c9d2de3cb5d6fdf44992a1c4f48b0af029799047b463391169d39e5e87541ebf4b9294fe6893519d6a371ab8eb099c6bb0b6df96975f2202b6e6a206b4cbbca93f7efef13a75f313b5826e4596c859ec134356d80ae4a33d4da1b18a2d5c1661c6b514100625496f759310a1e7d8ab", 0xa8}], 0x3, &(0x7f0000000480)=[@ip_pktinfo={{0x1c, 0x0, 0x8, {0x0, @broadcast, @remote}}}, @ip_pktinfo={{0x1c, 0x0, 0x8, {0x0, @remote, @local}}}, @ip_ttl={{0x14, 0x0, 0x2, 0x2}}], 0x58}, 0x0)
+2026/11/13 03:09:06 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

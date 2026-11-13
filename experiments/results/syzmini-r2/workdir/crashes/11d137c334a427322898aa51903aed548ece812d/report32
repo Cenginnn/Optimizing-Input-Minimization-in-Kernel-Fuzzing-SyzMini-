@@ -1,0 +1,12 @@
+sendmsg$DEVLINK_CMD_RATE_DEL(r0, &(0x7f0000000340)={&(0x7f0000000000)={0x2, 0x0, 0xb3dcff7f, 0x2000000}, 0x1f, &(0x7f0000000080)={&(0x7f0000000180)=ANY=[], 0x102c}, 0x1c2, 0x0, 0x0, 0x800}, 0x4000860)
+00:54:23 executing program 0:
+r0 = socket(0x2, 0x6, 0x85)
+setsockopt$inet_sctp6_SCTP_AUTO_ASCONF(r0, 0x84, 0x1e, &(0x7f0000000080)=0x7fffffff, 0x4)
+ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f0000000040)={'wlan0\x00'})
+1970/01/01 00:54:23 SYZFATAL: executor 4 failed 11 times: executor 4: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,11 @@
+549df7ca05b915946f4f944e9fcd2f3bbe1c6a7cfa813605445eed419f265bf12acd500f8d5991c77cf6f1a64fe6d6f49b1f3433bfd048e2fb9c5518adfede8672279d89434fb023c4c88e543837446f3c6e3508449230f22ff2b9d5daa7a67570f5643201e1436a22a509d621b1fc40aa05a79da41e16e93e9452f3c0a37f2332946a06e966009a50c4f1361e7d296a381dbcc1ec5c0849faf098b259ed0c0d8cc3417ebeca8eaad", 0xf9, 0x7, 0x0, 0x1}])
+02:23:40 executing program 6:
+io_setup(0x6, &(0x7f0000000c40)=<r0=>0x0)
+io_getevents(r0, 0x8000, 0x5, &(0x7f0000000000)=[{}, {}, {}, {}, {}], 0x0)
+2026/11/13 02:23:40 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

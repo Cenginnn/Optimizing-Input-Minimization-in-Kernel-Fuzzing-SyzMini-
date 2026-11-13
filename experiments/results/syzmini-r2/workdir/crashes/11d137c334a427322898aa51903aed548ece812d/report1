@@ -1,0 +1,11 @@
+kcmp$KCMP_EPOLL_TFD(r3, r3, 0x7, r2, &(0x7f0000000040)={r4, r2, 0x1})
+ioctl$FS_IOC_READ_VERITY_METADATA(r4, 0xc0286687, &(0x7f0000000000)={0x3, 0x8, 0xd5, &(0x7f0000000180)=""/213})
+epoll_ctl$EPOLL_CTL_ADD(r1, 0x1, r0, &(0x7f00000000c0)={0x1})
+epoll_ctl$EPOLL_CTL_DEL(r1, 0x2, r0)
+2026/11/12 21:47:50 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

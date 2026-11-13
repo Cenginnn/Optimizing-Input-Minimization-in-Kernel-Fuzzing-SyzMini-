@@ -1,0 +1,12 @@
+syz_io_uring_setup(0x4fa6, &(0x7f00000002c0)={0x0, 0xf34a, 0x800, 0x3, 0x149, 0x0, r0}, &(0x7f0000000140), &(0x7f0000000340))
+r3 = syz_open_procfs(0xffffffffffffffff, &(0x7f00000000c0)='net/ip6_tables_targets\x00')
+read$eventfd(r3, &(0x7f0000000180), 0x8)
+read$eventfd(r3, &(0x7f0000000100), 0x8)
+prctl$PR_SET_SECCOMP(0x3, 0x2, &(0x7f0000000200)={0x2, &(0x7f00000001c0)=[{0x20, 0xfc, 0x23, 0xfffffffd}, {0xfb, 0xff, 0x6, 0x800}]})
+2026/11/13 16:55:59 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

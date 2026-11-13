@@ -1,0 +1,12 @@
+r0 = creat(&(0x7f0000000040)='./file1\x00', 0xa1)
+fallocate(r0, 0x10, 0x2800, 0x8800000)
+13:33:02 executing program 5:
+r0 = creat(&(0x7f0000000040)='./file1\x00', 0xa1)
+fallocate(r0, 0x10, 0x0, 0x3000)
+2026/11/14 13:33:02 SYZFATAL: executor 6 failed 11 times: executor 6: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

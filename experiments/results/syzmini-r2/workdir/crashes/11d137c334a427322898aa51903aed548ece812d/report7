@@ -1,0 +1,8 @@
+sendmsg$TIPC_CMD_GET_NETID(0xffffffffffffffff, &(0x7f0000000100)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x1000000}, 0xc, &(0x7f00000000c0)={&(0x7f0000000040)={0x1c, r1, 0x1, 0x70bd2e, 0x25dfdbfb, {}, ["", "", "", "", "", "", ""]}, 0x1c}, 0x1, 0x0, 0x0, 0x4004810}, 0x8880)
+2026/11/13 02:06:20 SYZFATAL: executor 4 failed 11 times: executor 4: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

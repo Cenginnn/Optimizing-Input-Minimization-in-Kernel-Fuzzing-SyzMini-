@@ -1,0 +1,9 @@
+c0), &(0x7f0000000180), &(0x7f0000000400)="93d207739ed8f03f07b950bc9701bbfcc83d7b409765947375b4c1be9ee02f9a4df460c4f95a9582573c8b800e9c21678c24c43f76ac71a42108ca9da5629dab6a1c77438d2384fce42dd999f20e08d74d0895f2b3ca9b11f3c737b7bef866bf9e90755107225424c94ac05124b406484ee52610e84a0271075b453bcd423594bb9dedf55adef79be25d85e4ffa453f47460")
+10:35:01 executing program 0:
+seccomp$SECCOMP_GET_NOTIF_SIZES(0x3, 0x0, &(0x7f0000000340))
+alarm(0x1)
+2026/11/13 10:35:01 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

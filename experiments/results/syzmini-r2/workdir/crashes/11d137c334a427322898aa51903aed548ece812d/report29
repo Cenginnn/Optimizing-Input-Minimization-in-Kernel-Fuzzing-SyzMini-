@@ -1,0 +1,6 @@
+sendmsg$NLBL_MGMT_C_REMOVE(0xffffffffffffffff, &(0x7f0000000680)={&(0x7f0000000580)={0x10, 0x0, 0x0, 0x40000000}, 0xc, &(0x7f0000000640)={&(0x7f00000005c0)={0x48, r0, 0x1, 0x70bd2c, 0x25dfdbff, {}, [@NLBL_MGMT_A_PROTOCOL={0xc, 0x2, 0x5}, @NLBL_MGMT_A_PROTOCOL={0x8, 0x2, 0x5}, @NLBL_MGMT_A_IPV4MASK={0x8, 0x8, @rand_addr=0x64010100}, @NLBL_MGMT_A_PROTOCOL={0x8, 0x2, 0x5}, @NLBL_MGMT_A_IPV6MASK={0x14, 0x6, @empty}]}, 0x48}, 0x1, 0x0, 0x0, 0x40000}, 0x800)
+2026/11/13 18:39:14 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

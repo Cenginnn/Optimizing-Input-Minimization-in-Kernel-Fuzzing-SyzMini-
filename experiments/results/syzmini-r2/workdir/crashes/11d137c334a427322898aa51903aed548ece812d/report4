@@ -1,0 +1,11 @@
+728a9fe7347dda4a9f46002567bfc466541a51ae4db10402ff92c43a24f8329d245268a0aa0c9c87c4410eda9bd41d0c30ae777a3d028de4002524ea13813f3760f3306b544eb95c7cd7b7bcde8e4f13a4efd0620aba957d0978b3449b125d9496fb", 0xbb}], 0x5, &(0x7f00000001c0)=[@ip_tos_int={{0x14, 0x0, 0x1, 0xffff}}], 0x18}, 0x40000)
+recvfrom$inet6(r0, &(0x7f0000000200)=""/83, 0x53, 0x2121, &(0x7f0000000680)={0xa, 0x4e24, 0x200, @remote, 0x86}, 0x1c)
+ioctl$SIOCGSTAMPNS(r0, 0x8907, &(0x7f0000000700))
+ioctl$SIOCGSTAMPNS(r0, 0xc020660b, &(0x7f0000000040))
+2033/05/18 03:38:16 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67
