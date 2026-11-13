@@ -1,0 +1,114 @@
+Process accounting resumed
+==================================================================
+BUG: KASAN: null-ptr-deref in cgroup_file_write+0xae/0x3b0
+Read of size 8 at addr 0000000000000040 by task syz-executor.5/396
+
+CPU: 0 PID: 396 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ dump_stack_lvl+0x6e/0x91
+ kasan_report.cold+0x116/0x11b
+ cgroup_file_write+0xae/0x3b0
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ get_signal+0x2ec/0x10f0
+ arch_do_signal_or_restart+0x1df/0xb60
+ exit_to_user_mode_prepare+0xbf/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ do_syscall_64+0x48/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f944e3df01e
+Code: Unable to access opcode bytes at RIP 0x7f944e3deff4.
+RSP: 002b:00007ffeb3e19e30 EFLAGS: 00000202 ORIG_RAX: 00000000000000e6
+RAX: 0000000000000000 RBX: 0000000000000585 RCX: 00007f944e3df01e
+RDX: 00007ffeb3e19e80 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 00007ffeb3e19e40 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 000000000008339b
+R13: 000000000008339b R14: 0000000000000000 R15: 0000000000000000
+==================================================================
+BUG: kernel NULL pointer dereference, address: 0000000000000040
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 3cee067 P4D 3cee067 PUD 37b2067 PMD 0 
+Oops: 0000 [#1] SMP KASAN NOPTI
+CPU: 0 PID: 396 Comm: syz-executor.5 Tainted: G    B             5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc90005b9f6d8 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000b73ede RCX: ffffffffb95f0a9d
+RDX: 1ffffffff7676c89 RSI: 0000000000000246 RDI: ffffffffbb3b6448
+RBP: ffff888001b6e800 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff88800b82e000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000002388002 CR4: 0000000000370ef0
+DR0: 0000000000000fff DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ get_signal+0x2ec/0x10f0
+ arch_do_signal_or_restart+0x1df/0xb60
+ exit_to_user_mode_prepare+0xbf/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ do_syscall_64+0x48/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f944e3df01e
+Code: Unable to access opcode bytes at RIP 0x7f944e3deff4.
+RSP: 002b:00007ffeb3e19e30 EFLAGS: 00000202 ORIG_RAX: 00000000000000e6
+RAX: 0000000000000000 RBX: 0000000000000585 RCX: 00007f944e3df01e
+RDX: 00007ffeb3e19e80 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 00007ffeb3e19e40 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 000000000008339b
+R13: 000000000008339b R14: 0000000000000000 R15: 0000000000000000
+Modules linked in:
+CR2: 0000000000000040
+---[ end trace 8351f8c6689fd6d9 ]---
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc90005b9f6d8 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000b73ede RCX: ffffffffb95f0a9d
+RDX: 1ffffffff7676c89 RSI: 0000000000000246 RDI: ffffffffbb3b6448
+RBP: ffff888001b6e800 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff88800b82e000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000002388002 CR4: 0000000000370ef0
+DR0: 0000000000000fff DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Fixing recursive fault but reboot is needed!
+----------------
+Code disassembly (best guess):
+   0:	4d 85 e4             	test   %r12,%r12
+   3:	0f 84 58 01 00 00    	je     0x161
+   9:	e8 0e fa 03 00       	call   0x3fa1c
+   e:	49 8d bd 18 07 00 00 	lea    0x718(%r13),%rdi
+  15:	e8 22 a7 1e 00       	call   0x1ea73c
+  1a:	4d 8b ad 18 07 00 00 	mov    0x718(%r13),%r13
+  21:	49 8d 7d 40          	lea    0x40(%r13),%rdi
+  25:	e8 12 a7 1e 00       	call   0x1ea73c
+* 2a:	49 8b 45 40          	mov    0x40(%r13),%rax <-- trapping instruction
+  2e:	48 89 ef             	mov    %rbp,%rdi
+  31:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  36:	e8 01 a7 1e 00       	call   0x1ea73c
+  3b:	4c 8b 6d 00          	mov    0x0(%rbp),%r13
+  3f:	49                   	rex.WB
