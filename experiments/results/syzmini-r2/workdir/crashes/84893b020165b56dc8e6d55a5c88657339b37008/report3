@@ -1,0 +1,57 @@
+------------[ cut here ]------------
+Trying to write to read-only block-device sr0 (partno 0)
+WARNING: CPU: 1 PID: 20162 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 1 PID: 20162 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 3b a3 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc90000abf508 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 1ffff92000157ea8 RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc90000d92000 RDI: fffff52000157e93
+RBP: ffff888001d1db00 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888001d1db10
+R13: ffff888001484100 R14: ffff88800353c6e0 R15: ffff888001d1db08
+FS:  0000555556385480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b32c22000 CR3: 0000000002d96005 CR4: 0000000000370ee0
+DR0: 0000000000000003 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ __block_write_full_page+0x5fc/0xb40
+ block_write_full_page+0xf8/0x110
+ __writepage+0x3b/0x100
+ write_cache_pages+0x420/0x990
+ generic_writepages+0xc9/0x130
+ do_writepages+0x187/0x480
+ __filemap_fdatawrite_range+0x1b1/0x210
+ filemap_write_and_wait_range+0x4f/0xe0
+ blkdev_put+0x468/0x4b0
+ blkdev_close+0x45/0x50
+ __fput+0x170/0x5a0
+ task_work_run+0xb2/0x100
+ exit_to_user_mode_prepare+0x121/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ do_syscall_64+0x48/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f5ebbe1b0d6
+Code: 47 ba 04 00 00 00 48 c7 c0 e8 ff ff ff 64 89 10 48 c7 c2 ff ff ff ff c9 48 89 d0 c3 0f 1f 84 00 00 00 00 00 48 8b 45 10 0f 05 <48> 89 c2 48 3d 00 f0 ff ff 77 0f c9 48 89 d0 c3 66 2e 0f 1f 84 00
+RSP: 002b:00007fff5d8db030 EFLAGS: 00000202 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 0000000000000004 RCX: 00007f5ebbe1b0d6
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 00007fff5d8db040 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 00007f5ebb97e1c8
+R13: 00007f5ebbd7e000 R14: 00007f5ebb97e000 R15: 0000000000000000
+---[ end trace 1176f3be587b2534 ]---
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+audit: type=1401 audit(1794545755.107:51): op=security_bounded_transition seresult=denied oldcontext=system_u:system_r:kernel_t:s0 newcontext=system_u:object_r:sysfs_t:s0

@@ -1,0 +1,646 @@
+ext4 filesystem being mounted at /syzkaller-testdir2838085949/syzkaller.nOk0W4/156/file0 supports timestamps until 2038 (0x7fffffff)
+------------[ cut here ]------------
+Trying to write to read-only block-device loop4 (partno 0)
+WARNING: CPU: 1 PID: 52 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 1 PID: 52 Comm: kworker/u4:1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Workqueue: writeback wb_workfn (flush-7:4)
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 db bc 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc900002f6f68 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 1ffff9200005edf4 RCX: 0000000000000000
+RDX: ffff888001d0ec80 RSI: 0000000000000000 RDI: fffff5200005eddf
+RBP: ffff8880022ebf00 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880022ebf10
+R13: ffff888002af9a00 R14: ffff888003561f80 R15: ffff8880022ebf08
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f5d779b6000 CR3: 0000000056e10005 CR4: 0000000000370ee0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ ext4_bio_write_page+0x6fc/0xbc0
+ mpage_submit_page+0xc5/0x120
+ mpage_process_page_bufs+0x420/0x440
+ mpage_prepare_extent_to_map+0x482/0x760
+ ext4_writepages+0x646/0x20f0
+ do_writepages+0x187/0x480
+ __writeback_single_inode+0x90/0x5c0
+ writeback_sb_inodes+0x476/0xa50
+ wb_writeback+0x1af/0x5b0
+ wb_workfn+0x1db/0x980
+ process_one_work+0x509/0x900
+ worker_thread+0x370/0x990
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 111122ebdbbe2b3a ]---
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): bad geometry: block count 1024 exceeds size of device (512 blocks)
+loop4: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 2048
+audit: type=1400 audit(1794592549.779:15): avc:  denied  { relabelto } for  pid=6173 comm="syz-executor.7" name="UDP-Lite" dev="sockfs" ino=25908 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:dhcpc_state_t:s0 tclass=rawip_socket permissive=1
+loop4: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 4096
+tmpfs: Unknown parameter 'fsname'
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=5 sclass=netlink_route_socket pid=6187 comm=syz-executor.7
+sctp: [Deprecated]: syz-executor.7 (pid 6189) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir983506683/syzkaller.xQstqa/202/file0 supports timestamps until 2038 (0x7fffffff)
+audit: type=1326 audit(1794592551.715:16): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6205 comm="syz-executor.7" exe="/syz-executor.7" sig=31 arch=c000003e syscall=202 compat=0 ip=0x7fc4572f8c9d code=0x0
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): orphan cleanup on readonly fs
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-13). Please run e2fsck to fix.
+EXT4-fs (loop7): Cannot turn on quotas: error -13
+EXT4-fs error (device loop7): ext4_orphan_get:1419: comm syz-executor.7: bad orphan inode 8
+EXT4-fs (loop7): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+tmpfs: Bad value for 'mpol'
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+print_req_error: 14 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 32 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 30 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 7 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir1662776128/syzkaller.s61xxL/216/mnt supports timestamps until 2038 (0x7fffffff)
+device sit0 entered promiscuous mode
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): Unrecognized mount option "·«Vp+êã_ß“¯	‹®Fæ" or missing value
+loop6: detected capacity change from 0 to 1768
+loop4: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+netlink: 80 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop4: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 32768
+ loop6: p1 < p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 p21 p22 p23 p24 p25 p26 p27 p28 p29 p30 p31 p32 p33 p34 p35 p36 p37 p38 p39 p40 p41 p42 p43 p44 p45 p46 p47 p48 p49 p50 p51 p52 p53 p54 p55 p56 p57 p58 p59 p60 p61 p62 p63 p64 p65 p66 p67 p68 p69 p70 p71 p72 p73 p74 p75 p76 p77 p78 p79 p80 p81 p82 p83 p84 p85 p86 p87 p88 p89 p90 p91 p92 p93 p94 p95 p96 p97 p98 p99 p100 p101 p102 p103 p104 p105 p106 p107 p108 p109 p110 p111 p112 p113 p114 p115 p116 p117 p118 p119 p120 p121 p122 p123 p124 p125 p126 p127 p128 p129 p130 p131 p132 p133 p134 p135 p136 p137 p138 p139 p140 p141 p142 p143 p144 p145 p146 p147 p148 p149 p150 p151 p152 p153 p154 p155 p156 p157 p158 p159 p160 p161 p162 p163 p164 p165 p166 p167 p168 p169 p170 p171 p172 p173 p174 p175 p176 p177 p178 p179 p180 p181 p182 p183 p184 p185 p186 p187 p188 p189 p190 p191 p192 p193 p194 p195 p196 p197 p198 p199 p200 p201 p202 p203 p204 p205 p206 p207 p208 p209 p210 p211 p212 p213 p214 p215 p216 p217 p218 p219 p
+loop6: p2 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p5 size 2147418112 extends beyond EOD, truncated
+loop6: p6 size 2147418112 extends beyond EOD, truncated
+loop6: p7 size 2147418112 extends beyond EOD, truncated
+loop6: p8 size 2147418112 extends beyond EOD, truncated
+loop6: p9 size 2147418112 extends beyond EOD, truncated
+loop6: p10 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p11 size 2147418112 extends beyond EOD, truncated
+loop6: p12 size 2147418112 extends beyond EOD, truncated
+loop6: p13 size 2147418112 extends beyond EOD, truncated
+loop6: p14 size 2147418112 extends beyond EOD, truncated
+loop6: p15 size 2147418112 extends beyond EOD, truncated
+loop6: p16 size 2147418112 extends beyond EOD, truncated
+loop6: p17 size 2147418112 extends beyond EOD, truncated
+loop6: p18 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p19 size 2147418112 extends beyond EOD, truncated
+loop6: p20 size 2147418112 extends beyond EOD, truncated
+loop6: p21 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p22 size 2147418112 extends beyond EOD, truncated
+loop6: p23 size 2147418112 extends beyond EOD, truncated
+loop6: p24 size 2147418112 extends beyond EOD, truncated
+loop0: detected capacity change from 0 to 262144
+loop6: p25 size 2147418112 extends beyond EOD, truncated
+loop6: p26 size 2147418112 extends beyond EOD, truncated
+loop6: p27 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p28 size 2147418112 extends beyond EOD, truncated
+loop6: p29 size 2147418112 extends beyond EOD, truncated
+loop6: p30 size 2147418112 extends beyond EOD, truncated
+loop6: p31 size 2147418112 extends beyond EOD, truncated
+loop6: p32 size 2147418112 extends beyond EOD, truncated
+loop6: p33 size 2147418112 extends beyond EOD, truncated
+loop6: p34 size 2147418112 extends beyond EOD, truncated
+loop6: p35 size 2147418112 extends beyond EOD, truncated
+loop6: p36 size 2147418112 extends beyond EOD, truncated
+loop6: p37 size 2147418112 extends beyond EOD, truncated
+loop6: p38 size 2147418112 extends beyond EOD, truncated
+loop6: p39 size 2147418112 extends beyond EOD, truncated
+loop6: p40 size 2147418112 extends beyond EOD, truncated
+loop6: p41 size 2147418112 extends beyond EOD, truncated
+loop6: p42 size 2147418112 extends beyond EOD, truncated
+loop6: p43 size 2147418112 extends beyond EOD, truncated
+loop6: p44 size 2147418112 extends beyond EOD, truncated
+loop6: p45 size 2147418112 extends beyond EOD, truncated
+loop6: p46 size 2147418112 extends beyond EOD, truncated
+loop6: p47 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p48 size 2147418112 extends beyond EOD, truncated
+loop6: p49 size 2147418112 extends beyond EOD, truncated
+loop6: p50 size 2147418112 extends beyond EOD, truncated
+loop6: p51 size 2147418112 extends beyond EOD, truncated
+loop6: p52 size 2147418112 extends beyond EOD, truncated
+loop6: p53 size 2147418112 extends beyond EOD, truncated
+loop6: p54 size 2147418112 extends beyond EOD, truncated
+loop6: p55 size 2147418112 extends beyond EOD, truncated
+loop6: p56 size 2147418112 extends beyond EOD, truncated
+loop6: p57 size 2147418112 extends beyond EOD, truncated
+loop6: p58 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p59 size 2147418112 extends beyond EOD, truncated
+loop6: p60 size 2147418112 extends beyond EOD, truncated
+loop6: p61 size 2147418112 extends beyond EOD, truncated
+loop6: p62 size 2147418112 extends beyond EOD, truncated
+loop6: p63 size 2147418112 extends beyond EOD, truncated
+loop6: p64 size 2147418112 extends beyond EOD, truncated
+loop6: p65 size 2147418112 extends beyond EOD, truncated
+loop6: p66 size 2147418112 extends beyond EOD, truncated
+loop6: p67 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p68 size 2147418112 extends beyond EOD, truncated
+loop6: p69 size 2147418112 extends beyond EOD, truncated
+loop6: p70 size 2147418112 extends beyond EOD, truncated
+loop6: p71 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p72 size 2147418112 extends beyond EOD, truncated
+loop6: p73 size 2147418112 extends beyond EOD, truncated
+loop6: p74 size 2147418112 extends beyond EOD, truncated
+loop6: p75 size 2147418112 extends beyond EOD, truncated
+loop6: p76 size 2147418112 extends beyond EOD, truncated
+loop6: p77 size 2147418112 extends beyond EOD, truncated
+loop6: p78 size 2147418112 extends beyond EOD, truncated
+loop6: p79 size 2147418112 extends beyond EOD, truncated
+loop6: p80 size 2147418112 extends beyond EOD, truncated
+loop6: p81 size 2147418112 extends beyond EOD, truncated
+loop6: p82 size 2147418112 extends beyond EOD, truncated
+loop6: p83 size 2147418112 extends beyond EOD, truncated
+loop6: p84 size 2147418112 extends beyond EOD, truncated
+loop6: p85 size 2147418112 extends beyond EOD, truncated
+loop6: p86 size 2147418112 extends beyond EOD, truncated
+loop6: p87 size 2147418112 extends beyond EOD, truncated
+loop6: p88 size 2147418112 extends beyond EOD, truncated
+loop6: p89 size 2147418112 extends beyond EOD, truncated
+loop6: p90 size 2147418112 extends beyond EOD, truncated
+loop6: p91 size 2147418112 extends beyond EOD, truncated
+loop6: p92 size 2147418112 extends beyond EOD, truncated
+loop6: p93 size 2147418112 extends beyond EOD, truncated
+loop6: p94 size 2147418112 extends beyond EOD, truncated
+loop6: p95 size 2147418112 extends beyond EOD, truncated
+loop6: p96 size 2147418112 extends beyond EOD, truncated
+loop6: p97 size 2147418112 extends beyond EOD, truncated
+loop6: p98 size 2147418112 extends beyond EOD, truncated
+loop6: p99 size 2147418112 extends beyond EOD, truncated
+loop6: p100 size 2147418112 extends beyond EOD, truncated
+loop6: p101 size 2147418112 extends beyond EOD, truncated
+loop6: p102 size 2147418112 extends beyond EOD, truncated
+loop6: p103 size 2147418112 extends beyond EOD, truncated
+loop6: p104 size 2147418112 extends beyond EOD, truncated
+loop6: p105 size 2147418112 extends beyond EOD, truncated
+loop6: p106 size 2147418112 extends beyond EOD, truncated
+loop6: p107 size 2147418112 extends beyond EOD, truncated
+loop6: p108 size 2147418112 extends beyond EOD, truncated
+loop6: p109 size 2147418112 extends beyond EOD, truncated
+loop6: p110 size 2147418112 extends beyond EOD, truncated
+loop6: p111 size 2147418112 extends beyond EOD, truncated
+loop6: p112 size 2147418112 extends beyond EOD, truncated
+loop6: p113 size 2147418112 extends beyond EOD, truncated
+loop6: p114 size 2147418112 extends beyond EOD, truncated
+loop6: p115 size 2147418112 extends beyond EOD, truncated
+loop6: p116 size 2147418112 extends beyond EOD, truncated
+loop6: p117 size 2147418112 extends beyond EOD, truncated
+loop6: p118 size 2147418112 extends beyond EOD, truncated
+loop6: p119 size 2147418112 extends beyond EOD, truncated
+loop6: p120 size 2147418112 extends beyond EOD, truncated
+loop6: p121 size 2147418112 extends beyond EOD, truncated
+loop6: p122 size 2147418112 extends beyond EOD, truncated
+loop6: p123 size 2147418112 extends beyond EOD, truncated
+loop6: p124 size 2147418112 extends beyond EOD, truncated
+loop6: p125 size 2147418112 extends beyond EOD, truncated
+loop6: p126 size 2147418112 extends beyond EOD, truncated
+loop6: p127 size 2147418112 extends beyond EOD, truncated
+loop6: p128 size 2147418112 extends beyond EOD, truncated
+loop6: p129 size 2147418112 extends beyond EOD, truncated
+loop6: p130 size 2147418112 extends beyond EOD, truncated
+loop6: p131 size 2147418112 extends beyond EOD, truncated
+loop6: p132 size 2147418112 extends beyond EOD, truncated
+loop6: p133 size 2147418112 extends beyond EOD, truncated
+loop6: p134 size 2147418112 extends beyond EOD, truncated
+loop6: p135 size 2147418112 extends beyond EOD, truncated
+loop6: p136 size 2147418112 extends beyond EOD, truncated
+loop6: p137 size 2147418112 extends beyond EOD, truncated
+loop6: p138 size 2147418112 extends beyond EOD, truncated
+loop6: p139 size 2147418112 extends beyond EOD, truncated
+loop6: p140 size 2147418112 extends beyond EOD, truncated
+loop6: p141 size 2147418112 extends beyond EOD, truncated
+loop6: p142 size 2147418112 extends beyond EOD, truncated
+loop6: p143 size 2147418112 extends beyond EOD, truncated
+loop6: p144 size 2147418112 extends beyond EOD, truncated
+loop6: p145 size 2147418112 extends beyond EOD, truncated
+loop6: p146 size 2147418112 extends beyond EOD, truncated
+loop6: p147 size 2147418112 extends beyond EOD, truncated
+loop6: p148 size 2147418112 extends beyond EOD, truncated
+loop6: p149 size 2147418112 extends beyond EOD, truncated
+loop6: p150 size 2147418112 extends beyond EOD, truncated
+loop6: p151 size 2147418112 extends beyond EOD, truncated
+loop6: p152 size 2147418112 extends beyond EOD, truncated
+loop6: p153 size 2147418112 extends beyond EOD, truncated
+loop6: p154 size 2147418112 extends beyond EOD, truncated
+loop6: p155 size 2147418112 extends beyond EOD, truncated
+loop6: p156 size 2147418112 extends beyond EOD, truncated
+loop6: p157 size 2147418112 extends beyond EOD, truncated
+loop6: p158 size 2147418112 extends beyond EOD, truncated
+loop6: p159 size 2147418112 extends beyond EOD, truncated
+loop6: p160 size 2147418112 extends beyond EOD, truncated
+loop6: p161 size 2147418112 extends beyond EOD, truncated
+loop6: p162 size 2147418112 extends beyond EOD, truncated
+loop6: p163 size 2147418112 extends beyond EOD, truncated
+loop6: p164 size 2147418112 extends beyond EOD, truncated
+loop6: p165 size 2147418112 extends beyond EOD, truncated
+loop6: p166 size 2147418112 extends beyond EOD, truncated
+loop6: p167 size 2147418112 extends beyond EOD, truncated
+loop6: p168 size 2147418112 extends beyond EOD, truncated
+loop6: p169 size 2147418112 extends beyond EOD, truncated
+loop6: p170 size 2147418112 extends beyond EOD, truncated
+loop6: p171 size 2147418112 extends beyond EOD, truncated
+loop6: p172 size 2147418112 extends beyond EOD, truncated
+loop6: p173 size 2147418112 extends beyond EOD, truncated
+loop6: p174 size 2147418112 extends beyond EOD, truncated
+loop6: p175 size 2147418112 extends beyond EOD, truncated
+loop6: p176 size 2147418112 extends beyond EOD, truncated
+loop6: p177 size 2147418112 extends beyond EOD, truncated
+loop6: p178 size 2147418112 extends beyond EOD, truncated
+loop6: p179 size 2147418112 extends beyond EOD, truncated
+loop6: p180 size 2147418112 extends beyond EOD, truncated
+loop6: p181 size 2147418112 extends beyond EOD, truncated
+loop6: p182 size 2147418112 extends beyond EOD, truncated
+loop4: detected capacity change from 0 to 2048
+loop6: p183 size 2147418112 extends beyond EOD, truncated
+loop7: detected capacity change from 0 to 8192
+loop6: p184 size 2147418112 extends beyond EOD, truncated
+loop6: p185 size 2147418112 extends beyond EOD, truncated
+loop6: p186 size 2147418112 extends beyond EOD, truncated
+loop6: p187 size 2147418112 extends beyond EOD, truncated
+loop6: p188 size 2147418112 extends beyond EOD, truncated
+loop6: p189 size 2147418112 extends beyond EOD, truncated
+loop6: p190 size 2147418112 extends beyond EOD, truncated
+loop6: p191 size 2147418112 extends beyond EOD, truncated
+loop6: p192 size 2147418112 extends beyond EOD, truncated
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): Unrecognized mount option "commiˆaé“>\Ÿ0000000003ff" or missing value
+loop4: detected capacity change from 0 to 2048
+loop6: p193 size 2147418112 extends beyond EOD, truncated
+loop6: p194 size 2147418112 extends beyond EOD, truncated
+loop6: p195 size 2147418112 extends beyond EOD, truncated
+loop6: p196 size 2147418112 extends beyond EOD, truncated
+loop6: p197 size 2147418112 extends beyond EOD, truncated
+loop6: p198 size 2147418112 extends beyond EOD, truncated
+loop6: p199 size 2147418112 extends beyond EOD, truncated
+loop6: p200 size 2147418112 extends beyond EOD, truncated
+loop6: p201 size 2147418112 extends beyond EOD, truncated
+loop6: p202 size 2147418112 extends beyond EOD, truncated
+loop6: p203 size 2147418112 extends beyond EOD, truncated
+loop6: p204 size 2147418112 extends beyond EOD, truncated
+loop6: p205 size 2147418112 extends beyond EOD, truncated
+loop6: p206 size 2147418112 extends beyond EOD, truncated
+loop6: p207 size 2147418112 extends beyond EOD, truncated
+loop6: p208 size 2147418112 extends beyond EOD, truncated
+loop6: p209 size 2147418112 extends beyond EOD, truncated
+loop6: p210 size 2147418112 extends beyond EOD, truncated
+loop6: p211 size 2147418112 extends beyond EOD, truncated
+loop6: p212 size 2147418112 extends beyond EOD, truncated
+loop6: p213 size 2147418112 extends beyond EOD, truncated
+loop6: p214 size 2147418112 extends beyond EOD, truncated
+tmpfs: Bad value for 'mpol'
+loop6: p215 size 2147418112 extends beyond EOD, truncated
+loop6: p216 size 2147418112 extends beyond EOD, truncated
+loop6: p217 size 2147418112 extends beyond EOD, truncated
+loop6: p218 size 2147418112 extends beyond EOD, truncated
+loop6: p219 size 2147418112 extends beyond EOD, truncated
+loop6: p220 size 2147418112 extends beyond EOD, truncated
+loop6: p221 size 2147418112 extends beyond EOD, truncated
+loop6: p222 size 2147418112 extends beyond EOD, truncated
+loop6: p223 size 2147418112 extends beyond EOD, truncated
+loop6: p224 size 2147418112 extends beyond EOD, truncated
+loop6: p225 size 2147418112 extends beyond EOD, truncated
+loop6: p226 size 2147418112 extends beyond EOD, truncated
+loop6: p227 size 2147418112 extends beyond EOD, truncated
+loop6: p228 size 2147418112 extends beyond EOD, truncated
+loop6: p229 size 2147418112 extends beyond EOD, truncated
+loop6: p230 size 2147418112 extends beyond EOD, truncated
+loop6: p231 size 2147418112 extends beyond EOD, truncated
+loop6: p232 size 2147418112 extends beyond EOD, truncated
+loop6: p233 size 2147418112 extends beyond EOD, truncated
+loop6: p234 size 2147418112 extends beyond EOD, truncated
+loop3: detected capacity change from 0 to 128
+loop6: p235 size 2147418112 extends beyond EOD, truncated
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop6: p236 size 2147418112 extends beyond EOD, truncated
+ext4 filesystem being mounted at /syzkaller-testdir1047365927/syzkaller.8Ro5FM/19/mnt supports timestamps until 2038 (0x7fffffff)
+loop6: p237 size 2147418112 extends beyond EOD, truncated
+loop6: p238 size 2147418112 extends beyond EOD, truncated
+loop6: p239 size 2147418112 extends beyond EOD, truncated
+loop6: p240 size 2147418112 extends beyond EOD, truncated
+loop6: p241 size 2147418112 extends beyond EOD, truncated
+loop6: p242 size 2147418112 extends beyond EOD, truncated
+loop6: p243 size 2147418112 extends beyond EOD, truncated
+loop6: p244 size 2147418112 extends beyond EOD, truncated
+loop6: p245 size 2147418112 extends beyond EOD, truncated
+loop6: p246 size 2147418112 extends beyond EOD, truncated
+loop6: p247 size 2147418112 extends beyond EOD, truncated
+loop6: p248 size 2147418112 extends beyond EOD, truncated
+loop6: p249 size 2147418112 extends beyond EOD, truncated
+loop6: p250 size 2147418112 extends beyond EOD, truncated
+loop6: p251 size 2147418112 extends beyond EOD, truncated
+loop6: p252 size 2147418112 extends beyond EOD, truncated
+loop6: p253 size 2147418112 extends beyond EOD, truncated
+loop6: p254 size 2147418112 extends beyond EOD, truncated
+loop6: p255 size 2147418112 extends beyond EOD, truncated
+ loop6: p1 < p5 p6 p7 p8 p9 p10 p11 p12 p13 p14 p15 p16 p17 p18 p19 p20 p21 p22 p23 p24 p25 p26 p27 p28 p29 p30 p31 p32 p33 p34 p35 p36 p37 p38 p39 p40 p41 p42 p43 p44 p45 p46 p47 p48 p49 p50 p51 p52 p53 p54 p55 p56 p57 p58 p59 p60 p61 p62 p63 p64 p65 p66 p67 p68 p69 p70 p71 p72 p73 p74 p75 p76 p77 p78 p79 p80 p81 p82 p83 p84 p85 p86 p87 p88 p89 p90 p91 p92 p93 p94 p95 p96 p97 p98 p99 p100 p101 p102 p103 p104 p105 p106 p107 p108 p109 p110 p111 p112 p113 p114 p115 p116 p117 p118 p119 p120 p121 p122 p123 p124 p125 p126 p127 p128 p129 p130 p131 p132 p133 p134 p135 p136 p137 p138 p139 p140 p141 p142 p143 p144 p145 p146 p147 p148 p149 p150 p151 p152 p153 p154 p155 p156 p157 p158 p159 p160 p161 p162 p163 p164 p165 p166 p167 p168 p169 p170 p171 p172 p173 p174 p175 p176 p177 p178 p179 p180 p181 p182 p183 p184 p185 p186 p187 p188 p189 p190 p191 p192 p193 p194 p195 p196 p197 p198 p199 p200 p201 p202 p203 p204 p205 p206 p207 p208 p209 p210 p211 p212 p213 p214 p215 p216 p217 p218 p219 p
+loop6: p2 size 2147418112 extends beyond EOD, truncated
+loop6: p5 size 2147418112 extends beyond EOD, truncated
+loop6: p6 size 2147418112 extends beyond EOD, truncated
+loop6: p7 size 2147418112 extends beyond EOD, truncated
+loop6: p8 size 2147418112 extends beyond EOD, truncated
+loop6: p9 size 2147418112 extends beyond EOD, truncated
+loop6: p10 size 2147418112 extends beyond EOD, truncated
+loop6: p11 size 2147418112 extends beyond EOD, truncated
+loop6: p12 size 2147418112 extends beyond EOD, truncated
+loop6: p13 size 2147418112 extends beyond EOD, truncated
+loop6: p14 size 2147418112 extends beyond EOD, truncated
+loop6: p15 size 2147418112 extends beyond EOD, truncated
+loop6: p16 size 2147418112 extends beyond EOD, truncated
+loop6: p17 size 2147418112 extends beyond EOD, truncated
+loop6: p18 size 2147418112 extends beyond EOD, truncated
+loop6: p19 size 2147418112 extends beyond EOD, truncated
+loop6: p20 size 2147418112 extends beyond EOD, truncated
+loop6: p21 size 2147418112 extends beyond EOD, truncated
+loop6: p22 size 2147418112 extends beyond EOD, truncated
+loop6: p23 size 2147418112 extends beyond EOD, truncated
+loop6: p24 size 2147418112 extends beyond EOD, truncated
+loop6: p25 size 2147418112 extends beyond EOD, truncated
+loop6: p26 size 2147418112 extends beyond EOD, truncated
+loop6: p27 size 2147418112 extends beyond EOD, truncated
+loop6: p28 size 2147418112 extends beyond EOD, truncated
+loop6: p29 size 2147418112 extends beyond EOD, truncated
+loop6: p30 size 2147418112 extends beyond EOD, truncated
+loop6: p31 size 2147418112 extends beyond EOD, truncated
+loop6: p32 size 2147418112 extends beyond EOD, truncated
+loop6: p33 size 2147418112 extends beyond EOD, truncated
+loop6: p34 size 2147418112 extends beyond EOD, truncated
+loop6: p35 size 2147418112 extends beyond EOD, truncated
+loop6: p36 size 2147418112 extends beyond EOD, truncated
+loop6: p37 size 2147418112 extends beyond EOD, truncated
+loop6: p38 size 2147418112 extends beyond EOD, truncated
+loop6: p39 size 2147418112 extends beyond EOD, truncated
+loop6: p40 size 2147418112 extends beyond EOD, truncated
+loop6: p41 size 2147418112 extends beyond EOD, truncated
+loop6: p42 size 2147418112 extends beyond EOD, truncated
+loop6: p43 size 2147418112 extends beyond EOD, truncated
+loop6: p44 size 2147418112 extends beyond EOD, truncated
+loop6: p45 size 2147418112 extends beyond EOD, truncated
+loop6: p46 size 2147418112 extends beyond EOD, truncated
+loop6: p47 size 2147418112 extends beyond EOD, truncated
+loop6: p48 size 2147418112 extends beyond EOD, truncated
+loop6: p49 size 2147418112 extends beyond EOD, truncated
+loop6: p50 size 2147418112 extends beyond EOD, truncated
+loop6: p51 size 2147418112 extends beyond EOD, truncated
+loop6: p52 size 2147418112 extends beyond EOD, truncated
+loop6: p53 size 2147418112 extends beyond EOD, truncated
+loop6: p54 size 2147418112 extends beyond EOD, truncated
+loop6: p55 size 2147418112 extends beyond EOD, truncated
+loop6: p56 size 2147418112 extends beyond EOD, truncated
+loop6: p57 size 2147418112 extends beyond EOD, truncated
+loop6: p58 size 2147418112 extends beyond EOD, truncated
+loop6: p59 size 2147418112 extends beyond EOD, truncated
+loop6: p60 size 2147418112 extends beyond EOD, truncated
+loop6: p61 size 2147418112 extends beyond EOD, truncated
+loop6: p62 size 2147418112 extends beyond EOD, truncated
+loop6: p63 size 2147418112 extends beyond EOD, truncated
+loop6: p64 size 2147418112 extends beyond EOD, truncated
+loop6: p65 size 2147418112 extends beyond EOD, truncated
+loop6: p66 size 2147418112 extends beyond EOD, truncated
+loop6: p67 size 2147418112 extends beyond EOD, truncated
+loop6: p68 size 2147418112 extends beyond EOD, truncated
+loop6: p69 size 2147418112 extends beyond EOD, truncated
+loop6: p70 size 2147418112 extends beyond EOD, truncated
+loop6: p71 size 2147418112 extends beyond EOD, truncated
+loop6: p72 size 2147418112 extends beyond EOD, truncated
+loop6: p73 size 2147418112 extends beyond EOD, truncated
+loop6: p74 size 2147418112 extends beyond EOD, truncated
+loop6: p75 size 2147418112 extends beyond EOD, truncated
+loop6: p76 size 2147418112 extends beyond EOD, truncated
+loop6: p77 size 2147418112 extends beyond EOD, truncated
+loop6: p78 size 2147418112 extends beyond EOD, truncated
+loop6: p79 size 2147418112 extends beyond EOD, truncated
+loop6: p80 size 2147418112 extends beyond EOD, truncated
+loop6: p81 size 2147418112 extends beyond EOD, truncated
+loop6: p82 size 2147418112 extends beyond EOD, truncated
+loop6: p83 size 2147418112 extends beyond EOD, truncated
+loop6: p84 size 2147418112 extends beyond EOD, truncated
+loop6: p85 size 2147418112 extends beyond EOD, truncated
+loop6: p86 size 2147418112 extends beyond EOD, truncated
+loop6: p87 size 2147418112 extends beyond EOD, truncated
+loop6: p88 size 2147418112 extends beyond EOD, truncated
+loop6: p89 size 2147418112 extends beyond EOD, truncated
+loop6: p90 size 2147418112 extends beyond EOD, truncated
+loop6: p91 size 2147418112 extends beyond EOD, truncated
+loop6: p92 size 2147418112 extends beyond EOD, truncated
+loop6: p93 size 2147418112 extends beyond EOD, truncated
+loop6: p94 size 2147418112 extends beyond EOD, truncated
+loop6: p95 size 2147418112 extends beyond EOD, truncated
+loop6: p96 size 2147418112 extends beyond EOD, truncated
+loop6: p97 size 2147418112 extends beyond EOD, truncated
+loop6: p98 size 2147418112 extends beyond EOD, truncated
+loop6: p99 size 2147418112 extends beyond EOD, truncated
+loop6: p100 size 2147418112 extends beyond EOD, truncated
+loop6: p101 size 2147418112 extends beyond EOD, truncated
+loop6: p102 size 2147418112 extends beyond EOD, truncated
+loop6: p103 size 2147418112 extends beyond EOD, truncated
+loop6: p104 size 2147418112 extends beyond EOD, truncated
+loop6: p105 size 2147418112 extends beyond EOD, truncated
+loop6: p106 size 2147418112 extends beyond EOD, truncated
+loop6: p107 size 2147418112 extends beyond EOD, truncated
+loop6: p108 size 2147418112 extends beyond EOD, truncated
+loop6: p109 size 2147418112 extends beyond EOD, truncated
+loop6: p110 size 2147418112 extends beyond EOD, truncated
+loop6: p111 size 2147418112 extends beyond EOD, truncated
+loop6: p112 size 2147418112 extends beyond EOD, truncated
+loop6: p113 size 2147418112 extends beyond EOD, truncated
+loop6: p114 size 2147418112 extends beyond EOD, truncated
+loop6: p115 size 2147418112 extends beyond EOD, truncated
+loop6: p116 size 2147418112 extends beyond EOD, truncated
+loop6: p117 size 2147418112 extends beyond EOD, truncated
+loop6: p118 size 2147418112 extends beyond EOD, truncated
+loop6: p119 size 2147418112 extends beyond EOD, truncated
+loop6: p120 size 2147418112 extends beyond EOD, truncated
+loop6: p121 size 2147418112 extends beyond EOD, truncated
+loop6: p122 size 2147418112 extends beyond EOD, truncated
+loop6: p123 size 2147418112 extends beyond EOD, truncated
+loop6: p124 size 2147418112 extends beyond EOD, truncated
+loop6: p125 size 2147418112 extends beyond EOD, truncated
+loop6: p126 size 2147418112 extends beyond EOD, truncated
+loop6: p127 size 2147418112 extends beyond EOD, truncated
+loop6: p128 size 2147418112 extends beyond EOD, truncated
+loop6: p129 size 2147418112 extends beyond EOD, truncated
+loop6: p130 size 2147418112 extends beyond EOD, truncated
+loop6: p131 size 2147418112 extends beyond EOD, truncated
+loop6: p132 size 2147418112 extends beyond EOD, truncated
+loop6: p133 size 2147418112 extends beyond EOD, truncated
+loop6: p134 size 2147418112 extends beyond EOD, truncated
+loop6: p135 size 2147418112 extends beyond EOD, truncated
+loop6: p136 size 2147418112 extends beyond EOD, truncated
+loop6: p137 size 2147418112 extends beyond EOD, truncated
+loop6: p138 size 2147418112 extends beyond EOD, truncated
+loop6: p139 size 2147418112 extends beyond EOD, truncated
+loop6: p140 size 2147418112 extends beyond EOD, truncated
+loop6: p141 size 2147418112 extends beyond EOD, truncated
+loop6: p142 size 2147418112 extends beyond EOD, truncated
+loop6: p143 size 2147418112 extends beyond EOD, truncated
+loop6: p144 size 2147418112 extends beyond EOD, truncated
+loop6: p145 size 2147418112 extends beyond EOD, truncated
+loop6: p146 size 2147418112 extends beyond EOD, truncated
+loop6: p147 size 2147418112 extends beyond EOD, truncated
+loop6: p148 size 2147418112 extends beyond EOD, truncated
+loop6: p149 size 2147418112 extends beyond EOD, truncated
+loop6: p150 size 2147418112 extends beyond EOD, truncated
+loop6: p151 size 2147418112 extends beyond EOD, truncated
+loop6: p152 size 2147418112 extends beyond EOD, truncated
+loop6: p153 size 2147418112 extends beyond EOD, truncated
+loop6: p154 size 2147418112 extends beyond EOD, truncated
+loop6: p155 size 2147418112 extends beyond EOD, truncated
+loop6: p156 size 2147418112 extends beyond EOD, truncated
+loop6: p157 size 2147418112 extends beyond EOD, truncated
+loop6: p158 size 2147418112 extends beyond EOD, truncated
+loop6: p159 size 2147418112 extends beyond EOD, truncated
+loop6: p160 size 2147418112 extends beyond EOD, truncated
+loop6: p161 size 2147418112 extends beyond EOD, truncated
+loop6: p162 size 2147418112 extends beyond EOD, truncated
+loop6: p163 size 2147418112 extends beyond EOD, truncated
+loop6: p164 size 2147418112 extends beyond EOD, truncated
+loop6: p165 size 2147418112 extends beyond EOD, truncated
+loop6: p166 size 2147418112 extends beyond EOD, truncated
+loop6: p167 size 2147418112 extends beyond EOD, truncated
+loop6: p168 size 2147418112 extends beyond EOD, truncated
+loop6: p169 size 2147418112 extends beyond EOD, truncated
+loop6: p170 size 2147418112 extends beyond EOD, truncated
+loop6: p171 size 2147418112 extends beyond EOD, truncated
+loop6: p172 size 2147418112 extends beyond EOD, truncated
+loop6: p173 size 2147418112 extends beyond EOD, truncated
+loop6: p174 size 2147418112 extends beyond EOD, truncated
+loop6: p175 size 2147418112 extends beyond EOD, truncated
+loop6: p176 size 2147418112 extends beyond EOD, truncated
+loop6: p177 size 2147418112 extends beyond EOD, truncated
+loop6: p178 size 2147418112 extends beyond EOD, truncated
+loop6: p179 size 2147418112 extends beyond EOD, truncated
+loop6: p180 size 2147418112 extends beyond EOD, truncated
+loop6: p181 size 2147418112 extends beyond EOD, truncated
+loop6: p182 size 2147418112 extends beyond EOD, truncated
+loop6: p183 size 2147418112 extends beyond EOD, truncated
+loop6: p184 size 2147418112 extends beyond EOD, truncated
+loop6: p185 size 2147418112 extends beyond EOD, truncated
+loop6: p186 size 2147418112 extends beyond EOD, truncated
+loop6: p187 size 2147418112 extends beyond EOD, truncated
+loop6: p188 size 2147418112 extends beyond EOD, truncated
+loop6: p189 size 2147418112 extends beyond EOD, truncated
+loop6: p190 size 2147418112 extends beyond EOD, truncated
+loop6: p191 size 2147418112 extends beyond EOD, truncated
+loop6: p192 size 2147418112 extends beyond EOD, truncated
+loop6: p193 size 2147418112 extends beyond EOD, truncated
+loop6: p194 size 2147418112 extends beyond EOD, truncated
+loop6: p195 size 2147418112 extends beyond EOD, truncated
+loop6: p196 size 2147418112 extends beyond EOD, truncated
+loop6: p197 size 2147418112 extends beyond EOD, truncated
+loop6: p198 size 2147418112 extends beyond EOD, truncated
+loop6: p199 size 2147418112 extends beyond EOD, truncated
+loop6: p200 size 2147418112 extends beyond EOD, truncated
+loop6: p201 size 2147418112 extends beyond EOD, truncated
+loop6: p202 size 2147418112 extends beyond EOD, truncated
+loop6: p203 size 2147418112 extends beyond EOD, truncated
+loop6: p204 size 2147418112 extends beyond EOD, truncated
+loop6: p205 size 2147418112 extends beyond EOD, truncated
+loop6: p206 size 2147418112 extends beyond EOD, truncated
+loop6: p207 size 2147418112 extends beyond EOD, truncated
+loop6: p208 size 2147418112 extends beyond EOD, truncated
+loop6: p209 size 2147418112 extends beyond EOD, truncated
+loop6: p210 size 2147418112 extends beyond EOD, truncated
+loop6: p211 size 2147418112 extends beyond EOD, truncated
+loop6: p212 size 2147418112 extends beyond EOD, truncated
+loop6: p213 size 2147418112 extends beyond EOD, truncated
+loop6: p214 size 2147418112 extends beyond EOD, truncated
+loop6: p215 size 2147418112 extends beyond EOD, truncated
+loop6: p216 size 2147418112 extends beyond EOD, truncated
+loop6: p217 size 2147418112 extends beyond EOD, truncated
+loop6: p218 size 2147418112 extends beyond EOD, truncated
+loop6: p219 size 2147418112 extends beyond EOD, truncated
+loop6: p220 size 2147418112 extends beyond EOD, truncated
+loop6: p221 size 2147418112 extends beyond EOD, truncated
+loop6: p222 size 2147418112 extends beyond EOD, truncated
+loop6: p223 size 2147418112 extends beyond EOD, truncated
+loop6: p224 size 2147418112 extends beyond EOD, truncated
+loop6: p225 size 2147418112 extends beyond EOD, truncated
+loop6: p226 size 2147418112 extends beyond EOD, truncated
+loop6: p227 size 2147418112 extends beyond EOD, truncated
+loop6: p228 size 2147418112 extends beyond EOD, truncated
+loop6: p229 size 2147418112 extends beyond EOD, truncated
+loop6: p230 size 2147418112 extends beyond EOD, truncated
+loop6: p231 size 2147418112 extends beyond EOD, truncated
+loop6: p232 size 2147418112 extends beyond EOD, truncated
+loop6: p233 size 2147418112 extends beyond EOD, truncated
+loop6: p234 size 2147418112 extends beyond EOD, truncated
+loop6: p235 size 2147418112 extends beyond EOD, truncated
+loop6: p236 size 2147418112 extends beyond EOD, truncated
+loop6: p237 size 2147418112 extends beyond EOD, truncated
+loop6: p238 size 2147418112 extends beyond EOD, truncated
+loop6: p239 size 2147418112 extends beyond EOD, truncated
+loop6: p240 size 2147418112 extends beyond EOD, truncated
+loop6: p241 size 2147418112 extends beyond EOD, truncated
+loop6: p242 size 2147418112 extends beyond EOD, truncated
+loop6: p243 size 2147418112 extends beyond EOD, truncated
+loop6: p244 size 2147418112 extends beyond EOD, truncated
+loop6: p245 size 2147418112 extends beyond EOD, truncated
+loop6: p246 size 2147418112 extends beyond EOD, truncated
+loop6: p247 size 2147418112 extends beyond EOD, truncated
+loop6: p248 size 2147418112 extends beyond EOD, truncated
+loop6: p249 size 2147418112 extends beyond EOD, truncated
+loop6: p250 size 2147418112 extends beyond EOD, truncated
+loop6: p251 size 2147418112 extends beyond EOD, truncated
+loop6: p252 size 2147418112 extends beyond EOD, truncated
+loop6: p253 size 2147418112 extends beyond EOD, truncated
+loop6: p254 size 2147418112 extends beyond EOD, truncated
+loop6: p255 size 2147418112 extends beyond EOD, truncated
+loop1: detected capacity change from 0 to 2048
+EXT4-fs (loop1): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop1): corrupt root inode, run e2fsck
+EXT4-fs (loop1): mount failed
+nfs: Unknown parameter 'smb3'
+loop0: detected capacity change from 0 to 2048
+EXT4-fs error (device loop0): ext4_ext_check_inode:460: inode #2: comm syz-executor.0: pblk 0 bad header/extent: invalid eh_max - magic f30a, entries 1, max 0(0), depth 16(16)
+EXT4-fs (loop0): get root inode failed
+EXT4-fs (loop0): mount failed
+tmpfs: Bad value for 'nr_blocks'
+loop3: detected capacity change from 0 to 512
+tmpfs: Unknown parameter '0xffffffffffffffff0x0000000000000000'
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop3: detected capacity change from 0 to 4096
+Quota error (device loop3): v2_read_file_info: Free block number too big (0 >= 0).
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): mount failed
+tmpfs: Bad value for 'mpol'

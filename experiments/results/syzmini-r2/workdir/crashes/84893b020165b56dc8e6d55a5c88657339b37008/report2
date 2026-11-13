@@ -1,0 +1,240 @@
+------------[ cut here ]------------
+Trying to write to read-only block-device sr0 (partno 0)
+WARNING: CPU: 0 PID: 7640 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 0 PID: 7640 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 7b bb 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc90009d2f508 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 1ffff920013a5ea8 RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc9000235d000 RDI: fffff520013a5e93
+RBP: ffff88800c0cde00 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800c0cde10
+R13: ffff888002b78000 R14: ffff8880034f87e0 R15: ffff88800c0cde08
+FS:  0000555556f6e480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33722000 CR3: 00000000096e2001 CR4: 0000000000370ef0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+nfs4: Unknown parameter 'mpopol'
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ __block_write_full_page+0x5fc/0xb40
+ block_write_full_page+0xf8/0x110
+ __writepage+0x3b/0x100
+nfs4: Unknown parameter 'mpopol'
+ write_cache_pages+0x420/0x990
+ generic_writepages+0xc9/0x130
+ do_writepages+0x187/0x480
+nfs4: Unknown parameter 'mpopol'
+ __filemap_fdatawrite_range+0x1b1/0x210
+ filemap_write_and_wait_range+0x4f/0xe0
+ blkdev_put+0x468/0x4b0
+ blkdev_close+0x45/0x50
+ __fput+0x170/0x5a0
+ task_work_run+0xb2/0x100
+ exit_to_user_mode_prepare+0x121/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ do_syscall_64+0x48/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f5abb6530d6
+Code: 47 ba 04 00 00 00 48 c7 c0 e8 ff ff ff 64 89 10 48 c7 c2 ff ff ff ff c9 48 89 d0 c3 0f 1f 84 00 00 00 00 00 48 8b 45 10 0f 05 <48> 89 c2 48 3d 00 f0 ff ff 77 0f c9 48 89 d0 c3 66 2e 0f 1f 84 00
+RSP: 002b:00007ffd919d2330 EFLAGS: 00000202 ORIG_RAX: 0000000000000003
+RAX: 0000000000000000 RBX: 0000000000000004 RCX: 00007f5abb6530d6
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 00007ffd919d2340 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 00007f5abb1b61c8
+R13: 00007f5abb5b6000 R14: 00007f5abb1b6000 R15: 0000000000000000
+---[ end trace d0b0b79ca41ea034 ]---
+nfs4: Unknown parameter 'mpopol'
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+loop7: detected capacity change from 0 to 4096
+EXT4-fs (loop7): couldn't mount as ext2 due to feature incompatibilities
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+loop5: detected capacity change from 0 to 262144
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "nù«¾!3Z‚[HºouIÚ}Qø/ÑUâgrf¥~pquota" or missing value
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop5: detected capacity change from 0 to 262144
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): Unrecognized mount option "0xffffffffffffffff" or missing value
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 2048
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+loop5: detected capacity change from 0 to 262144
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): orphan cleanup on readonly fs
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-13). Please run e2fsck to fix.
+EXT4-fs (loop7): Cannot turn on quotas: error -13
+EXT4-fs error (device loop7): ext4_orphan_get:1419: comm syz-executor.7: bad orphan inode 8
+nfs4: Unknown parameter 'mpopol'
+EXT4-fs (loop7): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+nfs4: Unknown parameter 'mpopol'
+loop5: detected capacity change from 0 to 262144
+FAT-fs (loop5): Unrecognized mount option "appraise_type=imasig" or missing value
+nfs4: Unknown parameter 'mpopol'
+loop7: detected capacity change from 0 to 4096
+nfs4: Unknown parameter 'mpopol'
+EXT4-fs (loop7): Test dummy encryption mount option ignored
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+[EXT4 FS bs=4096, gc=1, bpg=524288, ipg=32, mo=8842c018, mo2=0002]
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-22). Please run e2fsck to fix.
+nfs4: Unknown parameter 'mpopol'
+EXT4-fs (loop7): mount failed
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+loop5: detected capacity change from 0 to 262144
+FAT-fs (loop5): Unrecognized mount option "euid>00000000000000000000" or missing value
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+audit: type=1400 audit(1794539525.895:12): avc:  denied  { name_bind } for  pid=7949 comm="syz-executor.1" src=20000 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+audit: type=1400 audit(1794539525.896:13): avc:  denied  { node_bind } for  pid=7949 comm="syz-executor.1" src=20000 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+nfs4: Unknown parameter 'mpopol'
+loop5: detected capacity change from 0 to 262144
+FAT-fs (loop5): Unrecognized mount option "gid=Ô©±ÔËÄ)½´	.vRê4ù¨œºX¨œÆ-Òæ p›— R7YüRÞûwWí´·ÊZ0x0000000000000000" or missing value
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+device lo entered promiscuous mode
+nfs4: Unknown parameter 'mpopol'
+device lo left promiscuous mode
+__nla_validate_parse: 13 callbacks suppressed
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+nfs4: Unknown parameter 'mpopol'
+scsi_io_completion_action: 4 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+print_req_error: 120 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 182 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2 op 0x0:(READ) flags 0x0 phys_seg 6 prio class 0
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read

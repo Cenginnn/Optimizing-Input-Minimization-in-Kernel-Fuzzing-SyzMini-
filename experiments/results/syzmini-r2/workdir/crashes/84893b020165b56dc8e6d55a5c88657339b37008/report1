@@ -1,0 +1,265 @@
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+------------[ cut here ]------------
+Trying to write to read-only block-device sr0 (partno 0)
+WARNING: CPU: 0 PID: 22404 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 0 PID: 22404 Comm: syz-executor.7 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 5b b4 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc90007f1f418 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 1ffff92000fe3e8a RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc900014f6000 RDI: fffff52000fe3e75
+RBP: ffff88802be99f00 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88802be99f10
+R13: ffff888002b78680 R14: ffff8880037507e0 R15: ffff88802be99f08
+FS:  00005555568ea480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0af1045988 CR3: 0000000022278001 CR4: 0000000000370ef0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ __block_write_full_page+0x5fc/0xb40
+ block_write_full_page+0xf8/0x110
+ __writepage+0x3b/0x100
+ write_cache_pages+0x420/0x990
+ generic_writepages+0xc9/0x130
+ do_writepages+0x187/0x480
+ __filemap_fdatawrite_range+0x1b1/0x210
+ filemap_write_and_wait_range+0x4f/0xe0
+ fsync_bdev+0x7b/0x90
+ blkdev_common_ioctl+0xc70/0xf20
+ blkdev_ioctl+0x189/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fcd726c4c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc47c00338 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fcd72814f80 RCX: 00007fcd726c4c9d
+RDX: 0000000020000000 RSI: 0000000000001261 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fcd72814f80
+R13: 00007ffc47c00560 R14: 00007fcd72814f8c R15: 0000000000000000
+---[ end trace b4080c3f9fc36df3 ]---
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+scsi_io_completion_action: 59 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 05 c0 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 06 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 06 40 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 06 80 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 06 c0 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 07 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 07 40 00 00 40 00
+print_req_error: 167 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 256 op 0x0:(READ) flags 0x84700 phys_seg 30 prio class 0
+blk_update_request: I/O error, dev sr0, sector 512 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 768 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1024 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1280 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1536 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1792 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 2048 op 0x0:(READ) flags 0x80700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 8 prio class 0
+buffer_io_error: 374 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+scsi_io_completion_action: 132 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 40 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 80 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 c0 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 40 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 80 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 c0 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 40 00 00 40 00
+print_req_error: 185 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 14464 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 14720 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 8 prio class 0
+blk_update_request: I/O error, dev sr0, sector 14976 op 0x0:(READ) flags 0x80700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 8 prio class 0
+blk_update_request: I/O error, dev sr0, sector 15232 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 15488 op 0x0:(READ) flags 0x84700 phys_seg 32 prio class 0
+blk_update_request: I/O error, dev sr0, sector 15744 op 0x0:(READ) flags 0x84700 phys_seg 27 prio class 0
+blk_update_request: I/O error, dev sr0, sector 16000 op 0x0:(READ) flags 0x84700 phys_seg 16 prio class 0
+blk_update_request: I/O error, dev sr0, sector 16256 op 0x0:(READ) flags 0x80700 phys_seg 8 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+buffer_io_error: 407 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer

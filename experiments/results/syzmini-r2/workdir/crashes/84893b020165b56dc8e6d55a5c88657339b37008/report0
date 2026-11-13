@@ -1,0 +1,225 @@
+WARNING: CPU: 0 PID: 63285 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 0 PID: 63285 Comm: syz-executor.6 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 1b ac 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc9000282fa18 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 1ffff92000505f4a RCX: 0000000000000000
+RDX: ffff888045eb8000 RSI: 0000000000000000 RDI: fffff52000505f35
+RBP: ffff88804e9e6900 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88804e9e6910
+R13: ffff888001482d80 R14: ffff888003512f40 R15: ffff88804e9e6908
+FS:  000055555718a480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe95b58e40 CR3: 00000000293b6004 CR4: 0000000000370ef0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ __sync_dirty_buffer+0x119/0x2f0
+ ext4_commit_super+0x1ad/0x320
+ ext4_put_super+0x6fb/0x740
+ generic_shutdown_super+0xc9/0x1e0
+ kill_block_super+0x54/0x90
+ deactivate_locked_super+0x6a/0x100
+ deactivate_super+0x8f/0xa0
+ cleanup_mnt+0x270/0x300
+ task_work_run+0xb2/0x100
+ exit_to_user_mode_prepare+0x121/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ do_syscall_64+0x48/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f16b0caf3fb
+Code: 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 31 f6 e9 05 00 00 00 0f 1f 44 00 00 f3 0f 1e fa b8 a6 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 05 c3 0f 1f 40 00 48 c7 c2 e8 ff ff ff f7 d8
+RSP: 002b:00007ffe95b59508 EFLAGS: 00000246 ORIG_RAX: 00000000000000a6
+RAX: 0000000000000000 RBX: 000000000000162f RCX: 00007f16b0caf3fb
+RDX: 00007f16b0c6c808 RSI: 000000000000000a RDI: 00007ffe95b595c0
+RBP: 00007ffe95b595c0 R08: 0000000000000002 R09: 00000000ffffffff
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffe95b5a6a0
+R13: 000055555718b8e0 R14: 0000000000001388 R15: 0000000000000032
+---[ end trace 3690509d31b19c13 ]---
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 1024 to 0
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+EXT4-fs warning (device sda): __ext4_ioctl:878: Setting inode version is not supported with metadata_csum enabled.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+dlm: plock device version mismatch: kernel (1.2.0), user (64.381.117455104)
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+EXT4-fs (loop5): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,nobarrier,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+audit: type=1400 audit(2000002085.712:82): avc:  denied  { associate } for  pid=120172 comm="syz-executor.1" name="loop6" dev="devtmpfs" ino=112 scontext=system_u:object_r:syslogd_runtime_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=filesystem permissive=1
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
+loop6: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 1024
