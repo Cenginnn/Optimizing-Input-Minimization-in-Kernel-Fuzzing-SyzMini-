@@ -1,0 +1,287 @@
+blk_update_request: I/O error, dev sr0, sector 554016 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18866 comm=syz-executor.1
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de b2 a3 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0000:ffffc900007df8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888003763110 RCX: ffffffffa247356f
+RDX: ffff8880036d0f80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800133d000
+R13: ffff888003763000 R14: ffffffffa41a9aa0 R15: ffff88800376301c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fdbf7d47000 CR3: 000000000c200005 CR4: 0000000000370ee0
+DR0: 0000000020000180 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 22cfeae180de6cf8 ]---
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.7'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18872 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18876 comm=syz-executor.1
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18881 comm=syz-executor.7
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 1d 48 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 554272 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+loop0: detected capacity change from 0 to 128
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 1d 88 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 554528 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+EXT4-fs (loop0): Unrecognized mount option "grpmd" or missing value
+__nla_validate_parse: 3 callbacks suppressed
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.2'.
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 1d c8 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 554784 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.2'.
+validate_nla: 9 callbacks suppressed
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 1 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+netlink: 'syz-executor.7': attribute type 4 has an invalid length.
+netlink: 'syz-executor.7': attribute type 1 has an invalid length.
+netlink: 'syz-executor.7': attribute type 2 has an invalid length.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+selinux_netlink_send: 3 callbacks suppressed
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18925 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.2'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18927 comm=syz-executor.2
+netlink: 'syz-executor.7': attribute type 4 has an invalid length.
+netlink: 'syz-executor.7': attribute type 1 has an invalid length.
+netlink: 'syz-executor.7': attribute type 2 has an invalid length.
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "grpid¬journal_asy)”€Ã nc_commit" or missing value
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18942 comm=syz-executor.1
+loop0: detected capacity change from 0 to 128
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18981 comm=syz-executor.2
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=18978 comm=syz-executor.1
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19016 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19027 comm=syz-executor.1
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "af" or missing value
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19050 comm=syz-executor.1
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19071 comm=syz-executor.1
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19080 comm=syz-executor.2
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Ignoring removed nomblk_io_submit option
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): failed to initialize system zone (-117)
+EXT4-fs (loop0): mount failed
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): couldn't mount as ext3 due to feature incompatibilities
+sctp: [Deprecated]: syz-executor.7 (pid 19399) Use of int in max_burst socket option deprecated.
+Use struct sctp_assoc_value instead
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "grUid" or missing value
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+scsi_io_completion_action: 148 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 42 d6 00 00 40 00
+print_req_error: 148 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 592728 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 43 16 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 592984 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "grpil" or missing value
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 43 56 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 593240 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 43 96 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 593496 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 43 d6 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 593752 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 44 16 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 594008 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 44 56 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 594264 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 44 96 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 594520 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 44 d6 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 594776 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 45 16 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 595032 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+__nla_validate_parse: 64 callbacks suppressed
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+validate_nla: 86 callbacks suppressed
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 1 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 1 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+selinux_netlink_send: 62 callbacks suppressed
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19752 comm=syz-executor.1
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 1 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19775 comm=syz-executor.1
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19788 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19800 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19811 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19841 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19889 comm=syz-executor.1
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "journal_" or missing value
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19926 comm=syz-executor.1
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19957 comm=syz-executor.1
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=61029 sclass=netlink_route_socket pid=19978 comm=syz-executor.1
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Mount option "journal_async_commit" incompatible with ext2
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "g~pid" or missing value
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop0): ext4_check_descriptors: Checksum for group 0 failed (16942!=39978)
+EXT4-fs (loop0): can't mount with journal_checksum, fs mounted w/o journal
+loop0: detected capacity change from 0 to 128
+scsi_io_completion_action: 201 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 77 96 00 00 40 00
+print_req_error: 201 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 646744 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 77 d6 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 647000 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 78 16 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 647256 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 78 56 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 647512 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 78 96 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 647768 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 78 d6 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 648024 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 79 16 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 648280 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 79 56 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 648536 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 79 96 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 648792 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 79 d6 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 649048 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0

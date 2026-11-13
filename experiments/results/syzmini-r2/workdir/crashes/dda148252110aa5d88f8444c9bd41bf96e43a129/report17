@@ -1,0 +1,83 @@
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 32 a1 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000081f8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8880037d6110 RCX: ffffffff9fc7356f
+RDX: ffff888003681f00 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002c26000
+R13: ffff8880037d6000 R14: ffffffffa19a9aa0 R15: ffff8880037d601c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33122000 CR3: 000000002b526005 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 19bc2d1e4582f12c ]---
+loop6: detected capacity change from 0 to 128
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Invalid want_extra_isize 511
+loop6: detected capacity change from 0 to 1768
+tmpfs: Bad value for 'nr_inodes'
+loop6: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 2048
+netlink: 20 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 'syz-executor.0': attribute type 6 has an invalid length.
+EXT4-fs (loop6): bad geometry: first data block is 0 with a 1k block and cluster size
+netlink: 36 bytes leftover after parsing attributes in process `syz-executor.0'.
+EXT4-fs error (device loop7): ext4_quota_enable:6313: comm syz-executor.7: inode #754974720: comm syz-executor.7: iget: illegal inode #
+EXT4-fs error (device loop7): ext4_quota_enable:6315: comm syz-executor.7: Bad quota inode # 754974720
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=2, err=-117). Please run e2fsck to fix.
+device lo entered promiscuous mode
+device lo left promiscuous mode
+EXT4-fs (loop7): mount failed
+program syz-executor.2 is using a deprecated SCSI ioctl, please convert it to SG_IO
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir3449733387/syzkaller.A7fNTs/730/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "Žsrjquota=" or missing value
+syz-executor.6 (20234) used greatest stack depth: 23192 bytes left
+loop6: detected capacity change from 0 to 736
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=64016 sclass=netlink_route_socket pid=20280 comm=syz-executor.5
+ISOFS: unable to read i-node block
+device lo entered promiscuous mode
+autofs4:pid:20293:autofs_fill_super: called with bogus options
+device lo left promiscuous mode
+loop7: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: iget: root inode unallocated
+EXT4-fs (loop7): get root inode failed
+EXT4-fs (loop7): mount failed
+loop7: detected capacity change from 0 to 1156
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): Unrecognized mount option "" or missing value
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+netlink: 21896 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop7: detected capacity change from 0 to 2048
+ loop7: p1
+loop7: p1 size 2047 extends beyond EOD, truncated
+ loop7: p1
+loop7: p1 size 2047 extends beyond EOD, truncated

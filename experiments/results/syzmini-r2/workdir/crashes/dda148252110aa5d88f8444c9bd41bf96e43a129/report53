@@ -1,0 +1,188 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 6779 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 6779 Comm: syz-executor.7 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 95 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90007e475c8 EFLAGS: 00010286
+RAX: 000000000000022c RBX: ffff88800383f110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90001379000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888001c45000
+R13: ffff88800383f000 R14: ffffffff963a9aa0 R15: ffff88800383f01c
+FS:  0000555556358480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 00000000032b6002 CR4: 0000000000370ef0
+DR0: 0000000000000fff DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fefce5e0c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffef0794a28 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fefce730f80 RCX: 00007fefce5e0c9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fefce730f80
+R13: 00007ffef0794c50 R14: 00007fefce730f8c R15: 0000000000000000
+---[ end trace 8e75ac20b554db32 ]---
+netlink: 20 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop0): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop0): Unrecognized mount option "fowner=00000000000000000000" or missing value
+kauditd_printk_skb: 2 callbacks suppressed
+audit: type=1400 audit(1794662798.104:36): avc:  denied  { dyntransition } for  pid=6808 comm="syz-executor.7" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:updpwd_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794662798.104:37): avc:  denied  { use } for  pid=6808 comm="syz-executor.7" path="/proc/6808/task/6808/attr/current" dev="proc" ino=33372 scontext=system_u:object_r:updpwd_exec_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=fd permissive=1
+audit: type=1400 audit(1794662798.104:38): avc:  denied  { write } for  pid=6808 comm="syz-executor.7" path="/proc/6808/task/6808/attr/current" dev="proc" ino=33372 scontext=system_u:object_r:updpwd_exec_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794662798.104:39): avc:  denied  { setcurrent } for  pid=6808 comm="syz-executor.7" scontext=system_u:object_r:updpwd_exec_t:s0 tcontext=system_u:object_r:updpwd_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794662798.105:40): avc:  denied  { dyntransition } for  pid=6808 comm="syz-executor.7" scontext=system_u:object_r:updpwd_exec_t:s0 tcontext=system_u:object_r:pam_exec_t:s0 tclass=process permissive=1
+loop7: detected capacity change from 0 to 512
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.0'.
+EXT4-fs (loop7): revision level too high, forcing read-only mode
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+dlm: non-version read from control device 126
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): ext4_check_descriptors: Block bitmap for group 0 overlaps block group descriptors
+EXT4-fs (loop0): group descriptors corrupted!
+loop0: detected capacity change from 0 to 2048
+EXT4-fs error (device loop0): ext4_ext_check_inode:460: inode #2: comm syz-executor.0: pblk 0 bad header/extent: invalid eh_max - magic f30a, entries 1, max 0(0), depth 16(16)
+EXT4-fs (loop0): get root inode failed
+EXT4-fs (loop0): mount failed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+print_req_error: 250 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 8 prio class 0
+buffer_io_error: 32751 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 7 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+netlink: 304 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "obj_role=ext2" or missing value
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: opcode=0x60 (reserved)
+sr 1:0:0:0: tag#0 CDB[00]: 60 b6 ac 20 24 16 51 82 93 d5 4a 9a 84 76 9b a4
+sr 1:0:0:0: tag#0 CDB[10]: e2 ee 0e 4b 06 8c eb 7f 9a 5b 0a cb b5 98 ad 0b
+sr 1:0:0:0: tag#0 CDB[20]: 5f f8 9b 8e e9 7a 50 6a d2 f7 0f 10 c2 15 72 12
+netlink: 'syz-executor.7': attribute type 1 has an invalid length.
+netlink: 'syz-executor.7': attribute type 2 has an invalid length.
+loop0: detected capacity change from 0 to 2048
+netlink: 'syz-executor.6': attribute type 11 has an invalid length.
+EXT4-fs (loop0): mounted filesystem without journal. Opts: usrquota,,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir4096345580/syzkaller.saHNjJ/226/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: opcode=0xf4 (vendor)
+sr 1:0:0:0: tag#0 CDB[00]: f4 1b a8 e6 10 98 d5 74 f8 ae ef b7 01 bd 7f c6
+sr 1:0:0:0: tag#0 CDB[10]: f7 a0 8b 97 28 cd 4f 1f ea 6e c1 ff 56 c2 f1 e3
+sr 1:0:0:0: tag#0 CDB[20]: 2b 7d f6 2f 5c 77 bf 6b 39 24 97 be 15 9c e7 85
+sr 1:0:0:0: tag#0 CDB[30]: 49 e9 c7 f8 90 d3 2d 00 00 00 00 00 00 00 00 00
+sr 1:0:0:0: tag#0 CDB[40]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+sr 1:0:0:0: tag#0 CDB[50]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+sr 1:0:0:0: tag#0 CDB[60]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+sr 1:0:0:0: tag#0 CDB[70]: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+sr 1:0:0:0: tag#0 CDB[80]: 00 00 00 00 00 00 00 00 00 00 00 00
+loop0: detected capacity change from 0 to 2048
+audit: type=1326 audit(1794662802.599:41): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6966 comm="syz-executor.6" exe="/syz-executor.6" sig=0 arch=c000003e syscall=202 compat=0 ip=0x7f5e4802dc9d code=0x7ffc0000
+loop7: detected capacity change from 0 to 2048
+audit: type=1326 audit(1794662802.599:42): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6966 comm="syz-executor.6" exe="/syz-executor.6" sig=0 arch=c000003e syscall=202 compat=0 ip=0x7f5e4802dc9d code=0x7ffc0000
+audit: type=1326 audit(1794662802.599:43): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6966 comm="syz-executor.6" exe="/syz-executor.6" sig=0 arch=c000003e syscall=319 compat=0 ip=0x7f5e4802dc9d code=0x7ffc0000
+audit: type=1326 audit(1794662802.599:44): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6966 comm="syz-executor.6" exe="/syz-executor.6" sig=0 arch=c000003e syscall=9 compat=0 ip=0x7f5e4802da5c code=0x7ffc0000
+audit: type=1326 audit(1794662802.599:45): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=6966 comm="syz-executor.6" exe="/syz-executor.6" sig=0 arch=c000003e syscall=1 compat=0 ip=0x7f5e4805f0d6 code=0x7ffc0000
+EXT4-fs (loop7): Ignoring removed bh option
+EXT4-fs (loop7): feature flags set on rev 0 fs, running e2fsck is recommended
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: norecovery,bh,errors=remount-ro,nodiscard,noload,commit=0x0000000000000000,max_batch_time=0x0000000000007fff,. Quota mode: none.
+loop7: detected capacity change from 0 to 1024
+EXT4-fs (loop7): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000000,auto_da_alloc=0xfffffffffffffffe,min_batch_time=0x0000000000000fff,usrquota,lazytime,errors=remount-ro,journal_dev=0x0000000000000007,barrier=0x0000000000000000,. Quota mode: writeback.
+loop0: detected capacity change from 0 to 2048
+netlink: 'syz-executor.2': attribute type 88 has an invalid length.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 'syz-executor.6': attribute type 4 has an invalid length.
+netlink: 'syz-executor.6': attribute type 5 has an invalid length.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop0: detected capacity change from 0 to 736
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop0): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop0): orphan cleanup on readonly fs
+EXT4-fs error (device loop0): ext4_quota_enable:6313: comm syz-executor.0: inode #1: comm syz-executor.0: iget: illegal inode #
+EXT4-fs error (device loop0): ext4_quota_enable:6315: comm syz-executor.0: Bad quota inode # 1
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop0): Cannot turn on quotas: error -117
+EXT4-fs (loop0): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+netlink: 'syz-executor.6': attribute type 1 has an invalid length.
+netlink: 'syz-executor.6': attribute type 2 has an invalid length.
+netlink: 37816 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.2': attribute type 10 has an invalid length.
+loop0: detected capacity change from 0 to 2048
+kauditd_printk_skb: 76 callbacks suppressed
+audit: type=1400 audit(1794662804.609:122): avc:  denied  { dyntransition } for  pid=7066 comm="syz-executor.2" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:default_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794662804.609:123): avc:  denied  { use } for  pid=7066 comm="syz-executor.2" path="/proc/7066/task/7066/attr/current" dev="proc" ino=35219 scontext=system_u:object_r:default_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=fd permissive=1
+audit: type=1400 audit(1794662804.609:124): avc:  denied  { write } for  pid=7066 comm="syz-executor.2" path="/proc/7066/task/7066/attr/current" dev="proc" ino=35219 scontext=system_u:object_r:default_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794662804.609:125): avc:  denied  { setcurrent } for  pid=7066 comm="syz-executor.2" scontext=system_u:object_r:default_t:s0 tcontext=system_u:object_r:default_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794662804.609:126): avc:  denied  { dyntransition } for  pid=7066 comm="syz-executor.2" scontext=system_u:object_r:default_t:s0 tcontext=system_u:object_r:restorecond_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794662804.610:127): avc:  denied  { search } for  pid=7066 comm="syz-executor.2" name="245" dev="sda" ino=17388 scontext=system_u:object_r:restorecond_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794662804.610:128): avc:  denied  { write } for  pid=7066 comm="syz-executor.2" name="245" dev="sda" ino=17388 scontext=system_u:object_r:restorecond_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794662804.610:129): avc:  denied  { add_name } for  pid=7066 comm="syz-executor.2" name="file0" scontext=system_u:object_r:restorecond_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794662804.610:130): avc:  denied  { create } for  pid=7066 comm="syz-executor.2" name="file0" scontext=system_u:object_r:restorecond_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794662804.610:131): avc:  denied  { read open } for  pid=7066 comm="syz-executor.2" path="/syzkaller-testdir465973106/syzkaller.kB4H44/245/file0" dev="sda" ino=17390 scontext=system_u:object_r:restorecond_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+autofs4:pid:7074:autofs_fill_super: called with bogus options
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Unrecognized mount option "nouserXŽe„Óh8j’¢¡dÃ±°’òçÆ?];/dJyÏP©ÿ·xoØ×#Òžº™È*Åß·QQQè)LÜã.lw¨Í?¾¦WI„È\ñ7I$M" or missing value
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Unrecognized mount option "‚ouser® aŒxÆùg£1ttr" or missing value
+netlink: 32 bytes leftover after parsing attributes in process `syz-executor.0'.
+device lo entered promiscuous mode
+loop0: detected capacity change from 0 to 128

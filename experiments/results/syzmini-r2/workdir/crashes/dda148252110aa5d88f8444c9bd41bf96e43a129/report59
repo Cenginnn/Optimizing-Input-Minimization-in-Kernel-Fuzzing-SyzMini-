@@ -1,0 +1,169 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de b2 8e e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0000:ffffc900007ff8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88800385a110 RCX: ffffffff8d47356f
+RDX: ffff8880036b8f80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800380e000
+R13: ffff88800385a000 R14: ffffffff8f1a9aa0 R15: ffff88800385a01c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f79dd5ce9f8 CR3: 000000000669e002 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace c03a34c0965d6b82 ]---
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.3'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=16681 comm=syz-executor.3
+scsi_io_completion_action: 239 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ea ac 00 00 40 00
+print_req_error: 239 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 1288880 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ea ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1289136 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 eb 2c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1289392 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+audit: type=1326 audit(1794601535.254:89): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=228 compat=0 ip=0x7ffd2f9f889a code=0x7ffc0000
+audit: type=1326 audit(1794601535.264:90): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=202 compat=0 ip=0x7f1051403c9d code=0x7ffc0000
+audit: type=1326 audit(1794601535.264:91): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=202 compat=0 ip=0x7f1051403c9d code=0x7ffc0000
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 eb 6c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1289648 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+audit: type=1326 audit(1794601535.264:92): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=228 compat=0 ip=0x7ffd2f9f889a code=0x7ffc0000
+audit: type=1326 audit(1794601535.264:93): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=319 compat=0 ip=0x7f1051403c9d code=0x7ffc0000
+audit: type=1326 audit(1794601535.264:94): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=9 compat=0 ip=0x7f1051403a5c code=0x7ffc0000
+audit: type=1326 audit(1794601535.264:95): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=1 compat=0 ip=0x7f10514350d6 code=0x7ffc0000
+audit: type=1326 audit(1794601535.267:96): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=11 compat=0 ip=0x7f1051403b2b code=0x7ffc0000
+audit: type=1326 audit(1794601535.267:97): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=257 compat=0 ip=0x7f10514350d6 code=0x7ffc0000
+audit: type=1326 audit(1794601535.267:98): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=16693 comm="syz-executor.3" exe="/syz-executor.3" sig=0 arch=c000003e syscall=3 compat=0 ip=0x7f10514350d6 code=0x7ffc0000
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 eb ac 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1289904 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 eb ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1290160 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ec 2c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1290416 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ec 6c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1290672 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ec ac 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1290928 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 04 ec ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1291184 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+buffer_io_error: 169 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+Buffer I/O error on dev sr0, logical block 5, lost async page write
+Buffer I/O error on dev sr0, logical block 6, lost async page write
+Buffer I/O error on dev sr0, logical block 7, lost async page write
+Buffer I/O error on dev sr0, logical block 8, lost async page write
+Buffer I/O error on dev sr0, logical block 9, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 'syz-executor.3': attribute type 5 has an invalid length.
+tmpfs: Bad value for 'mpol'
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=65 sclass=netlink_xfrm_socket pid=16733 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=44 sclass=netlink_xfrm_socket pid=16733 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=53 sclass=netlink_xfrm_socket pid=16733 comm=syz-executor.3
+netlink: 'syz-executor.1': attribute type 1 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+scsi_io_completion_action: 250 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2b ac 00 00 40 00
+print_req_error: 252 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 1355440 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2b ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1355696 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2c 2c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1355952 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2c 6c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1356208 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2c ac 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1356464 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2c ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1356720 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2d 2c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1356976 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2d 6c 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1357232 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2d ac 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1357488 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 2d ec 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1357744 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0

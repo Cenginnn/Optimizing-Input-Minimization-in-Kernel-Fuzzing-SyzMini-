@@ -1,0 +1,129 @@
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 25979 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 25979 Comm: syz-executor.3 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de f2 9e e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90002bdf5c8 EFLAGS: 00010286
+RAX: 0000000000000238 RBX: ffff88800389c110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90003892000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002d2d000
+R13: ffff88800389c000 R14: ffffffff9f5a9aa0 R15: ffff88800389c01c
+FS:  0000555557432480(0000) GS:ffff888069900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 0000000007126006 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+hpet: Lost 5 RTC interrupts
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f6822c29c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff5385c198 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f6822d79f80 RCX: 00007f6822c29c9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f6822d79f80
+R13: 00007fff5385c3c0 R14: 00007f6822d79f8c R15: 0000000000000000
+---[ end trace 13dc8ce4da6be15c ]---
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+dns_resolver: Unsupported server list version (0)
+loop2: detected capacity change from 0 to 2048
+netlink: 16 bytes leftover after parsing attributes in process `syz-executor.6'.
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+loop2: detected capacity change from 0 to 2048
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.2: invalid block
+EXT4-fs (loop2): get root inode failed
+EXT4-fs (loop2): mount failed
+netlink: 152 bytes leftover after parsing attributes in process `syz-executor.5'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2561 sclass=netlink_route_socket pid=26122 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=257 sclass=netlink_route_socket pid=26122 comm=syz-executor.5
+netlink: 256 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop0: detected capacity change from 0 to 2048
+FAT-fs (loop0): Unrecognized mount option "ÿÿ00000000000000000003246" or missing value
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2574 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2563 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2562 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2566 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2574 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=26159 comm=syz-executor.0
+netlink: 64 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.0': attribute type 9 has an invalid length.
+netlink: 256 bytes leftover after parsing attributes in process `syz-executor.0'.

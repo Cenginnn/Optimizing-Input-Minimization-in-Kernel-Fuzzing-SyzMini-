@@ -1,0 +1,467 @@
+loop4: detected capacity change from 0 to 2048
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 4782 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 4782 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 52 ac e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900002075c8 EFLAGS: 00010286
+RAX: 000000000000022c RBX: ffff888003812110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90002d42000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003791000
+R13: ffff888003812000 R14: ffffffffacba9aa0 R15: ffff88800381201c
+FS:  000055555673b480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 0000000048bc2004 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f1ecca5fc9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd89152938 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f1eccbaff80 RCX: 00007f1ecca5fc9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f1eccbaff80
+R13: 00007ffd89152b60 R14: 00007f1eccbaff8c R15: 0000000000000000
+---[ end trace de6ea40e117355c4 ]---
+loop6: detected capacity change from 0 to 512
+netlink: 1440 bytes leftover after parsing attributes in process `syz-executor.6'.
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+sg_write: process 67 (syz-executor.6) changed security contexts after opening file descriptor, this is not allowed.
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): ext4_check_descriptors: Inode bitmap for group 0 not in group (block 4294967295)!
+EXT4-fs (loop7): group descriptors corrupted!
+loop7: detected capacity change from 0 to 4096
+EXT4-fs (loop7): unsupported inode size: 324
+EXT4-fs (loop7): blocksize: 4096
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop6): Unrecognized mount option "Grpquota" or missing value
+loop7: detected capacity change from 0 to 512
+loop3: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): Unrecognized mount option "5ÖZ>³ŒF‡(¹‰d‘Î4áèØ:DÀõb‡ì ü™ˆô~:@G[ûsşCí½¤î‰õïûN§	;O~È†3ÓÖ‡w(—³j#ÿÌt’Áx›uÎqcn>½³š¯Êyİ•wy«‘¾é'$gÀ^`å‹6Pûµu’1m¬ûöıšŞï‚ 7Xjj®‚ğ©Û\ºğ
+#@&üRÈ-ŞÈ_¹æ¯n±œáğo{Ç¬İà‘a¡œpı¿k‘ZÑÁ]èş¦İÑÊÑK" or missing value
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): Unrecognized mount option "ó" or missing value
+loop7: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 1768
+loop6: detected capacity change from 0 to 2048
+loop3: detected capacity change from 0 to 512
+EXT4-fs (loop3): Unrecognized mount option "Ê>µ‘ÑYcä" or missing value
+loop3: detected capacity change from 0 to 256
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): Unrecognized mount option "£È ÂïSœF¦åiTAcú·dê"q“­Æ¢÷?»É? ©ªÃŞÀÇ‰±îŒÖ6&|àÉE€2ü:'KiGO*µÜbÙû!tËD3uªESú…úú/¼«ÄõæôÁÑü…—!å¿-¹şÿ¢ É"¿ëòõû/Î.+ÔáŸÇC[Oİ©.z²%%‹èyùG1a×¯A" or missing value
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+print_req_error: 248 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+buffer_io_error: 32750 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+netlink: 1208 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 'syz-executor.1': attribute type 26 has an invalid length.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+netlink: 156 bytes leftover after parsing attributes in process `syz-executor.3'.
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/97/file0 supports timestamps until 2038 (0x7fffffff)
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/98/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 512
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=4901 comm=syz-executor.7
+loop7: detected capacity change from 0 to 736
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/99/file0 supports timestamps until 2038 (0x7fffffff)
+loop4: detected capacity change from 0 to 2048
+loop5: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop5): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop4): Unrecognized mount option "max_dir_size_kb=0x000000000000000ö¿B
+@æÃ_
+À“4" or missing value
+EXT4-fs (loop5): Quota format mount options ignored when QUOTA feature is enabled
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+EXT4-fs (loop5): orphan cleanup on readonly fs
+EXT4-fs warning (device loop5): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-22). Please run e2fsck to fix.
+EXT4-fs (loop5): Cannot turn on quotas: error -22
+EXT4-fs error (device loop5): ext4_orphan_get:1393: comm syz-executor.5: inode #16: comm syz-executor.5: iget: illegal inode #
+EXT4-fs error (device loop5): ext4_orphan_get:1396: comm syz-executor.5: couldn't read orphan inode 16 (err -117)
+loop7: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop4): Unrecognized mount option "max?batch_time=0x000003" or missing value
+loop5: detected capacity change from 0 to 4096
+EXT4-fs (loop5): unsupported inode size: 324
+EXT4-fs (loop5): blocksize: 4096
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=100 sclass=netlink_audit_socket pid=4926 comm=syz-executor.3
+loop7: detected capacity change from 0 to 2364
+netlink: 'syz-executor.7': attribute type 4 has an invalid length.
+netlink: 'syz-executor.7': attribute type 6 has an invalid length.
+loop3: detected capacity change from 0 to 2048
+device lo entered promiscuous mode
+EXT4-fs (loop3): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+device lo left promiscuous mode
+EXT4-fs (loop3): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop3): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop3): orphan cleanup on readonly fs
+EXT4-fs error (device loop3): ext4_orphan_get:1419: comm syz-executor.3: bad orphan inode 8
+loop3: detected capacity change from 0 to 256
+FAT-fs (loop3): Unrecognized mount option "ş" or missing value
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+netlink: 53208 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/103/file0 supports timestamps until 2038 (0x7fffffff)
+loop3: detected capacity change from 0 to 2048
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.5'.
+EXT4-fs (loop3): Unrecognized mount option "u÷_Oº–‘!Ù€è©w–mU" or missing value
+netlink: 'syz-executor.4': attribute type 15 has an invalid length.
+netlink: 'syz-executor.4': attribute type 2 has an invalid length.
+netlink: 'syz-executor.4': attribute type 1 has an invalid length.
+netlink: 'syz-executor.4': attribute type 2 has an invalid length.
+netlink: 'syz-executor.4': attribute type 1 has an invalid length.
+netlink: 'syz-executor.4': attribute type 2 has an invalid length.
+netlink: 'syz-executor.4': attribute type 1 has an invalid length.
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/104/file0 supports timestamps until 2038 (0x7fffffff)
+autofs4:pid:5001:autofs_fill_super: called with bogus options
+loop4: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/105/file0 supports timestamps until 2038 (0x7fffffff)
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop4): dax option not supported
+loop7: detected capacity change from 0 to 32768
+ loop7: p1 p3 < p5 p6 p7 >
+loop6: detected capacity change from 0 to 1768
+ loop7: p1 p3 < p5 p6 p7 >
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 127 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 254 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 381 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 508 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 635 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 16628 bytes leftover after parsing attributes in process `syz-executor.7'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+print_req_error: 38 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 5588 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+buffer_io_error: 5598 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 5588, lost async page write
+loop6: detected capacity change from 0 to 2048
+Buffer I/O error on dev sr0, logical block 5589, lost async page write
+Buffer I/O error on dev sr0, logical block 5590, lost async page write
+Buffer I/O error on dev sr0, logical block 5591, lost async page write
+Buffer I/O error on dev sr0, logical block 5592, lost async page write
+Buffer I/O error on dev sr0, logical block 5593, lost async page write
+Buffer I/O error on dev sr0, logical block 5594, lost async page write
+Buffer I/O error on dev sr0, logical block 5595, lost async page write
+Buffer I/O error on dev sr0, logical block 5596, lost async page write
+Buffer I/O error on dev sr0, logical block 5597, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5715 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5842 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5969 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6096 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6223 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6350 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6477 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6604 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 6731 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop4): dax option not supported
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/109/file0 supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/111/file0 supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ext4 filesystem being mounted at /syzkaller-testdir2303103909/syzkaller.qw5rPD/112/file0 supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer

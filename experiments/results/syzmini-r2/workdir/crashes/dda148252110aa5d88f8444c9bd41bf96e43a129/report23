@@ -1,0 +1,95 @@
+sr 1:0:0:0: tag#0 CDB[c0]: 2f 4f fe e9 38 bf 83 da 1f ea 74 45 ef 05 b6 f6
+sr 1:0:0:0: tag#0 CDB[d0]: e5 d0 29 af d7 65 8e 7a 08 9a 22 74 df 34 2b 66
+sr 1:0:0:0: tag#0 CDB[e0]: 17 c1 00 34 c0 90 23
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 74 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 74 Comm: kworker/1:1H Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Workqueue: kblockd blk_mq_run_work_fn
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 bb e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000081fa50 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8880037db110 RCX: ffffffffba67356f
+RDX: ffff8880038e0000 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003789000
+R13: ffff8880037db000 R14: ffffffffbc3a9aa0 R15: ffff8880037db01c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+loop0: detected capacity change from 0 to 2048
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff28d010a8 CR3: 00000000084e4005 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ blk_mq_run_work_fn+0x4a/0x60
+ process_one_work+0x509/0x900
+ worker_thread+0x370/0x990
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 6d25fbd69ecba195 ]---
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir578005960/syzkaller.WD0nh0/550/file0 supports timestamps until 2038 (0x7fffffff)
+device lo left promiscuous mode
+netlink: 'syz-executor.5': attribute type 1 has an invalid length.
+netlink: 'syz-executor.5': attribute type 2 has an invalid length.
+loop0: detected capacity change from 0 to 2048
+FAT-fs (loop0): Unrecognized mount option "no" or missing value
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.3'.
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: opcode=0x60 (reserved)
+sr 1:0:0:0: tag#0 CDB[00]: 60 b6 ac 20 24 16 51 82 93 d5 4a 9a 84 76 9b 9a
+sr 1:0:0:0: tag#0 CDB[10]: e2 ee 0e 4b 06 8c eb 7d 9a 5b 0a cb b5 98 ad 0b
+sr 1:0:0:0: tag#0 CDB[20]: 5f f8 9b 8e e9 7a 50 84 d2 f7 0f 10 c2 15 72 12
+sr 1:0:0:0: tag#0 CDB[30]: b2 7d 04 36 76 e0 e1 24 41 e0 e6 00 26 fc a2 33
+sr 1:0:0:0: tag#0 CDB[40]: 29 be 71 cf 70 e7 3c 75 86 16 b1 52 f2 01 f4 c6
+sr 1:0:0:0: tag#0 CDB[50]: ed c1 97 9d 0b 0a 7e 43 8d a6 09 fd 65 24 c7 0c
+sr 1:0:0:0: tag#0 CDB[60]: eb 40 09 ad fe 31 40 4f 10 70 53 b0 cf b1 be d5
+sr 1:0:0:0: tag#0 CDB[70]: bc cb e5 55 ab 9a 30 a0 ea 4e 7f 74 8c 3d 82 ad
+sr 1:0:0:0: tag#0 CDB[80]: 7c ba 82 3e cd e4 8e 92 1f fe 17 7a d9 c8 2d a2
+sr 1:0:0:0: tag#0 CDB[90]: 7d c8 35 99 73 22 5a d5 b5 bf 78 93 a1 d4 d5 9c
+sr 1:0:0:0: tag#0 CDB[a0]: fb 35 1d 06 72 f1 94 05 df c5 c5 0f b3 a2 ef 2a
+sr 1:0:0:0: tag#0 CDB[b0]: db 75 3e 14 71 40 53 16 1c 2e 17 b3 e4 bc 0c 85
+sr 1:0:0:0: tag#0 CDB[c0]: 2f 4f fe e9 38 bf 83 da 1f ea 74 45 ef 05 b6 f6
+sr 1:0:0:0: tag#0 CDB[d0]: e5 d0 29 af d7 65 8e 7a 08 9a 22 74 df 34 2b 66
+sr 1:0:0:0: tag#0 CDB[e0]: 17 c1 00 34 c0 90 23
+netlink: 164 bytes leftover after parsing attributes in process `syz-executor.7'.
+tc_dump_action: action bad kind
+EXT4-fs warning (device sda): ext4_group_extend:1813: need to use ext2online to resize further
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): Ignoring removed oldalloc option
+EXT4-fs (loop0): quotafile must be on filesystem root
+loop0: detected capacity change from 0 to 1156
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 32 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 8 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+loop0: detected capacity change from 0 to 262144
+(syz-executor.0,11235,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.0,11235,0):ocfs2_fill_super:1186 ERROR: status = -22
+netlink: 4352 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 36 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop0: detected capacity change from 0 to 2048
+netlink: 324 bytes leftover after parsing attributes in process `syz-executor.5'.
+EXT4-fs (loop0): VFS: Can't find ext4 filesystem
+loop0: detected capacity change from 0 to 1768

@@ -1,0 +1,532 @@
+EXT4-fs (loop3): Quota format mount options ignored when QUOTA feature is enabled
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 4188 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 4188 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 52 b1 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900009bf5c8 EFLAGS: 00010286
+RAX: 0000000000000220 RBX: ffff8880038dc410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90000bd1000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888001c45000
+R13: ffff8880038dc300 R14: ffffffffb1ba9aa0 R15: ffff8880038dc31c
+FS:  0000555555cab480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 0000000034fd0005 CR4: 0000000000370ef0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f6ddbaf4c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+loop4: detected capacity change from 0 to 2048
+RSP: 002b:00007ffc0c1dcad8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f6ddbc44f80 RCX: 00007f6ddbaf4c9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+FAT-fs (loop4): Invalid FSINFO signature: 0x00000000, 0x00000000 (sector = 255)
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f6ddbc44f80
+R13: 00007ffc0c1dcd00 R14: 00007f6ddbc44f8c R15: 0000000000000000
+FAT-fs (loop4): count of clusters too big (4160749575)
+---[ end trace 1a226e0115281d2d ]---
+FAT-fs (loop4): Can't find a valid FAT filesystem
+EXT4-fs (loop3): orphan cleanup on readonly fs
+EXT4-fs error (device loop3): ext4_ext_check_inode:460: inode #4: comm syz-executor.3: pblk 0 bad header/extent: invalid eh_max - magic f30a, entries 1, max 0(0), depth 0(0)
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 4
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): Cannot turn on quotas: error -117
+EXT4-fs (loop3): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+loop1: detected capacity change from 0 to 736
+loop6: detected capacity change from 0 to 2048
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): ext4_check_descriptors: Block bitmap for group 1 not in group (block 0)!
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+EXT4-fs (loop1): group descriptors corrupted!
+loop6: detected capacity change from 0 to 32768
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): ext4_check_descriptors: Inode table for group 0 not in group (block 0)!
+EXT4-fs (loop1): group descriptors corrupted!
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Ignoring removed bh option
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=5 sclass=netlink_route_socket pid=4235 comm=syz-executor.6
+netlink: 28752 bytes leftover after parsing attributes in process `syz-executor.4'.
+EXT4-fs (loop0): mounted filesystem without journal. Opts: norecovery,bh,errors=remount-ro,nodiscard,noload,commit=0x00000000000000,max_batch_time=0x0000000000007fff,. Quota mode: none.
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Unrecognized mount option "" or missing value
+capability: warning: `syz-executor.2' uses 32-bit capabilities (legacy support in use)
+loop2: detected capacity change from 0 to 256
+loop2: detected capacity change from 0 to 2048
+EXT4-fs (loop2): Unrecognized mount option "nouseT_xattÆªèr" or missing value
+loop1: detected capacity change from 0 to 4096
+EXT4-fs: Warning: mounting with data=journal disables delayed allocation, dioread_nolock, O_DIRECT and fast_commit support!
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+EXT4-fs error (device loop0): ext4_quota_enable:6313: comm syz-executor.0: inode #754974720: comm syz-executor.0: iget: illegal inode #
+EXT4-fs error (device loop0): ext4_quota_enable:6315: comm syz-executor.0: Bad quota inode # 754974720
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=2, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop0): mount failed
+loop6: detected capacity change from 0 to 128
+audit: type=1400 audit(1794597092.308:6): avc:  denied  { block_suspend } for  pid=4274 comm="syz-executor.6" capability=36  scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=capability2 permissive=1
+loop0: detected capacity change from 0 to 736
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+loop6: detected capacity change from 0 to 1024
+Buffer I/O error on dev sr0, logical block 5, lost async page write
+EXT4-fs (loop6): Unrecognized mount option "./file0" or missing value
+Buffer I/O error on dev sr0, logical block 6, lost async page write
+Buffer I/O error on dev sr0, logical block 7, lost async page write
+Buffer I/O error on dev sr0, logical block 8, lost async page write
+Buffer I/O error on dev sr0, logical block 9, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 127 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 254 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 381 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 508 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 635 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 762 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 889 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1016 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 'syz-executor.6': attribute type 1 has an invalid length.
+netlink: 'syz-executor.6': attribute type 2 has an invalid length.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 40 bytes leftover after parsing attributes in process `syz-executor.6'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop0): ext4_quota_enable:6313: comm syz-executor.0: inode #754974720: comm syz-executor.0: iget: illegal inode #
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop0): ext4_quota_enable:6315: comm syz-executor.0: Bad quota inode # 754974720
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=2, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop2: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop0): mount failed
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop2): ext4_fill_super:4816: inode #2: comm syz-executor.2: casefold flag without casefold feature
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop2): warning: mounting fs with errors, running e2fsck is recommended
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop2): mounted filesystem without journal. Opts: stripe=0x0000000000000009,grpid,acl,,errors=continue. Quota mode: none.
+netlink: 'syz-executor.6': attribute type 4 has an invalid length.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 1760 bytes leftover after parsing attributes in process `syz-executor.0'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 384 bytes leftover after parsing attributes in process `syz-executor.6'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): Unrecognized mount option "usrjquotüvÀfile0" or missing value
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+tmpfs: Bad value for 'mpol'
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+audit: type=1400 audit(1794597093.903:7): avc:  denied  { tracepoint } for  pid=4307 comm="syz-executor.4" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=perf_event permissive=1
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): Unrecognized mount option "laú	" or missing value
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): couldn't mount as ext3 due to feature incompatibilities
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=56 sclass=netlink_xfrm_socket pid=4322 comm=syz-executor.2
+loop4: detected capacity change from 0 to 512
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=61 sclass=netlink_xfrm_socket pid=4322 comm=syz-executor.2
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=55 sclass=netlink_xfrm_socket pid=4322 comm=syz-executor.2
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=60 sclass=netlink_xfrm_socket pid=4322 comm=syz-executor.2
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=59 sclass=netlink_xfrm_socket pid=4322 comm=syz-executor.2
+netlink: 4876 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop0: detected capacity change from 0 to 2048
+loop3: detected capacity change from 0 to 736
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 36 bytes leftover after parsing attributes in process `syz-executor.7'.
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): Journaled quota options ignored when QUOTA feature is enabled
+audit: type=1400 audit(1794597095.393:8): avc:  denied  { name_bind } for  pid=4344 comm="syz-executor.1" src=20003 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+audit: type=1400 audit(1794597095.393:9): avc:  denied  { node_bind } for  pid=4344 comm="syz-executor.1" src=20003 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+EXT4-fs (loop0): orphan cleanup on readonly fs
+EXT4-fs error (device loop0): ext4_ext_check_inode:460: inode #4: comm syz-executor.0: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+device lo entered promiscuous mode
+device lo left promiscuous mode
+capability: warning: `syz-executor.2' uses deprecated v2 capabilities in a way that may be insecure
+EXT4-fs error (device loop0): ext4_quota_enable:6315: comm syz-executor.0: Bad quota inode # 4
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+audit: type=1401 audit(1794597095.457:10): op=fscreate invalid_context=5D0100007D010000004701F000008000001002000000020000000000000000000100000280000000000080000080000000001200C76994CCB5AFAEA6FB9FC819501B9987DD6AC4FE070005002D6E005B2FFB00FA74ACAF7E9B04C9440C7C8C22102763F25551C8A820FC36CE7AF0156FAB6008834F68B53CCBD24011C29C9B3DF81206D37F0663D7E7996DA0C81AC66DE4746B1CAA1F1F58CA70C6145A80C95F0FEA3AACFA8F27164E60B943B7F6C900CA5AF4A704949F9B4D4C14ACAA2D6363DE832621C607CB8777148AA4268530F400EE72FB361E968356BBD065C66698430F37876E5178A2B5383CC24321B01D62F8F6C1AC954E99FA653722B771852B28F1BC2805B8A00C8DBB582F68F26B4B27227B0D64F79C623E4BE03784A1B81A1A6DB9D1A74CC554AF126888C40DADBEE3EB46580A65AA9B8222B21F61D819EC6C81E80AB509ACEED13528075605097AEC55B3819CF9EBE9D2D612010074
+syz-executor.7 (4323) used greatest stack depth: 24336 bytes left
+SELinux:  Context ð is not valid (left unmapped).
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1851878519 (only 16 groups)
+EXT4-fs (loop0): Cannot turn on quotas: error -117
+EXT4-fs (loop0): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000,errors=continue. Quota mode: writeback.
+loop3: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+=======================================================
+WARNING: The mand mount option has been deprecated and
+         and is ignored by this kernel. Remove the mand
+         option from the mount to silence this warning.
+=======================================================
+ loop4: p1 p2 p3
+EXT4-fs (loop3): couldn't mount as ext2 due to feature incompatibilities
+loop1: detected capacity change from 0 to 4096
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop4): Unrecognized mount option "ÏE´¶µJÌs&½·A)ŸJÉËVa8£b& Öÿe" or missing value
+EXT4-fs (loop1): Invalid log cluster size: 8388608
+loop5: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 2048
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop3): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): feature flags set on rev 0 fs, running e2fsck is recommended
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop3): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop5): ext4_fill_super:4816: inode #2: comm syz-executor.5: casefold flag without casefold feature
+syz-executor.1 uses obsolete (PF_INET,SOCK_PACKET)
+EXT4-fs (loop3): orphan cleanup on readonly fs
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+EXT4-fs (loop5): mounted filesystem without journal. Opts: norecovery,nodelalloc,nobarrier,discard,usrjquota=,commit=0x000000000000,max_batch_time=0x000000,errors=continue. Quota mode: none.
+EXT4-fs (loop6): mounted filesystem without journal. Opts: . Quota mode: none.
+EXT4-fs error (device loop3): ext4_ext_check_inode:460: inode #4: comm syz-executor.3: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 4
+SELinux: security_context_str_to_sid(staff_uuid>00000000000000000000,rootcontext=root,,errors=continue) failed for (dev loop6, type ext4) errno=-22
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): Cannot turn on quotas: error -117
+EXT4-fs (loop3): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+EXT4-fs (loop7): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+netlink: 'syz-executor.5': attribute type 13 has an invalid length.
+loop6: detected capacity change from 0 to 2048
+FAT-fs (loop6): Unrecognized mount option "uid=184467440737095516150x000000000000000018446744073709551615" or missing value
+EXT4-fs (loop7): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): orphan cleanup on readonly fs
+EXT4-fs error (device loop7): ext4_quota_enable:6313: comm syz-executor.7: inode #1: comm syz-executor.7: iget: illegal inode #
+EXT4-fs error (device loop7): ext4_quota_enable:6315: comm syz-executor.7: Bad quota inode # 1
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop7): Cannot turn on quotas: error -117
+EXT4-fs (loop7): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 128
+EXT4-fs (loop4): Unrecognized mount option "stripe=0h000000074" or missing value
+loop5: detected capacity change from 0 to 32768
+loop4: detected capacity change from 0 to 2048
+ loop5: p1 p3 < p5 p6 >
+loop7: detected capacity change from 0 to 1024
+audit: type=1400 audit(1794597099.052:11): avc:  denied  { write } for  pid=4446 comm="syz-executor.6" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=perf_event permissive=1
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): Quota format mount options ignored when QUOTA feature is enabled
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 00 00 00 2e 00
+print_req_error: 249 callbacks suppressed
+blk_update_request: critical target error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x8800 phys_seg 23 prio class 2
+blktrace: Concurrent blktraces are not allowed on sr0
+EXT4-fs (loop7): mounted filesystem without journal. Opts: grpjquota=./file0,init_itable,norecovery,jqfmt=vfsv0,,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): Unrecognized mount option "È²Ñc;ÖÏ½Æ‘ï" or missing value
+loop4: detected capacity change from 0 to 2048
+netlink: 'syz-executor.7': attribute type 9 has an invalid length.
+netlink: 'syz-executor.7': attribute type 1 has an invalid length.
+netlink: 'syz-executor.7': attribute type 2 has an invalid length.
+netlink: 4768 bytes leftover after parsing attributes in process `syz-executor.3'.
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 00 00 00 2e 00
+blk_update_request: critical target error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x8800 phys_seg 23 prio class 2
+blktrace: Concurrent blktraces are not allowed on sr0
+loop6: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop6): #blocks per group too big: 24576
+EXT4-fs error (device loop7): __ext4_iget:4792: inode #2: block 127754: comm syz-executor.7: invalid block
+EXT4-fs (loop7): get root inode failed
+EXT4-fs (loop7): mount failed
+loop3: detected capacity change from 0 to 1024
+EXT4-fs error (device loop3): ext4_ext_check_inode:460: inode #3: comm syz-executor.3: pblk 0 bad header/extent: too large eh_max - magic f30a, entries 2, max 1284(4), depth 0(0)
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 3
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): mount failed
+loop7: detected capacity change from 0 to 4096
+EXT4-fs (loop7): couldn't mount as ext3 due to feature incompatibilities
+netlink: 60 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4908 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop6: detected capacity change from 0 to 160
+netlink: 172 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 37816 bytes leftover after parsing attributes in process `syz-executor.3'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+buffer_io_error: 32750 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+loop7: detected capacity change from 0 to 128

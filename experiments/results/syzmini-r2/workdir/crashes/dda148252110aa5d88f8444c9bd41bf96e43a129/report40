@@ -1,0 +1,175 @@
+netlink: 37816 bytes leftover after parsing attributes in process `syz-executor.3'.
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de f2 93 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900007bf8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88800388f110 RCX: ffffffff9287356f
+RDX: ffff8880034c0f80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003827000
+R13: ffff88800388f000 R14: ffffffff945a9aa0 R15: ffff88800388f01c
+FS:  0000000000000000(0000) GS:ffff888069900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00005555569c1918 CR3: 000000002a682006 CR4: 0000000000370ee0
+DR0: 0000000020000180 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace a86ed82c3cfbf490 ]---
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+cgroup: Unknown subsys name 'nonf'
+audit: type=1400 audit(1794594506.850:69): avc:  denied  { dyntransition } for  pid=14244 comm="syz-executor.0" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:sshd_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794594506.859:70): avc:  denied  { use } for  pid=14244 comm="syz-executor.0" path="/proc/14244/task/14244/attr/current" dev="proc" ino=67085 scontext=system_u:object_r:sshd_exec_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=fd permissive=1
+audit: type=1400 audit(1794594506.859:71): avc:  denied  { write } for  pid=14244 comm="syz-executor.0" path="/proc/14244/task/14244/attr/current" dev="proc" ino=67085 scontext=system_u:object_r:sshd_exec_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794594506.859:72): avc:  denied  { setcurrent } for  pid=14244 comm="syz-executor.0" scontext=system_u:object_r:sshd_exec_t:s0 tcontext=system_u:object_r:sshd_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794594506.859:73): avc:  denied  { dyntransition } for  pid=14244 comm="syz-executor.0" scontext=system_u:object_r:sshd_exec_t:s0 tcontext=system_u:object_r:dmidecode_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794594506.859:74): avc:  denied  { create } for  pid=14244 comm="syz-executor.0" scontext=system_u:object_r:dmidecode_exec_t:s0 tcontext=system_u:object_r:dmidecode_exec_t:s0 tclass=packet_socket permissive=1
+audit: type=1400 audit(1794594506.860:75): avc:  denied  { net_raw } for  pid=14244 comm="syz-executor.0" capability=13  scontext=system_u:object_r:dmidecode_exec_t:s0 tcontext=system_u:object_r:dmidecode_exec_t:s0 tclass=capability permissive=1
+netlink: 3728 bytes leftover after parsing attributes in process `syz-executor.3'.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1 (only 16 groups)
+netlink: 24 bytes leftover after parsing attributes in process `syz-executor.5'.
+scsi_io_completion_action: 198 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 9f 08 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 9f 48 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 f8 2a 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 9f 88 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 10 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 f8 6a 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 9f c8 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 02 f8 aa 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 a0 08 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+buffer_io_error: 3278 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+print_req_error: 219 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 781480 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1476896 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 781736 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1477152 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 781992 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1477408 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 782248 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1477664 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 782504 op 0x0:(READ) flags 0x84700 phys_seg 2 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1477920 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+À: renamed from sit0
+scsi_io_completion_action: 267 callbacks suppressed
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 03 1a 1e 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 c1 c8 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 03 1a 5e 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 c2 08 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 03 1a 9e 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 c2 48 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 03 1a de 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 c2 88 00 00 40 00
+tmpfs: Unknown parameter 'uiÙ$0x00000000ffffffff'
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 03 1b 1e 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 05 c2 c8 00 00 40 00
+sctp: [Deprecated]: syz-executor.3 (pid 14349) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+tmpfs: Bad value for 'mpol'
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+print_req_error: 268 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 1512480 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 816760 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1512736 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 7 (only 16 groups)
+blk_update_request: I/O error, dev sr0, sector 1512992 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 817016 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1513248 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 817272 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 817528 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 817784 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+blk_update_request: I/O error, dev sr0, sector 1513504 op 0x0:(READ) flags 0x84700 phys_seg 3 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+Buffer I/O error on dev sr0, logical block 1, async page read

@@ -1,0 +1,146 @@
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 40 00 00 14 00
+blk_update_request: I/O error, dev sr0, sector 2304 op 0x0:(READ) flags 0x0 phys_seg 5 prio class 2
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 52 b2 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000081f8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88800379d410 RCX: ffffffffb0e7356f
+RDX: ffff888002116c80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002d6c000
+R13: ffff88800379d300 R14: ffffffffb2ba9aa0 R15: ffff88800379d31c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f2849445cb0 CR3: 0000000008d76001 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 22ee1deb3c086dc6 ]---
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=66 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=48 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=28 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=24 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=64 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=61 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=57 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=52 sclass=netlink_tcpdiag_socket pid=5431 comm=syz-executor.3
+device lo entered promiscuous mode
+device lo left promiscuous mode
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 40 bytes leftover after parsing attributes in process `syz-executor.5'.
+autofs4:pid:5447:autofs_fill_super: called with bogus options
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop5): Unrecognized mount option "dont_hash" or missing value
+loop3: detected capacity change from 0 to 512
+EXT4-fs (loop3): Unrecognized mount option "obj_role=]&%Ñ[" or missing value
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1 (only 16 groups)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+buffer_io_error: 6 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 2, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 3, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 4, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 5, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 6, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 7, async page read
+loop4: detected capacity change from 0 to 32768
+ loop4: p1 p3 < p5 p6 p7 >
+ loop4: p1 p3 < p5 p6 p7 >
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): Unrecognized mount option "fsuuid=73a1ea1d-fd8-8d14-" or missing value
+loop4: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 2048
+loop3: detected capacity change from 0 to 2048
+EXT4-fs warning (device loop4): ext4_multi_mount_protect:292: Invalid MMP block in superblock
+EXT4-fs (loop3): Unrecognized mount option "ò%" or missing value
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): filesystem is read-only
+EXT4-fs (loop3): fragment/cluster size (32768) != block size (2048)
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): inodes count not valid: 32 vs 256
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop6: detected capacity change from 0 to 2048
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop6): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop6): Quota format mount options ignored when QUOTA feature is enabled
+EXT4-fs (loop5): Unrecognized mount option "n ÝÄa £Ÿ÷" or missing value
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs (loop6): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+loop3: detected capacity change from 0 to 2048
+FAT-fs (loop3): Unrecognized mount option "ut#Òd1" or missing value
+loop6: detected capacity change from 0 to 1156
+autofs4:pid:5541:validate_dev_ioctl: invalid path supplied for cmd(0xc0189374)
+raw_sendmsg: syz-executor.6 forgot to set AF_INET. Fix it!
+loop5: detected capacity change from 0 to 262144
+loop6: detected capacity change from 0 to 262144
+FAT-fs (loop6): Unrecognized mount option "ñ" or missing value
+loop2: detected capacity change from 0 to 2364
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.2'.
+SELinux:  Context system_u:object_r:systemd_unit_file_t:s0 is not valid (left unmapped).
+audit: type=1400 audit(1794582592.786:18): avc:  denied  { relabelto } for  pid=5556 comm="syz-executor.5" name="PACKET" dev="sockfs" ino=24125 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=packet_socket permissive=1 trawcon="system_u:object_r:systemd_unit_file_t:s0"
+loop6: detected capacity change from 0 to 262144
+FAT-fs (loop6): Unrecognized mount option "" or missing value
+netlink: 'syz-executor.6': attribute type 12 has an invalid length.
+loop6: detected capacity change from 0 to 736
+loop6: detected capacity change from 0 to 736
+sctp: [Deprecated]: syz-executor.1 (pid 5586) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+loop6: detected capacity change from 0 to 736
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop6: detected capacity change from 0 to 32768
+device lo entered promiscuous mode
+device lo left promiscuous mode
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.4'.
+device lo entered promiscuous mode
+device lo left promiscuous mode
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop3): Journaled quota options ignored when QUOTA feature is enabled
+netlink: 'syz-executor.2': attribute type 4 has an invalid length.
+EXT4-fs (loop3): Quota format mount options ignored when QUOTA feature is enabled
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop3): orphan cleanup on readonly fs
+EXT4-fs error (device loop3): ext4_ext_check_inode:460: inode #4: comm syz-executor.3: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop4): Unrecognized mount option "Þ£¶„ñK«â—0j¯×Õ´×…" or missing value
+EXT4-fs (loop5): Couldn't mount because of unsupported optional features (fffc1828)
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 4
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): Cannot turn on quotas: error -117
+EXT4-fs (loop3): mounted filesystem without journal. Opts: nouser_xattr,grpquota,usrjquota=./file0,commit=0x0000000000000005,jqfmt=vfsold,,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 1768
+loop3: detected capacity change from 0 to 128
+EXT4-fs (loop3): Ignoring removed nobh option
+EXT4-fs (loop3): dax option not supported

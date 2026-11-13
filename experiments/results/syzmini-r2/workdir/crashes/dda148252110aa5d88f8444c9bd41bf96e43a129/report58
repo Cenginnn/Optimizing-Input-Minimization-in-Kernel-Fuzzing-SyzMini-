@@ -1,0 +1,130 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 7768 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 7768 Comm: syz-executor.3 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 8b e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000188f5c8 EFLAGS: 00010286
+RAX: 0000000000000224 RBX: ffff8880038b5410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90003948000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003790000
+R13: ffff8880038b5300 R14: ffffffff8c3a9aa0 R15: ffff8880038b531c
+FS:  0000555556220480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 0000000008744004 CR4: 0000000000370ee0
+DR0: 00000000000000cc DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fb72604ec9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff2ae26ad8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fb72619ef80 RCX: 00007fb72604ec9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fb72619ef80
+R13: 00007fff2ae26d00 R14: 00007fb72619ef8c R15: 0000000000000000
+---[ end trace 60bcfcbb5f6362de ]---
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=7769 comm=syz-executor.3
+audit: type=1400 audit(1794599980.766:178): avc:  denied  { create } for  pid=7770 comm="syz-executor.3" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:devicekit_runtime_t:s0 tclass=netlink_generic_socket permissive=1
+cdrom: dropping to single frame dma
+audit: type=1400 audit(1794599981.157:179): avc:  denied  { dyntransition } for  pid=7775 comm="syz-executor.3" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:gpg_exec_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794599981.167:180): avc:  denied  { use } for  pid=7775 comm="syz-executor.3" path="/syzkaller-testdir1441465409/syzkaller.mizVQw/438/file0" dev="sda" ino=17404 scontext=system_u:object_r:gpg_exec_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=fd permissive=1
+audit: type=1400 audit(1794599981.167:181): avc:  denied  { write } for  pid=7775 comm="syz-executor.3" path="/syzkaller-testdir1441465409/syzkaller.mizVQw/438/file0" dev="sda" ino=17404 scontext=system_u:object_r:gpg_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794599981.167:182): avc:  denied  { search } for  pid=7775 comm="syz-executor.3" name="/" dev="sda" ino=2 scontext=system_u:object_r:gpg_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794599981.168:183): avc:  denied  { search } for  pid=7775 comm="syz-executor.3" name="/" dev="devtmpfs" ino=1 scontext=system_u:object_r:gpg_exec_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794599981.168:184): avc:  denied  { ioctl } for  pid=7775 comm="syz-executor.3" path="/syzkaller-testdir1441465409/syzkaller.mizVQw/438/file0" dev="sda" ino=17404 ioctlcmd=0x2284 scontext=system_u:object_r:gpg_exec_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+netlink: 156 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): mounted filesystem without journal. Opts: nombcache,nouser_xattr,auto_da_alloc,,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir519260242/syzkaller.Ct2RdO/277/file0 supports timestamps until 2038 (0x7fffffff)
+ata1.00: invalid cdb length 12
+kernel read not supported for file /:#)]#( (pid: 7801 comm: syz-executor.3)
+audit: type=1400 audit(1794599982.853:185): avc:  denied  { module_load } for  pid=7801 comm="syz-executor.3" path=2F3A23290B5D2328 dev="mqueue" ino=33160 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=system permissive=1
+loop0: detected capacity change from 0 to 2048
+FAT-fs (loop0): bogus number of FAT sectors
+FAT-fs (loop0): Can't find a valid FAT filesystem
+validate_nla: 2 callbacks suppressed
+netlink: 'syz-executor.3': attribute type 88 has an invalid length.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 32 prio class 0
+loop0: detected capacity change from 0 to 32768
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 7 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 7 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 3 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 4 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+ loop0: p1 p3 < p5 p6 >
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ loop0: p1 p3 < p5 p6 >
+netlink: 'syz-executor.3': attribute type 4 has an invalid length.
+nfs: Unknown parameter '-^('**$$'
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Unrecognized mount option "bar000Ç000000071" or missing value
+sctp: [Deprecated]: syz-executor.3 (pid 7864) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+audit: type=1400 audit(1794599989.335:186): avc:  denied  { dyntransition } for  pid=7876 comm="syz-executor.3" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:initctl_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794599989.335:187): avc:  denied  { fork } for  pid=7876 comm="syz-executor.3" scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:initctl_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1794599989.336:188): avc:  denied  { search } for  pid=7877 comm="syz-executor.3" name="480" dev="sda" ino=17384 scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794599989.337:189): avc:  denied  { write } for  pid=7877 comm="syz-executor.3" name="480" dev="sda" ino=17384 scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794599989.337:190): avc:  denied  { add_name } for  pid=7877 comm="syz-executor.3" name="core.528" scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1794599989.337:191): avc:  denied  { create } for  pid=7877 comm="syz-executor.3" name="core.528" scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794599989.337:192): avc:  denied  { read write open } for  pid=7877 comm="syz-executor.3" path="/syzkaller-testdir1441465409/syzkaller.mizVQw/480/core.528" dev="sda" ino=17400 scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1794599989.371:193): avc:  denied  { open } for  pid=7876 comm="syz-executor.3" scontext=system_u:object_r:initctl_t:s0 tcontext=system_u:object_r:initctl_t:s0 tclass=perf_event permissive=1

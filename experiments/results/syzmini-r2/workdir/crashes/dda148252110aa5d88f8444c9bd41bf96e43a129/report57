@@ -1,0 +1,78 @@
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 22375 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 22375 Comm: syz-executor.2 Not tainted 5.15.0+ #2
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 92 bb e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90000baf5c8 EFLAGS: 00010286
+RAX: 000000000000022c RBX: ffff8880038d3110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc9000250e000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003861000
+R13: ffff8880038d3000 R14: ffffffffbbfa9aa0 R15: ffff8880038d301c
+FS:  0000555556e91480(0000) GS:ffff888069800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000020001640 CR3: 0000000028c20004 CR4: 0000000000370ef0
+DR0: 0000000020000180 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fd4ce4dfc9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd171863d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd4ce62ff80 RCX: 00007fd4ce4dfc9d
+RDX: 0000000020001640 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fd4ce62ff80
+R13: 00007ffd17186600 R14: 00007fd4ce62ff8c R15: 0000000000000000
+---[ end trace 9390587b0b49eaa0 ]---
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 5 (only 16 groups)
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 'syz-executor.2': attribute type 88 has an invalid length.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+__nla_validate_parse: 68 callbacks suppressed
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.1': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 6 has an invalid length.
+netlink: 'syz-executor.1': attribute type 7 has an invalid length.
+netlink: 'syz-executor.1': attribute type 25 has an invalid length.
+netlink: 'syz-executor.1': attribute type 11 has an invalid length.
+netlink: 'syz-executor.1': attribute type 28 has an invalid length.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=22582 comm=syz-executor.5
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.1': attribute type 11 has an invalid length.
