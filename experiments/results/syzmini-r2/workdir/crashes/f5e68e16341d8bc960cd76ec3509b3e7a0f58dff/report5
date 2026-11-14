@@ -1,0 +1,2 @@
+sendmsg$nl_route_sched_retired(r0, &(0x7f00000001c0)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x10000000}, 0xc, &(0x7f0000000080)={&(0x7f0000000040)=ANY=[@ANYBLOB="b80000001200ff1e28c01dddaf1a5dd780349383", @ANYRES32=0x0, @ANYRES64=r0, @ANYRESOCT=r0], 0xb8}, 0x1, 0x0, 0x6800000000000000, 0x200408c1}, 0x0)
+2026/11/15 15:21:27 SYZFATAL: executor 1 failed 11 times: executor 1: failed to write control pipe: write |1: broken pipe
