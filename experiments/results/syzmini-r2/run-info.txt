@@ -2,3 +2,7 @@ run_id=syzmini-r2
 started_at=2026-11-08T19:13:58+08:00
 exit_code=124
 finished_at=2026-11-08T19:23:59+08:00
+run_id=syzmini-r2
+started_at=2026-11-13T04:58:50+08:00
+exit_code=137
+finished_at=2026-11-14T04:58:50+08:00
