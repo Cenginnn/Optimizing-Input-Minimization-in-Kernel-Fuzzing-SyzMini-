@@ -1,0 +1,47 @@
+{
+  "run_id": "replace-with-unique-run-id",
+  "started_at": "YYYY-MM-DDTHH:MM:SS+08:00",
+  "finished_at": "YYYY-MM-DDTHH:MM:SS+08:00",
+  "repository": "https://github.com/Cenginnn/Optimizing-Input-Minimization-in-Kernel-Fuzzing-SyzMini-",
+  "repository_commit": "fill-in-git-rev-parse-HEAD",
+  "starting_commit": "fill-in-original-starting-commit",
+  "mode": "SyzMini-with-influence-matrix",
+  "host": {
+    "os": "fill-in-OS-release",
+    "kernel": "fill-in-uname-r",
+    "cpu": "fill-in-CPU-model",
+    "logical_cpus": 0,
+    "memory_gib": 0
+  },
+  "guest": {
+    "kernel_version": "5.15",
+    "kernel_config_options": [
+      "CONFIG_KCOV=y",
+      "CONFIG_KASAN=y",
+      "CONFIG_DEBUG_INFO=y"
+    ],
+    "image": "Debian Trixie QEMU image"
+  },
+  "tools": {
+    "go": "fill-in-go-version",
+    "gcc": "fill-in-gcc-version",
+    "qemu": "fill-in-qemu-version",
+    "syzmini": "fill-in-version-or-commit"
+  },
+  "manager": {
+    "target": "linux/amd64",
+    "procs": 8,
+    "vm_count": 4,
+    "vm_cpu": 2,
+    "vm_mem_mib": 2048,
+    "cmdline": "net.ifnames=0",
+    "duration_minutes": 60
+  },
+  "input": {
+    "corpus_source": "describe corpus source",
+    "influence_matrix_file": "influencev5.15.txt",
+    "influence_matrix_sha256": "fill-in-sha256sum"
+  },
+  "deviations_from_paper": [],
+  "notes": "Record failures, restarts, crashes and any changes made during the run."
+}
