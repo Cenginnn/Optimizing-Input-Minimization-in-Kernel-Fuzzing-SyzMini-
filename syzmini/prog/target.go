@@ -1,6 +1,5 @@
 // Copyright 2017 syzkaller project authors. All rights reserved.
 // Use of this source code is governed by Apache 2 LICENSE that can be found in the LICENSE file.
-
 package prog
 
 import (
@@ -31,7 +30,7 @@ type Target struct {
 	// MakeDataMmap creates calls that mmaps target data memory range.
 	MakeDataMmap func() []*Call
 
-	// Neutralize neutralizes harmful calls by transforming them into non-harmful ones
+	// Neutralize neutralizes harmful calls by transforming them into non‑harmful ones
 	// (e.g. an ioctl that turns off console output is turned into ioctl that turns on output).
 	// fixStructure determines whether it's allowed to make structural changes (e.g. add or
 	// remove arguments). It is helpful e.g. when we do neutralization while iterating over the
@@ -70,6 +69,7 @@ type Target struct {
 	initArch    func(target *Target)
 	types       []Type
 	resourceMap map[string]*ResourceDesc
+
 	// Maps resource name to a list of calls that can create the resource.
 	resourceCtors map[string][]ResourceCtor
 	any           anyTypes
@@ -134,15 +134,17 @@ func (target *Target) lazyInit() {
 	target.AnnotateCall = func(c ExecCall) string { return "" }
 	target.initTarget()
 	target.initArch(target)
-	// Give these 2 known addresses fixed positions and prepend target-specific ones at the end.
+
+	// Give these 2 known addresses fixed positions and prepend target‑specific ones at the end.
 	target.SpecialPointers = append([]uint64{
 		0x0000000000000000, // NULL pointer (keep this first because code uses special index=0 as NULL)
 		0xffffffffffffffff, // unmapped kernel address (keep second because serialized value will match actual pointer value)
-		0x9999999999999999, // non-canonical address
+		0x9999999999999999, // non‑canonical address
 	}, target.SpecialPointers...)
 	if len(target.SpecialPointers) > maxSpecialPointers {
 		panic("too many special pointers")
 	}
+
 	if len(target.SpecialFileLenghts) == 0 {
 		// Just some common lengths that can be used as PATH_MAX/MAX_NAME.
 		target.SpecialFileLenghts = []int{256, 512, 4096}
@@ -152,6 +154,7 @@ func (target *Target) lazyInit() {
 			panic(fmt.Sprintf("bad special file length %v", ln))
 		}
 	}
+
 	// These are used only during lazyInit.
 	target.types = nil
 }
@@ -162,7 +165,6 @@ func (target *Target) initTarget() {
 	for _, c := range target.Consts {
 		target.ConstMap[c.Name] = c.Value
 	}
-
 	target.resourceMap = restoreLinks(target.Syscalls, target.Resources, target.types)
 	target.initAnyTypes()
 
@@ -380,7 +382,6 @@ func (target *Target) AnalyzeStaticInfluence() {
 	for i := range target.InfluenceMatrix {
 		target.InfluenceMatrix[i] = make([]uint8, len(target.Syscalls))
 	}
-
 	count := 0
 	for _, callid_dir := range type_uses {
 		dirIn_ids := []int{}
@@ -397,20 +398,14 @@ func (target *Target) AnalyzeStaticInfluence() {
 			for _, call_id_src := range dirOut_ids {
 				for _, call_id_dest := range dirIn_ids {
 					if call_id_src != call_id_dest {
-						// if target.InfluenceMatrix[call_id_src][call_id_dest] != 1 {
-						// 	count++
-						// }
 						if target.InfluenceMatrix[call_id_src][call_id_dest] == 0 {
 							target.InfluenceMatrix[call_id_src][call_id_dest] = 1
 							count++
 						}
-
-						// fmt.Printf("\n%v\n%v\n", target.Syscalls[call_id_src], target.Syscalls[call_id_dest])
 					}
 				}
 			}
 		}
-		// fmt.Printf("%v,%v,%v\n",type_name,len(dirOut_ids),len(dirIn_ids))
 	}
 	fmt.Printf("Syzkaller call length %v\n", len(target.Syscalls))
 	fmt.Printf("The number of static influence pair:%v\n", count)
@@ -422,26 +417,31 @@ func (target *Target) calcTypeUsage() map[string]map[int]Dir {
 		c := ctx.Meta
 		switch a := t.(type) {
 		case *ResourceType:
-			if _, ok := type_uses[a.Name()]; !ok {
-				resName := t.Name()
+			resName := t.Name()
+			if _, ok := type_uses[resName]; !ok {
 				type_uses[resName] = make(map[int]Dir)
+			}
+			// 取更严格方向：DirInOut 覆盖 DirIn/DirOut
+			oldDir, existed := type_uses[resName][c.ID]
+			if !existed {
 				type_uses[resName][c.ID] = ctx.Dir
 			} else {
-				type_uses[t.Name()][c.ID] = ctx.Dir
+				if oldDir != DirInOut && ctx.Dir != 0 {
+					if oldDir == DirIn && ctx.Dir == DirOut || oldDir == DirOut && ctx.Dir == DirIn {
+						type_uses[resName][c.ID] = DirInOut
+					}
+				}
 			}
-		case *PtrType:
-		case *BufferType:
-		case *VmaType:
-		case *IntType:
 		}
 	})
 	return type_uses
 }
+
 func noteTypeUses(uses map[string]map[int]Dir, c *Syscall, dir Dir, str string, args ...interface{}) {
 	id := fmt.Sprintf(str, args...)
-	// id := fmt.Sprintf(str, ref)
 	if uses[id] == nil {
 		uses[id] = make(map[int]Dir)
 	}
 	uses[id][c.ID] = dir
 }
+
