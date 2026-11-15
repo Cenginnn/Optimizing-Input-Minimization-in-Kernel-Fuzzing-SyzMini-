@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Summarize final counters from at least three run metrics CSV files."""
+"""Summarize final counters from at least three run metrics CSV files.
+
+Inputs must refer to distinct files from independent, equivalently configured runs.
+Path checks cannot establish experimental independence; keep run metadata and logs.
+"""
 
 import argparse
 import csv
@@ -11,10 +15,23 @@ METRICS = ("executed", "cover", "signal_current", "signal_total", "crashes", "re
 
 def final_row(path: Path) -> dict[str, int]:
     with path.open(newline="", encoding="utf-8") as stream:
-        rows = list(csv.DictReader(stream))
-    if not rows:
-        raise SystemExit(f"No data rows in {path}")
-    return {metric: int(rows[-1][metric]) for metric in METRICS}
+        reader = csv.DictReader(stream)
+        missing = set(METRICS) - set(reader.fieldnames or [])
+        if missing:
+            raise ValueError(f"{path}: missing columns: {', '.join(sorted(missing))}")
+        last = None
+        for line_number, row in enumerate(reader, start=2):
+            last = {}
+            for metric in METRICS:
+                raw = row.get(metric)
+                if raw is None or not raw.strip().isascii() or not raw.strip().isdecimal():
+                    raise ValueError(
+                        f"{path}:{line_number}: {metric} must be a non-negative integer; got {raw!r}"
+                    )
+                last[metric] = int(raw)
+    if last is None:
+        raise ValueError(f"No data rows in {path}")
+    return last
 
 
 def main() -> None:
@@ -23,7 +40,18 @@ def main() -> None:
     args = parser.parse_args()
     if len(args.csv) < 3:
         parser.error("at least three independent runs are required by the course replication criteria")
-    results = [final_row(path) for path in args.csv]
+    try:
+        paths = []
+        for path in args.csv:
+            if any(path.samefile(previous) for previous in paths):
+                raise ValueError(f"Duplicate run input: {path}; provide separate independent runs")
+            # Validate even the first input before accepting it.
+            if not path.is_file():
+                raise ValueError(f"Run CSV is not a file: {path}")
+            paths.append(path)
+        results = [final_row(path) for path in paths]
+    except (OSError, ValueError, csv.Error) as error:
+        parser.error(str(error))
     print(f"Runs: {len(results)}")
     print("Metric             mean             sample_stddev")
     for metric in METRICS:
@@ -34,3 +62,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
