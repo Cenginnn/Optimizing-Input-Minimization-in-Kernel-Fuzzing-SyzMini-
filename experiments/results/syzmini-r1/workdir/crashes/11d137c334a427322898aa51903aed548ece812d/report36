@@ -1,0 +1,8 @@
+11_ATTR_SCAN_SSIDS={0x74, 0x2d, 0x0, 0x1, [{0x13, 0x0, @random="98968557b96e9185d5093feeeabb67"}, {0xa, 0x0, @default_ap_ssid}, {0x1f, 0x0, @random="6983f74ccfb81c792f741b092adbfc6b5c5e1955b8787cb08202ce"}, {0x14, 0x0, @random="aeb8c023a415f48a59786a226fcc1a0e"}, {0x10, 0x0, @random="ba290401ad8d2cf4f7d42c97"}, {0xa, 0x0, @default_ibss_ssid}]}, @NL80211_ATTR_SCHED_SCAN_DELAY={0x8, 0xdc, 0x5}]}, 0x250}}, 0xc0)
+2026/11/20 08:15:11 SYZFATAL: executor 4 failed 11 times: executor 4: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3999664 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,74 @@
+------------[ cut here ]------------
+Trying to write to read-only block-device loop1 (partno 0)
+WARNING: CPU: 1 PID: 35216 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 1 PID: 35216 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 1b bb 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc90000a9f248 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 1ffff92000153e50 RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc900059b4000 RDI: fffff52000153e3b
+RBP: ffff888009f61000 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888009f61010
+R13: ffff888036e73a80 R14: ffff8880035317a0 R15: ffff888009f61008
+FS:  0000555556bf6480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b2f426000 CR3: 0000000009ed6001 CR4: 0000000000370ee0
+DR0: 0000000020000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ ext4_io_submit+0xb7/0xe0
+ ext4_writepages+0x65e/0x20f0
+ do_writepages+0x187/0x480
+ __filemap_fdatawrite_range+0x1b1/0x210
+ file_write_and_wait_range+0x86/0xe0
+ ext4_sync_file+0x13d/0x7f0
+ vfs_fsync_range+0x72/0x140
+ ext4_buffered_write_iter+0x246/0x2c0
+ ext4_file_write_iter+0x135/0x10b0
+ new_sync_write+0x30a/0x430
+ vfs_write+0x442/0x510
+ ksys_write+0xf1/0x1e0
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f194b924c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffddd2923f8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007f194ba74f80 RCX: 00007f194b924c9d
+RDX: 0000000000000001 RSI: 0000000020000240 RDI: 0000000000000004
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f194ba74f80
+R13: 00007ffddd292620 R14: 00007f194ba74f8c R15: 0000000000000000
+---[ end trace 0f59ebe0e73d4e24 ]---
+loop1: detected capacity change from 0 to 4096
+loop1: detected capacity change from 0 to 4096
+loop1: detected capacity change from 0 to 4096
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop1: detected capacity change from 0 to 4096
+sg_write: data in/out 633/171 bytes for SCSI command 0xfc-- guessing data in;
+   program syz-executor.1 not setting count and/or reply_len properly
+netlink: 204 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 64 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 10988 bytes leftover after parsing attributes in process `syz-executor.4'.
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 740 bytes leftover after parsing attributes in process `syz-executor.6'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 376 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 'syz-executor.0': attribute type 12 has an invalid length.
+netlink: 47 bytes leftover after parsing attributes in process `syz-executor.0'.
+program syz-executor.0 is using a deprecated SCSI ioctl, please convert it to SG_IO
+ata1.00: invalid multi_count 32 ignored
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): write access unavailable, skipping orphan cleanup
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+EXT4-fs warning (device sda): ext4_group_extend:1805: can't shrink FS - resize aborted
+loop1: detected capacity change from 0 to 128
+netlink: 532 bytes leftover after parsing attributes in process `syz-executor.4'.
+loop1: detected capacity change from 0 to 512

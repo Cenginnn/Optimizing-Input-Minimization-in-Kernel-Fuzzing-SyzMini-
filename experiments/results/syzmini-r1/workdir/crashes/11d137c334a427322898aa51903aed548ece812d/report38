@@ -1,0 +1,9 @@
+ioctl$sock_ipv6_tunnel_SIOCGETTUNNEL(0xffffffffffffffff, 0x89f0, &(0x7f0000000080)={'ip6tnl0\x00', &(0x7f0000000000)={'syztnl2\x00', r5, 0x4, 0x88, 0x6, 0x1, 0x20, @mcast1, @local, 0x20, 0x760, 0x4, 0xfd90}})
+ioctl$sock_SIOCGIFINDEX(r0, 0x8901, &(0x7f0000000100)={'veth1_to_team\x00'})
+2026/11/20 08:45:05 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

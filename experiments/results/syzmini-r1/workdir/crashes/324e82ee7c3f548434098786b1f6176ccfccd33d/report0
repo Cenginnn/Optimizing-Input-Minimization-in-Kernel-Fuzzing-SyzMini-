@@ -1,0 +1,92 @@
+==================================================================
+BUG: KASAN: stack-out-of-bounds in profile_pc+0x59/0x90
+Read of size 8 at addr ffffc90005c57c70 by task modprobe/79223
+
+CPU: 1 PID: 79223 Comm: modprobe Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x6e/0x91
+ print_address_description.constprop.0+0x1f/0x140
+ kasan_report.cold+0x7f/0x11b
+ profile_pc+0x59/0x90
+ profile_tick+0x8f/0xd0
+ tick_sched_timer+0x11c/0x150
+ __hrtimer_run_queues+0x2c8/0x5b0
+ hrtimer_interrupt+0x1e1/0x3f0
+hpet: Lost 1 RTC interrupts
+ __sysvec_apic_timer_interrupt+0x79/0x150
+ sysvec_apic_timer_interrupt+0x65/0x90
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20
+RIP: 0010:_raw_spin_lock+0x83/0xd0
+Code: c7 44 24 20 00 00 00 00 e8 ea d0 7f fe be 04 00 00 00 48 8d 7c 24 20 e8 db d0 7f fe ba 01 00 00 00 8b 44 24 20 f0 0f b1 55 00 <75> 29 48 b8 00 00 00 00 00 fc ff df 48 c7 04 03 00 00 00 00 48 8b
+RSP: 0000:ffffc90005c57c70 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 1ffff92000b8af8e RCX: ffffffff9f7f1255
+RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffffc90005c57c90
+RBP: ffffea0000baace8 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff52000b8af92 R11: 0000000000000001 R12: ffffea0000baace8
+R13: ffffc90005c57de0 R14: ffffc90005c57da0 R15: ffffea0001544840
+ finish_fault+0x3e7/0x5b0
+ __handle_mm_fault+0x646/0x1840
+ handle_mm_fault+0xdf/0x380
+ do_user_addr_fault+0x424/0xde0
+ exc_page_fault+0x8d/0x140
+ asm_exc_page_fault+0x1e/0x30
+RIP: 0033:0x7f2991324f04
+Code: 00 00 0f 1f 40 00 48 8b 32 8b 4a 08 4c 01 e6 48 83 f9 26 74 0a 48 83 f9 08 0f 85 91 27 ff ff 48 8b 4a 10 48 83 c2 18 4c 01 e1 <48> 89 0e 48 39 da 72 d4 4d 8b 9f 08 02 00 00 4d 85 db 0f 84 54 0b
+RSP: 002b:00007fff54e68280 EFLAGS: 00010202
+RAX: 00007f2990ce1e30 RBX: 00007f2990db2438 RCX: 00007f299115aa7c
+RDX: 00007f2990d33bc8 RSI: 00007f299129d0c0 RDI: 00007f299134d0a0
+RBP: 00007fff54e68390 R08: 00007f2990dba1f0 R09: 00007fff54e68320
+R10: 00007f2990cd7000 R11: 0000000000000206 R12: 00007f2990cd7000
+R13: 00007f299134d5f0 R14: 00007f2991314800 R15: 00007f2991314800
+
+
+addr ffffc90005c57c70 is located in stack of task modprobe/79223 at offset 0 in frame:
+ _raw_spin_lock+0x0/0xd0
+
+this frame has 1 object:
+ [32, 36) 'val'
+
+Memory state around the buggy address:
+ ffffc90005c57b00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90005c57b80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffffc90005c57c00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 f1 f1
+                                                             ^
+ ffffc90005c57c80: f1 f1 04 f3 f3 f3 00 00 00 00 00 00 00 00 00 00
+ ffffc90005c57d00: 00 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1 f1
+==================================================================
+blktrace: Concurrent blktraces are not allowed on sg1
+blktrace: Concurrent blktraces are not allowed on sg1
+blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop1, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop2, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop3, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop4, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop9, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.1'.
+blk_update_request: I/O error, dev loop10, sector 0 op 0x0:(READ) flags 0x800 phys_seg 1 prio class 0
+audit: type=1400 audit(1795676435.371:329): avc:  denied  { relabelto } for  pid=79522 comm="syz-executor.0" name="resume" dev="sysfs" ino=127 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:zero_device_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1795676435.372:330): avc:  denied  { associate } for  pid=79522 comm="syz-executor.0" name="resume" dev="sysfs" ino=127 scontext=system_u:object_r:zero_device_t:s0 tcontext=system_u:object_r:sysfs_t:s0 tclass=filesystem permissive=1
+----------------
+Code disassembly (best guess):
+   0:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%rsp)
+   7:	00
+   8:	e8 ea d0 7f fe       	call   0xfe7fd0f7
+   d:	be 04 00 00 00       	mov    $0x4,%esi
+  12:	48 8d 7c 24 20       	lea    0x20(%rsp),%rdi
+  17:	e8 db d0 7f fe       	call   0xfe7fd0f7
+  1c:	ba 01 00 00 00       	mov    $0x1,%edx
+  21:	8b 44 24 20          	mov    0x20(%rsp),%eax
+  25:	f0 0f b1 55 00       	lock cmpxchg %edx,0x0(%rbp)
+* 2a:	75 29                	jne    0x55 <-- trapping instruction
+  2c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  33:	fc ff df
+  36:	48 c7 04 03 00 00 00 	movq   $0x0,(%rbx,%rax,1)
+  3d:	00
+  3e:	48                   	rex.W
+  3f:	8b                   	.byte 0x8b

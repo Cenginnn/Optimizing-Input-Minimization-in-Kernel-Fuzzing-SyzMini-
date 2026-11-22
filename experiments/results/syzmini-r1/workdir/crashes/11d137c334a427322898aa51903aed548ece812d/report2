@@ -1,0 +1,8 @@
+sendmsg$NLBL_CALIPSO_C_ADD(r0, &(0x7f0000000280)={&(0x7f0000000180)={0x10, 0x0, 0x0, 0x1}, 0xc, &(0x7f0000000240)={&(0x7f0000000000)=ANY=[@ANYBLOB='$\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="09002bbd7000fedbdf252b84df3314eec449820a3514110100000008000200020000000800010004000000"], 0x24}, 0x1, 0x0, 0x0, 0x1}, 0x0)
+setsockopt$inet6_tcp_TCP_REPAIR(0xffffffffffffffff, 0x6, 0x13, &(0x7f0000000000)=0x1, 0x4)
+connect$inet6(0xffffffffffffffff, &(0x7f0000000100)={0xa, 0x4e20, 0x10001, @empty, 0x38e1}, 0x1c)
+2026/11/12 15:28:04 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,116 @@
+==================================================================
+BUG: KASAN: null-ptr-deref in cgroup_file_write+0xae/0x3b0
+Read of size 8 at addr 0000000000000040 by task syz-executor.6/428
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 5 (only 16 groups)
+
+CPU: 0 PID: 428 Comm: syz-executor.6 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ dump_stack_lvl+0x6e/0x91
+ kasan_report.cold+0x116/0x11b
+ cgroup_file_write+0xae/0x3b0
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ __x64_sys_exit_group+0x28/0x30
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fd2b6ebac9d
+Code: Unable to access opcode bytes at RIP 0x7fd2b6ebac73.
+RSP: 002b:00007ffd54bda5f8 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 000000000000001c RCX: 00007fd2b6ebac9d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000043
+RBP: 0000000000000000 R08: 0000000000000025 R09: 0000000000001388
+R10: 00007ffd54bda4f0 R11: 0000000000000206 R12: 00007fd2b6f3347e
+R13: 000000000002f94e R14: 0000000000001388 R15: 0000000000000032
+==================================================================
+BUG: kernel NULL pointer dereference, address: 0000000000000040
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 0 P4D 0 
+Oops: 0000 [#1] SMP KASAN NOPTI
+CPU: 0 PID: 428 Comm: syz-executor.6 Tainted: G    B             5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc900075e7928 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000ebcf28 RCX: ffffffffa9bf0a9d
+RDX: 1ffffffff5736c89 RSI: 0000000000000246 RDI: ffffffffab9b6448
+RBP: ffff8880023e6500 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888001fc6c80 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff888069800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 000000006f610002 CR4: 0000000000370ef0
+Call Trace:
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ __x64_sys_exit_group+0x28/0x30
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fd2b6ebac9d
+Code: Unable to access opcode bytes at RIP 0x7fd2b6ebac73.
+RSP: 002b:00007ffd54bda5f8 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 000000000000001c RCX: 00007fd2b6ebac9d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000043
+RBP: 0000000000000000 R08: 0000000000000025 R09: 0000000000001388
+R10: 00007ffd54bda4f0 R11: 0000000000000206 R12: 00007fd2b6f3347e
+R13: 000000000002f94e R14: 0000000000001388 R15: 0000000000000032
+Modules linked in:
+CR2: 0000000000000040
+---[ end trace 7323a05f50189bdc ]---
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc900075e7928 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000ebcf28 RCX: ffffffffa9bf0a9d
+RDX: 1ffffffff5736c89 RSI: 0000000000000246 RDI: ffffffffab9b6448
+RBP: ffff8880023e6500 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888001fc6c80 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff888069800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 000000006f610002 CR4: 0000000000370ef0
+Fixing recursive fault but reboot is needed!
+autofs4:pid:7646:validate_dev_ioctl: path string terminator missing for cmd(0xc0189375)
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+sd 0:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sd 0:0:0:0: tag#0 CDB: Verify(16)
+sd 0:0:0:0: tag#0 CDB[00]: 8f 25 44 30 b0 c3 ce 10 a5 42 20 34 d8 96 fc 0d
+sd 0:0:0:0: tag#0 CDB[10]: 95 55 0b e4 f9 bb c0 d1 b2 a3 76 b6 27 39 e0 a2
+sd 0:0:0:0: tag#0 CDB[20]: da 5a df 7e bf 20 4c 7b 85 72 4d 82 16 e3 f3 12
+sd 0:0:0:0: tag#0 CDB[30]: b7 ce 65 14 2b 13 36 3a 1f 11 84 cf b1 45 ce f8
+sd 0:0:0:0: tag#0 CDB[40]: 03 68 4d 3d 63 46 e8 90 52 f2 1d 06 7d f7 3b ff
+sd 0:0:0:0: tag#0 CDB[50]: f1 b4 b7 00 f0 bb 2c 9a 29 0c 6a 41 03
+sit0: mtu greater than device maximum
+netlink: 584 bytes leftover after parsing attributes in process `syz-executor.5'.
+----------------
+Code disassembly (best guess):
+   0:	4d 85 e4             	test   %r12,%r12
+   3:	0f 84 58 01 00 00    	je     0x161
+   9:	e8 0e fa 03 00       	call   0x3fa1c
+   e:	49 8d bd 18 07 00 00 	lea    0x718(%r13),%rdi
+  15:	e8 22 a7 1e 00       	call   0x1ea73c
+  1a:	4d 8b ad 18 07 00 00 	mov    0x718(%r13),%r13
+  21:	49 8d 7d 40          	lea    0x40(%r13),%rdi
+  25:	e8 12 a7 1e 00       	call   0x1ea73c
+* 2a:	49 8b 45 40          	mov    0x40(%r13),%rax <-- trapping instruction
+  2e:	48 89 ef             	mov    %rbp,%rdi
+  31:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  36:	e8 01 a7 1e 00       	call   0x1ea73c
+  3b:	4c 8b 6d 00          	mov    0x0(%rbp),%r13
+  3f:	49                   	rex.WB

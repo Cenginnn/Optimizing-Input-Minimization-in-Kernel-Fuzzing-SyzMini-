@@ -1,0 +1,6 @@
+sendmsg$NL80211_CMD_SET_MESH_CONFIG(r0, &(0x7f0000000240)={&(0x7f00000000c0)={0x10, 0x0, 0x0, 0x8000}, 0xc, &(0x7f0000000200)={&(0x7f00000009c0)=ANY=[@ANYBLOB='H\x00\x00\x00', @ANYRES16=r1, @ANYBLOB="01002abd7000fbdbdf250b80d669086b0300", @ANYRES32=0x0, @ANYBLOB="60009900080000000b0000000c009900090000000400000014002380080015002d0000000600120006000000"], 0x48}, 0x1, 0x0, 0x0, 0x8088}, 0x4004012)
+2026/11/19 20:37:44 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

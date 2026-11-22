@@ -1,0 +1,12 @@
+mmap$IORING_OFF_CQ_RING(&(0x7f0000001000/0x3000)=nil, 0x3000, 0x300000e, 0x11, r8, 0x8000000)
+mmap$IORING_OFF_CQ_RING(&(0x7f0000002000/0x2000)=nil, 0x2000, 0x2, 0x10010, r8, 0x8000000)
+sendmsg$NL80211_CMD_GET_REG(r8, &(0x7f0000000180)={&(0x7f0000000080)={0x10, 0x0, 0x0, 0x2000}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x24, 0x0, 0x4, 0x70bd29, 0x25dfdbfb, {}, [@NL80211_ATTR_USER_REG_HINT_TYPE={0x8, 0x9a, 0x1}, @NL80211_ATTR_REG_ALPHA2={0x7, 0x21, 'aa\x00'}]}, 0x24}, 0x1, 0x0, 0x0, 0x40000050}, 0x40800)
+unlinkat(r0, &(0x7f0000000140)='./file0/file0\x00', 0x0)
+mknodat$loop(r0, &(0x7f0000000040)='./file0/file1\x00', 0x8, 0x1)
+2026/11/26 06:19:06 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,135 @@
+blktrace: Concurrent blktraces are not allowed on loop6
+------------[ cut here ]------------
+Trying to write to read-only block-device loop7 (partno 0)
+WARNING: CPU: 1 PID: 9159 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 1 PID: 9159 Comm: syz-executor.7 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 bb ba 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc9000814f728 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 1ffff92001029eec RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc90001104000 RDI: fffff52001029ed7
+RBP: ffff8880304bf200 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880304bf210
+R13: ffff888002afad80 R14: ffff88800350b720 R15: ffff8880304bf208
+FS:  0000555557038480(0000) GS:ffff888069900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f1e5201c000 CR3: 000000002ee38005 CR4: 0000000000370ee0
+DR0: 0000000000000008 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ __sync_dirty_buffer+0x119/0x2f0
+ ext4_commit_super+0x1ad/0x320
+ ext4_setup_super+0x347/0x570
+ ext4_fill_super+0x47a8/0x74e0
+ mount_bdev+0x271/0x2d0
+ legacy_get_tree+0x6e/0xe0
+ vfs_get_tree+0x48/0x170
+ path_mount+0x5f3/0x1390
+ __x64_sys_mount+0x216/0x260
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f127dd3342e
+Code: 0f 1f 40 00 48 c7 c2 e8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff373a8d88 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00007fff373a8e20 RCX: 00007f127dd3342e
+RDX: 0000000020000b80 RSI: 0000000020000bc0 RDI: 00007fff373a8de0
+RBP: 0000000020000b80 R08: 00007fff373a8e20 R09: 0000000002010112
+R10: 0000000002010112 R11: 0000000000000202 R12: 0000000020000bc0
+R13: 00007fff373a8de0 R14: 0000000000000b96 R15: 0000000020000180
+---[ end trace 45b92d28097ad9a6 ]---
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+EXT4-fs error (device loop7): ext4_mb_generate_buddy:1141: group 0, 
+loop6: detected capacity change from 0 to 4096
+block bitmap and bg descriptor inconsistent: 29 vs 22 free clusters
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 4096
+blktrace: Concurrent blktraces are not allowed on loop7
+loop7: detected capacity change from 0 to 4096
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 4096
+__nla_validate_parse: 1 callbacks suppressed
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sctp: [Deprecated]: syz-executor.2 (pid 9191) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 0
+EXT4-fs (loop6): blocksize: 4096
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 5
+EXT4-fs (loop6): blocksize: 4096
+device lo entered promiscuous mode
+device lo left promiscuous mode
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=55 sclass=netlink_xfrm_socket pid=9231 comm=syz-executor.2
+netlink: 36 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 6
+EXT4-fs (loop6): blocksize: 4096
+loop7: detected capacity change from 0 to 4096
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 127
+EXT4-fs (loop6): blocksize: 4096
+netlink: 436 bytes leftover after parsing attributes in process `syz-executor.3'.
+program syz-executor.2 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 6728 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop6: detected capacity change from 0 to 4096
+netlink: 6692 bytes leftover after parsing attributes in process `syz-executor.7'.
+EXT4-fs error (device loop6): ext4_fill_super:4816: inode #2: comm syz-executor.6: iget: root inode unallocated
+EXT4-fs (loop6): get root inode failed
+EXT4-fs (loop6): mount failed
+tmpfs: Bad value for 'mpol'
+loop6: detected capacity change from 0 to 4096
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+EXT4-fs (loop6): unsupported inode size: 140
+EXT4-fs (loop6): blocksize: 4096
+loop7: detected capacity change from 0 to 2048
+netlink: 19632 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 584 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 143
+EXT4-fs (loop6): blocksize: 4096
+tmpfs: Bad value for 'mpol'
+netlink: 'syz-executor.0': attribute type 3 has an invalid length.
+netlink: 'syz-executor.0': attribute type 3 has an invalid length.
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 144
+EXT4-fs (loop6): blocksize: 4096
+sg_write: data in/out 175851904/4 bytes for SCSI command 0x0-- guessing data in;
+   program syz-executor.0 not setting count and/or reply_len properly
+loop6: detected capacity change from 0 to 4096
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop6): unsupported inode size: 160
+EXT4-fs (loop6): blocksize: 4096
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): unsupported inode size: 164
+EXT4-fs (loop6): blocksize: 4096
+loop7: detected capacity change from 0 to 32768
+loop6: detected capacity change from 0 to 4096
+ loop7: p1 p3 < p5 p6 >
+EXT4-fs error (device loop6): ext4_fill_super:4816: inode #2: comm syz-executor.6: iget: root inode unallocated
+EXT4-fs (loop6): get root inode failed
+EXT4-fs (loop6): mount failed
+ loop7: p1 p3 < p5 p6 >
+SELinux:  Context system_u:object_r: is not valid (left unmapped).
+loop6: detected capacity change from 0 to 4096
+EXT4-fs (loop6): corrupt root inode, run e2fsck
+EXT4-fs (loop6): mount failed
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=44 sclass=netlink_xfrm_socket pid=9360 comm=syz-executor.4
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=62 sclass=netlink_xfrm_socket pid=9360 comm=syz-executor.4
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=48 sclass=netlink_xfrm_socket pid=9360 comm=syz-executor.4
+loop6: detected capacity change from 0 to 4096
+netlink: 372 bytes leftover after parsing attributes in process `syz-executor.5'.
+EXT4-fs (loop6): unsupported inode size: 0
+EXT4-fs (loop6): blocksize: 4096

@@ -1,0 +1,8 @@
+68e}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x742b}, @NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x449457ff}, @NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x34736d32}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x3e02}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0xc244}]}]}, @NLBL_CIPSOV4_A_MTYPE={0x8, 0x2, 0x1}, @NLBL_CIPSOV4_A_MLSLVLLST={0x4}, @NLBL_CIPSOV4_A_DOI={0x8, 0x1, 0xfffffff0}, @NLBL_CIPSOV4_A_DOI={0x8, 0x1, 0x3}, @NLBL_CIPSOV4_A_DOI={0x8, 0x1, 0x3}, @NLBL_CIPSOV4_A_DOI={0x8}]}, 0x12c}, 0x1, 0x0, 0x0, 0x44854}, 0x4048000)
+1970/01/01 00:56:57 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

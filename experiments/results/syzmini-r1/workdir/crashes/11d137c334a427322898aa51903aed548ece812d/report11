@@ -1,0 +1,12 @@
+setsockopt$inet_tcp_int(r0, 0x6, 0x4, &(0x7f0000000080)=0x95d, 0x4)
+16:21:39 executing program 3:
+r0 = gettid()
+sched_rr_get_interval(r0, &(0x7f0000000000))
+shmget$private(0x0, 0x3000, 0x800, &(0x7f0000ff8000/0x3000)=nil)
+2026/11/19 16:21:39 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,9 @@
+r0 = syz_io_uring_setup(0x80000d7b, &(0x7f0000000140)={0x0, 0xcb42, 0x10, 0xfffffffe, 0x7a}, &(0x7f0000000080), &(0x7f0000000000))
+io_uring_register$IORING_REGISTER_FILES(r0, 0xb, &(0x7f0000000300)=[0xffffffffffffffff, 0xffffffffffffffff, 0xffffffffffffffff], 0x3)
+2033/05/18 03:37:26 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

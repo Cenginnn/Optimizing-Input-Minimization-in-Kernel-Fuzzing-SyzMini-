@@ -1,0 +1,12 @@
+syz_io_uring_setup(0x4d12, &(0x7f00000000c0)={0x0, 0xa1b9, 0xc603, 0x3, 0x156}, &(0x7f0000000000), &(0x7f0000000140))
+18:05:37 executing program 5:
+prctl$PR_SET_MM(0x23, 0x8, &(0x7f0000ffd000/0x1000)=nil)
+18:05:37 executing program 7:
+prctl$PR_SET_MM(0x23, 0x4, &(0x7f0000ffd000/0x1000)=nil)
+2026/11/19 18:05:37 SYZFATAL: executor 6 failed 11 times: executor 6: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,9 @@
+4cfdf9659d8ca9a120756c1b71010888b66371965f972a634739a1543401760c3ab6c0822a9747407b5df82f63338e7e989bc4b2e567a2d4b25e164db4ef7bae9c675806bd7be40f256ba5b84c5ba803d913af5a68b03879131ab1412df9d2c9bc2b2ccd343cb2c0d3b5169a38be8edbae0b6b811fb0c9b9177b4cb35e43a1353832bf70abd9e5fc402162c89ff1f10928d4c6dd4ceb16e040e8f1a3c7fda2cdcbd1ed"}, &(0x7f00000004c0)=0x107)
+getsockopt$inet_sctp6_SCTP_DEFAULT_SEND_PARAM(r4, 0x84, 0xa, &(0x7f0000000500)={0x1, 0x8001, 0x8, 0xff, 0x101, 0x9, 0x75, 0x0, r6}, &(0x7f0000000540)=0x20)
+2026/11/20 01:22:29 SYZFATAL: executor 6 failed 11 times: executor 6: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3999664 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,6 @@
+sendmsg$NLBL_MGMT_C_LISTDEF(r0, &(0x7f0000000dc0)={&(0x7f0000000cc0)={0x10, 0x0, 0x0, 0x10000}, 0xc, &(0x7f0000000d80)={&(0x7f0000000d40)={0x28, r1, 0x1, 0x70bd2a, 0x25dfdbfe, {}, [@NLBL_MGMT_A_IPV6ADDR={0x14, 0x5, @mcast2}]}, 0x28}, 0x1, 0x0, 0x0, 0x8001}, 0x800)
+2026/11/12 14:23:41 SYZFATAL: executor 6 failed 11 times: executor 6: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

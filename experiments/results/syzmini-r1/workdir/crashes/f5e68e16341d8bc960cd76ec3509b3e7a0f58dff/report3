@@ -1,0 +1,5 @@
+ioctl$FS_IOC_SETFLAGS(r0, 0x40086602, &(0x7f00000001c0)=0x4000)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x103942, 0xc29677026d88780c)
+write$cgroup_subtree(r1, &(0x7f0000000000)=ANY=[], 0x40000)
+mknod(&(0x7f0000000000)='./file1\x00', 0x4, 0x1000)
+2026/11/12 20:32:51 SYZFATAL: executor 0 failed 11 times: executor 0: failed to write control pipe: write |1: broken pipe

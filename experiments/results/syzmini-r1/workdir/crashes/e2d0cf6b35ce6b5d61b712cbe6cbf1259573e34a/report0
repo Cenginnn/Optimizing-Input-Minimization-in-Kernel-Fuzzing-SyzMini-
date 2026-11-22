@@ -1,0 +1,53 @@
+rcu: INFO: rcu_sched self-detected stall on CPU
+rcu: 	1-....: (19768 ticks this GP) idle=0ef/1/0x4000000000000000 softirq=550600/550600 fqs=4654 
+	(t=21000 jiffies g=849033 q=4545)
+NMI backtrace for cpu 1
+CPU: 1 PID: 44653 Comm: syz-executor.3 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x6e/0x91
+ nmi_cpu_backtrace.cold+0x48/0xd7
+ nmi_trigger_cpumask_backtrace+0x161/0x1a0
+ rcu_dump_cpu_stacks+0x108/0x13c
+ rcu_sched_clock_irq.cold+0x146/0x29c
+ update_process_times+0xe7/0x120
+ tick_sched_handle+0xa9/0xd0
+ tick_sched_timer+0x11c/0x150
+ __hrtimer_run_queues+0x2c8/0x5b0
+ hrtimer_interrupt+0x1e1/0x3f0
+ __sysvec_apic_timer_interrupt+0x79/0x150
+ sysvec_apic_timer_interrupt+0x65/0x90
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20
+RIP: 0010:do_update_region+0x173/0x3d0
+Code: 00 00 e8 d0 ec 61 ff 31 ff 44 89 e6 e8 76 e6 61 ff 45 85 e4 0f 84 66 01 00 00 e8 b8 ec 61 ff 48 89 df e8 70 97 7c ff 0f b7 03 <44> 89 ef 30 c0 89 c6 89 44 24 04 e8 ad e5 61 ff 8b 44 24 04 66 41
+RSP: 0000:ffffc90000aff858 EFLAGS: 00000246
+RAX: 0000000000000720 RBX: ffff8880000be988 RCX: ffffffff99a23f40
+RDX: dffffc0000000000 RSI: 0000000000000001 RDI: ffff8880000be988
+RBP: 0000000000000971 R08: 0000000000000005 R09: 0000000000000000
+R10: 0000000000000500 R11: 0000000000000001 R12: 0000000000000500
+R13: 0000000000000700 R14: ffff8880000bd82c R15: 0000000000000e71
+ insert_char+0x1c0/0x1f0
+ do_con_write+0xb9a/0x1440
+ con_write+0x21/0x40
+ n_tty_write+0x32a/0xaa0
+ file_tty_write.constprop.0+0x370/0x5c0
+ new_sync_write+0x30a/0x430
+ vfs_write+0x442/0x510
+ ksys_write+0xf1/0x1e0
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f23158f6c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc27d0bcd8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007f2315a46f80 RCX: 00007f23158f6c9d
+RDX: 0000000000001920 RSI: 0000000020001ac0 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f2315a46f80
+R13: 00007ffc27d0bf00 R14: 00007f2315a46f8c R15: 0000000000000000
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 19632 bytes leftover after parsing attributes in process `syz-executor.7'.
+device lo entered promiscuous mode
+device lo left promiscuous mode

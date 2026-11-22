@@ -1,0 +1,6 @@
+sendmsg$NLBL_MGMT_C_VERSION(r0, &(0x7f0000000140)={&(0x7f0000000040)={0x10, 0x0, 0x0, 0x10}, 0xc, &(0x7f0000000100)={&(0x7f00000000c0)={0x38, r1, 0x1, 0x70bd25, 0x25dfdbfd, {0x6}, [@NLBL_MGMT_A_FAMILY={0x6, 0xb, 0x1a}, @NLBL_MGMT_A_IPV6MASK={0x14, 0x6, @private0}, @NLBL_MGMT_A_FAMILY={0x6, 0xb, 0x1a}]}, 0x38}, 0x1, 0x0, 0x0, 0x1}, 0x10)
+2026/11/20 00:27:19 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

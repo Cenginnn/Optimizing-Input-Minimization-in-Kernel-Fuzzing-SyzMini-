@@ -1,0 +1,8 @@
+getsockopt$inet_sctp6_SCTP_SOCKOPT_CONNECTX3(r2, 0x84, 0x6f, &(0x7f0000000080)={r5, 0x4c, &(0x7f0000002500)=[@in={0x2, 0x4e20, @local}, @in={0x2, 0x4e21, @multicast1}, @in6={0xa, 0x4e21, 0xfffffff8, @local, 0x401}, @in={0x2, 0x4e22, @loopback}]}, &(0x7f0000002580)=0x10)
+2026/12/02 10:44:30 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,40 @@
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgHT+DQAA//8EWQHy")
+2026/11/26 01:31:53 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67
+01:31:53 executing program 6:
+r0 = socket$inet(0x2, 0x2, 0x800)
+getsockopt$inet_sctp_SCTP_PEER_ADDR_THLDS(0xffffffffffffffff, 0x84, 0x1f, &(0x7f0000000000)={<r1=>0x0, @in6={{0xa, 0x4e23, 0xddc, @mcast2}}, 0x1, 0x5}, &(0x7f00000000c0)=0x90)
+getsockopt$inet_sctp_SCTP_PR_ASSOC_STATUS(r0, 0x84, 0x73, &(0x7f0000000100)={<r2=>r1, 0x1, 0x20, 0x8001, 0x10a}, &(0x7f0000000140)=0x18)
+r3 = socket$inet6_sctp(0xa, 0x1, 0x84)
+getsockopt$inet_sctp6_SCTP_ASSOCINFO(r3, 0x84, 0x1, &(0x7f0000000180)={<r4=>r1, 0x6, 0x2, 0x5, 0x3, 0x1}, &(0x7f00000001c0)=0x14)
+setsockopt$inet_sctp_SCTP_DELAYED_SACK(r0, 0x84, 0x10, &(0x7f0000000200)=@sack_info={r4, 0xfffffe01, 0x7}, 0xc)
+setsockopt$inet_sctp_SCTP_SOCKOPT_BINDX_ADD(r0, 0x84, 0x64, &(0x7f0000000240)=[@in={0x2, 0x4e24, @dev={0xac, 0x14, 0x14, 0x1a}}, @in={0x2, 0x4e21, @private=0xa010101}], 0x20)
+getsockopt$inet_sctp_SCTP_PR_STREAM_STATUS(r0, 0x84, 0x74, &(0x7f0000000280)=""/204, &(0x7f0000000380)=0xcc)
+r5 = socket$inet_sctp(0x2, 0x5, 0x84)
+ioctl$sock_inet_sctp_SIOCINQ(r5, 0x541b, &(0x7f00000003c0))
+r6 = socket$inet_sctp(0x2, 0x5, 0x84)
+getsockopt$inet_sctp_SCTP_GET_PEER_ADDRS(r6, 0x84, 0x6c, &(0x7f0000000400)={<r7=>r2, 0x5f, "de6acceead89898d410eff563eaf62bbc5a279e78e5d7cfbefdc14b00aea9944aebf47bc39623aa6d1daad4d0585d7ad2983d1ac5f7dd3d9c0d2e89e915bf16434532581d6f5bfaa34bdef5c2a16cabb151d84ba8067300a465c289aeefb71"}, &(0x7f0000000480)=0x67)
+setsockopt$inet_sctp_SCTP_AUTH_DELETE_KEY(r6, 0x84, 0x19, &(0x7f00000004c0)={r7}, 0x8)
+ioctl$AUTOFS_DEV_IOCTL_FAIL(0xffffffffffffffff, 0xc0189377, &(0x7f0000000500)={{0x1, 0x1, 0x18, <r8=>r3, {0x5, 0x3117f206}}, './file0\x00'})
+getsockopt$inet_sctp6_SCTP_GET_LOCAL_ADDRS(r8, 0x84, 0x6d, &(0x7f0000000540)={r2, 0x1e, "e71d7f4afc9bb757ac0d6b3c2b5947714b5c355162ce78b5099cead719c2"}, &(0x7f0000000580)=0x26)
+fchdir(r8)
+setsockopt$inet_sctp6_SCTP_DEFAULT_PRINFO(r8, 0x84, 0x72, &(0x7f00000005c0)={r7, 0x100, 0x20}, 0xc)
+setsockopt$inet_sctp_SCTP_STREAM_SCHEDULER(r8, 0x84, 0x7b, &(0x7f0000000600)={r1, 0xd0}, 0x8)
+setsockopt$inet_icmp_ICMP_FILTER(r0, 0x1, 0x1, &(0x7f0000000640)={0x3f}, 0x4)
+getsockopt$SO_TIMESTAMPING(r5, 0x1, 0x25, &(0x7f0000000680), &(0x7f00000006c0)=0x4)
+setsockopt$inet_sctp6_SCTP_DEFAULT_SNDINFO(r3, 0x84, 0x22, &(0x7f0000000700)={0x5, 0x4, 0x800, 0x2, r1}, 0x10)
+getsockopt$inet_sctp_SCTP_GET_PEER_ADDRS(r0, 0x84, 0x6c, &(0x7f0000000740)={<r9=>r2, 0x36, "59f6b85aa325d9fb5240424efd191d7d3dc6a5654e139dcee5f0c16f286c907150508ddb8c61f462029e10eb2ec2100bf32f74b1e49b"}, &(0x7f0000000780)=0x3e)
+setsockopt$inet_sctp_SCTP_MAX_BURST(r8, 0x84, 0x14, &(0x7f00000007c0)=@int=0xc0, 0x4)
+getsockopt$inet_sctp6_SCTP_DISABLE_FRAGMENTS(r8, 0x84, 0x8, &(0x7f0000000800), &(0x7f0000000840)=0x4)
+ioctl$IOC_PR_PREEMPT_ABORT(r8, 0x401870cc, &(0x7f0000000880)={0x5, 0x1, 0x80000001})
+ioctl$sock_ipv4_tunnel_SIOCDELTUNNEL(r8, 0x89f2, &(0x7f0000000940)={'ip_vti0\x00', &(0x7f00000008c0)={'syztnl2\x00', <r10=>0x0, 0x80, 0x80, 0x4, 0x2, {{0x17, 0x4, 0x3, 0x3, 0x5c, 0x67, 0x0, 0x7, 0x2f, 0x0, @multicast2, @remote, {[@end, @timestamp_addr={0x44, 0x14, 0x1b, 0x1, 0xb, [{@multicast1, 0x9}, {@broadcast, 0x9}]}, @ra={0x94, 0x4, 0x1}, @noop, @cipso={0x86, 0x11, 0xffffffffffffffff, [{0x7, 0xb, "52321f3b19838f3a1d"}]}, @timestamp_addr={0x44, 0x1c, 0x58, 0x1, 0x1, [{@rand_addr=0x64010101}, {@local, 0x4}, {@multicast2, 0xe04}]}]}}}}})
+ioctl$sock_inet6_SIOCDELRT(r8, 0x890c, &(0x7f0000000980)={@loopback, @remote, @dev={0xfe, 0x80, '\x00', 0x19}, 0x4, 0x20, 0xed2, 0x0, 0x2, 0x20, r10})
+getsockopt$inet_sctp6_SCTP_GET_PEER_ADDR_INFO(0xffffffffffffffff, 0x84, 0xf, &(0x7f0000000a00)={<r11=>r7, @in={{0x2, 0x4e21, @multicast1}}, 0xd24, 0xc45, 0x7f, 0x3, 0x7}, &(0x7f0000000ac0)=0x98)
+setsockopt$inet_sctp_SCTP_AUTH_KEY(r0, 0x84, 0x17, &(0x7f0000000b00)={r11, 0x3f, 0x42, "f884cecd857f3ec8430abcd2cf2f9983b1b660cb7779da34870d85c7b06d17212db0a09825288e38334abb4cde9cdf353713770edb8d0f41cab22e4ee71586d7a587"}, 0x4a)
+sendmsg$inet_sctp(r5, &(0x7f0000001040)={&(0x7f0000000b80)=@in6={0xa, 0x4e24, 0x61e53a99, @loopback, 0x6}, 0x1c, &(0x7f0000000f00)=[{&(0x7f0000000bc0)="c63b58f11c69a9049c2dcefa625512a80a31f38f8d61daa7bc30353b4a3631b94cdb32f575f5ab0645c548cbe3feef4a86cb4e029672b0b870d120af99fc1b0c463fad7ed27e90d0c4e1cb1e0c7786c5ad1f0918fdc9e555d1f4413de880289458f15c2badc8d96f046347bc30619f07e951a214967026eb055c73f20bae3ad5d279ebf1620c0315f2bff0e3", 0x8c}, {&(0x7f0000000c80)="994557280779557f96d27fdb09416094c58d8d1370a8a5718cd43a7a9b06a854e5cc3a16ab86235ce39f676ed6525b8c5f14ee58f060e40e8e375a447880edef451c74e52dd57b835b3d471f0f8f7ab41c2c1ce9f82df3d527db4ae32692fcc58ecf50dfc4a4f1473e28a3ba3bb6a52a209aeee614ef2dad56e959485bc7afad1091e108835754239e938d8a110c07676c2a4badccea0abff02b9245f92f87b5c3cf85a13df5da5293b758d3caf26a684d6eac39abe0f0bff43e360e76709791500acbe1944ba7fc28b0e2c2306a355bb002c849c0a47d64a0d239ceea0c8a1c", 0xe0}, {&(0x7f0000000d80)="2e7a9576384b76a26dd3b28293bf4303d4324fb4afb87d6a582041c85e5786c8979e50b2f01d51b66f1788a0b15b25856223d7bd7a3b65066ded5730036fec5f4424ef7483fbd83e2a99ec1078870aa40be16c23161b87ac825aa0ffc076d9b500d719e975d9", 0x66}, {&(0x7f0000000e00)="ec6deb70366230bfc6fb87b25ad3b7e29a00917031f1f9a7fce3f336cdabaa1768a6d0c508998c22aff33e74f9f4896e31b590d9b22d20b59782064eda0789f26d8456e8", 0x44}, {&(0x7f0000000e80)="2de720378a5bb20a9b659f1b49321e599995e170e16478fbc5900f8594ac0aef5a50200e01fd6cb02895e36cce33431fa8c02f21b79486d5a93223e023588c62bdfefdf4ab98567fdd25867cde", 0x4d}], 0x5, &(0x7f0000000f80)=[@dstaddrv4={0x18, 0x84, 0x7, @rand_addr=0x64010102}, @sndrcv={0x30, 0x84, 0x1, {0x7f, 0xfff8, 0x8, 0x6, 0x9, 0x1, 0xffff, 0x8, r7}}, @init={0x18, 0x84, 0x0, {0x0, 0x6, 0x6, 0xffff}}, @sndinfo={0x20, 0x84, 0x2, {0x8, 0x1, 0x10000, 0x1ff, r9}}, @prinfo={0x18, 0x84, 0x5, {0x30, 0x9a88}}], 0x98, 0x51}, 0x4044900)
+

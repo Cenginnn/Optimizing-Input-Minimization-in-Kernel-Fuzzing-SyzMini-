@@ -1,0 +1,135 @@
+device lo left promiscuous mode
+==================================================================
+BUG: KASAN: stack-out-of-bounds in profile_pc+0x59/0x90
+Read of size 8 at addr ffffc90002607e80 by task syz-executor.2/53241
+
+CPU: 0 PID: 53241 Comm: syz-executor.2 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x6e/0x91
+ print_address_description.constprop.0+0x1f/0x140
+ kasan_report.cold+0x7f/0x11b
+ profile_pc+0x59/0x90
+ profile_tick+0x8f/0xd0
+ tick_sched_timer+0x11c/0x150
+ __hrtimer_run_queues+0x2c8/0x5b0
+ hrtimer_interrupt+0x1e1/0x3f0
+ __sysvec_apic_timer_interrupt+0x79/0x150
+ sysvec_apic_timer_interrupt+0x65/0x90
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20
+RIP: 0010:_raw_spin_lock+0x7e/0xd0
+Code: be 04 00 00 00 c7 44 24 20 00 00 00 00 e8 ea d0 7f fe be 04 00 00 00 48 8d 7c 24 20 e8 db d0 7f fe ba 01 00 00 00 8b 44 24 20 <f0> 0f b1 55 00 75 29 48 b8 00 00 00 00 00 fc ff df 48 c7 04 03 00
+RSP: 0018:ffffc90002607e80 EFLAGS: 00010297
+RAX: 0000000000000000 RBX: 1ffff920004c0fd0 RCX: ffffffffbd3f1255
+RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffffc90002607ea0
+RBP: ffff888010179400 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff520004c0fd4 R11: 0000000000000001 R12: 000000000000001b
+R13: 0000000000000000 R14: ffff888010179400 R15: 0000000000000000
+ close_fd+0x3b/0x130
+ __x64_sys_close+0x1c/0x90
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fa52aa6f0d6
+Code: 47 ba 04 00 00 00 48 c7 c0 e8 ff ff ff 64 89 10 48 c7 c2 ff ff ff ff c9 48 89 d0 c3 0f 1f 84 00 00 00 00 00 48 8b 45 10 0f 05 <48> 89 c2 48 3d 00 f0 ff ff 77 0f c9 48 89 d0 c3 66 2e 0f 1f 84 00
+RSP: 002b:00007ffccf34de50 EFLAGS: 00000202 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 000000000000001c RCX: 00007fa52aa6f0d6
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000000000001b
+RBP: 00007ffccf34de60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 00007fa52a5e4db8
+R13: 00007fa52a9d2000 R14: 00007fa52a5d2000 R15: 0000000000000000
+
+
+addr ffffc90002607e80 is located in stack of task syz-executor.2/53241 at offset 0 in frame:
+ _raw_spin_lock+0x0/0xd0
+
+this frame has 1 object:
+ [32, 36) 'val'
+
+Memory state around the buggy address:
+ ffffc90002607d80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90002607e00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffffc90002607e80: f1 f1 f1 f1 04 f3 f3 f3 00 00 00 00 00 00 00 00
+                   ^
+ ffffc90002607f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90002607f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+netlink: 'syz-executor.0': attribute type 10 has an invalid length.
+netlink: 368 bytes leftover after parsing attributes in process `syz-executor.0'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 784 bytes leftover after parsing attributes in process `syz-executor.0'.
+program syz-executor.0 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.0 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 4628 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 432 bytes leftover after parsing attributes in process `syz-executor.6'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=276 sclass=netlink_route_socket pid=53376 comm=syz-executor.1
+audit: type=1400 audit(1795144282.211:270): avc:  denied  { search } for  pid=53405 comm="syz-executor.6" name="/" dev="sda" ino=2 scontext=system_u:object_r:user_cron_spool_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1795144282.212:271): avc:  denied  { search } for  pid=53405 comm="syz-executor.6" name="53405" dev="proc" ino=279543 scontext=system_u:object_r:user_cron_spool_t:s0 tcontext=system_u:object_r:user_cron_spool_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1795144282.212:272): avc:  denied  { dyntransition } for  pid=53405 comm="syz-executor.6" scontext=system_u:object_r:user_cron_spool_t:s0 tcontext=system_u:object_r:default_context_t:s0 tclass=process permissive=1
+audit: type=1400 audit(1795144282.212:273): avc:  denied  { create } for  pid=53405 comm="syz-executor.6" scontext=system_u:object_r:default_context_t:s0 tcontext=system_u:object_r:default_context_t:s0 tclass=netlink_generic_socket permissive=1
+audit: type=1400 audit(1795144282.212:274): avc:  denied  { write } for  pid=53405 comm="syz-executor.6" scontext=system_u:object_r:default_context_t:s0 tcontext=system_u:object_r:default_context_t:s0 tclass=netlink_generic_socket permissive=1
+audit: type=1400 audit(1795144282.212:275): avc:  denied  { read } for  pid=53405 comm="syz-executor.6" scontext=system_u:object_r:default_context_t:s0 tcontext=system_u:object_r:default_context_t:s0 tclass=netlink_generic_socket permissive=1
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: opcode=0xc2 (vendor)
+sr 1:0:0:0: tag#0 CDB[00]: c2 4e 9b 6c 84 41 e2 78 e2 4d 8d 17 84 35 c9 7e
+sr 1:0:0:0: tag#0 CDB[10]: 2e 66 a0 85 db 34 f3 0a 83 fe 75 4d c4 5b c1 57
+sr 1:0:0:0: tag#0 CDB[20]: 63 2e 81 c7 a9 42 27 07 04 7e f1 26 27 ab 9a 20
+sr 1:0:0:0: tag#0 CDB[30]: 73 4b b7 2a b0 72 68 92 a9 f5 6b 7b 92 3f 71 a6
+sr 1:0:0:0: tag#0 CDB[40]: 97 85 5f 37 3b ab 51 7f 2f af c6 36 78 98 07 28
+sr 1:0:0:0: tag#0 CDB[50]: 4c 1e 19 aa cf 4d bf 65 98 2d 3e 7c fa 4d 7f 5d
+sr 1:0:0:0: tag#0 CDB[60]: 6d fc 10 da 80 5e f4 ab ee f6 8f c9 84 9e df 00
+sr 1:0:0:0: tag#0 CDB[70]: 0e 91 4c 03 61 48 23 92 7f 00 e4 dc 63 34 a2 bb
+sr 1:0:0:0: tag#0 CDB[80]: c1 f0 3e 8e e0 43 e1 b7 4b 80 da 85 b1 e1 f0 d9
+sr 1:0:0:0: tag#0 CDB[90]: bf cf 7b 67 6b 30 90 83 08 07 bd a8 84 51 69 70
+sr 1:0:0:0: tag#0 CDB[a0]: 88 e7 80 9d 7b d6 33 81 12 17 67 bb 2f 52 81 f1
+sr 1:0:0:0: tag#0 CDB[b0]: 59 9a d5 54 0f 26 c2 03 3a 89 b4 c9 ff 9a 51
+netlink: 384 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 'syz-executor.6': attribute type 1 has an invalid length.
+netlink: 'syz-executor.6': attribute type 1 has an invalid length.
+netlink: 'syz-executor.6': attribute type 1 has an invalid length.
+netlink: 3356 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 308 bytes leftover after parsing attributes in process `syz-executor.3'.
+audit: type=1400 audit(1795144286.231:276): avc:  denied  { associate } for  pid=53518 comm="syz-executor.1" name="pm_trace" dev="sysfs" ino=100 scontext=system_u:object_r:fonts_cache_t:s0 tcontext=system_u:object_r:sysfs_t:s0 tclass=filesystem permissive=1
+rtc_cmos 00:05: Alarms can be up to one day in the future
+netlink: 34112 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 34112 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 2332 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 396 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 'syz-executor.3': attribute type 4 has an invalid length.
+netlink: 372 bytes leftover after parsing attributes in process `syz-executor.3'.
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=42 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=40 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=65 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=22 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=4 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=48 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=28 sclass=netlink_tcpdiag_socket pid=53498 comm=syz-executor.5
+sctp: [Deprecated]: syz-executor.5 (pid 53498) Use of int in max_burst socket option.
+Use struct sctp_assoc_value instead
+sctp: [Deprecated]: syz-executor.6 (pid 53556) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=42 sclass=netlink_tcpdiag_socket pid=53564 comm=syz-executor.6
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=40 sclass=netlink_tcpdiag_socket pid=53564 comm=syz-executor.6
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=65 sclass=netlink_tcpdiag_socket pid=53564 comm=syz-executor.6
+netlink: 10988 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 140 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 64 bytes leftover after parsing attributes in process `syz-executor.6'.
+----------------
+Code disassembly (best guess):
+   0:	be 04 00 00 00       	mov    $0x4,%esi
+   5:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%rsp)
+   c:	00
+   d:	e8 ea d0 7f fe       	call   0xfe7fd0fc
+  12:	be 04 00 00 00       	mov    $0x4,%esi
+  17:	48 8d 7c 24 20       	lea    0x20(%rsp),%rdi
+  1c:	e8 db d0 7f fe       	call   0xfe7fd0fc
+  21:	ba 01 00 00 00       	mov    $0x1,%edx
+  26:	8b 44 24 20          	mov    0x20(%rsp),%eax
+* 2a:	f0 0f b1 55 00       	lock cmpxchg %edx,0x0(%rbp) <-- trapping instruction
+  2f:	75 29                	jne    0x5a
+  31:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  38:	fc ff df
+  3b:	48                   	rex.W
+  3c:	c7                   	.byte 0xc7
+  3d:	04 03                	add    $0x3,%al

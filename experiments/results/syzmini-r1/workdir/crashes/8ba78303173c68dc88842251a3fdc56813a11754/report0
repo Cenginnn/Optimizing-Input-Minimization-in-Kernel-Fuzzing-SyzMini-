@@ -1,0 +1,68 @@
+------------[ cut here ]------------
+kernel BUG at fs/buffer.c:3015!
+invalid opcode: 0000 [#1] SMP KASAN NOPTI
+CPU: 0 PID: 7785 Comm: kmmpd-loop5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bh_wbc.constprop.0+0x37d/0x3a0
+Code: 5f c3 e8 96 37 db ff be 08 00 00 00 48 89 df e8 c9 ee f5 ff f0 80 63 01 fb e9 e2 fd ff ff e8 7a 37 db ff 0f 0b e8 73 37 db ff <0f> 0b e8 6c 37 db ff 0f 0b e8 65 37 db ff 0f 0b e8 5e 37 db ff 0f
+RSP: 0000:ffffc90002787d88 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888009b971f8 RCX: ffffffff9648f47d
+RDX: ffff88800a0c3e00 RSI: 0000000000000000 RDI: 0000000000000001
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: 0000000000003800 R14: 0000000000000000 R15: ffff888030d74370
+FS:  0000000000000000(0000) GS:ffff888069800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffecbe4cba0 CR3: 000000004cd6a004 CR4: 0000000000370ef0
+DR0: 0000000020000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ write_mmp_block+0x18c/0x340
+ kmmpd+0x321/0x710
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+Modules linked in:
+---[ end trace 4d3ac93947a703a6 ]---
+RIP: 0010:submit_bh_wbc.constprop.0+0x37d/0x3a0
+Code: 5f c3 e8 96 37 db ff be 08 00 00 00 48 89 df e8 c9 ee f5 ff f0 80 63 01 fb e9 e2 fd ff ff e8 7a 37 db ff 0f 0b e8 73 37 db ff <0f> 0b e8 6c 37 db ff 0f 0b e8 65 37 db ff 0f 0b e8 5e 37 db ff 0f
+RSP: 0000:ffffc90002787d88 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888009b971f8 RCX: ffffffff9648f47d
+RDX: ffff88800a0c3e00 RSI: 0000000000000000 RDI: 0000000000000001
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: 0000000000003800 R14: 0000000000000000 R15: ffff888030d74370
+FS:  0000000000000000(0000) GS:ffff888069800000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffecbe4cba0 CR3: 000000004cd6a004 CR4: 0000000000370ef0
+DR0: 0000000020000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+®': renamed from sit0
+audit: type=1326 audit(1795169056.229:67): auid=0 uid=0 gid=0 ses=4 subj=system_u:system_r:kernel_t:s0 pid=9141 comm="syz-executor.4" exe="/syz-executor.4" sig=9 arch=c000003e syscall=228 compat=0 ip=0x7fff5538d89a code=0x0
+audit: type=1400 audit(1795169056.523:68): avc:  denied  { module_load } for  pid=9157 comm="syz-executor.1" path="/sys/power/pm_wakeup_irq" dev="sysfs" ino=108 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:sysfs_t:s0 tclass=system permissive=1
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=9170 comm=syz-executor.1
+nfs4: Unknown parameter '#:'
+netlink: 4624 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.2'.
+validate_nla: 7 callbacks suppressed
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+netlink: 'syz-executor.1': attribute type 6 has an invalid length.
+netlink: 6752 bytes leftover after parsing attributes in process `syz-executor.1'.
+PM: Image not found (code -6)
+device lo entered promiscuous mode
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 8 (only 16 groups)
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 432 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 'syz-executor.4': attribute type 46 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 13448 bytes leftover after parsing attributes in process `syz-executor.4'.
+device lo entered promiscuous mode
+netlink: 'syz-executor.4': attribute type 29 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 'syz-executor.4': attribute type 29 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 4612 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 108 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 256 bytes leftover after parsing attributes in process `syz-executor.1'.
+device lo entered promiscuous mode
+device lo left promiscuous mode
+netlink: 68 bytes leftover after parsing attributes in process `syz-executor.3'.

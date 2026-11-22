@@ -1,0 +1,8 @@
+sendto(r1, &(0x7f0000000100)="9af59a53223b34baf3659bef3868afa4e9e8807676f8d72e8d", 0x19, 0x4815, &(0x7f0000000140)=@pppol2tpin6={0x18, 0x1, {0x0, r1, 0x2, 0x2, 0x1, 0x4, {0xa, 0x4e24, 0x10000000, @loopback, 0x2}}}, 0x80)
+2026/11/20 06:44:33 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

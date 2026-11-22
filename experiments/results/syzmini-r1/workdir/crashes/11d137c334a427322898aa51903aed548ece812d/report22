@@ -1,0 +1,8 @@
+sendto$unix(r0, &(0x7f0000000180)="29735971a6c8d0d61a7f35e4f9ff11091d338b7b80d1c05ccfdd9c9186fab53a503f1033e88c87f784adf2e226058b9f8617f5e8dda792cffd3f2d3efcacdc1dc4db3e832e269410c28f12b105e216d82e9c48cdf2dbfd9714f6840f494fbe34f11988ea799bb38f0c20e2a9e07cd6474ec4d0748a23b73c160f9457035fc53aec55f9aa4a66ffdc81273cd817114352b94e", 0x92, 0x20000080, 0x0, 0x0)
+2026/12/02 20:04:57 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

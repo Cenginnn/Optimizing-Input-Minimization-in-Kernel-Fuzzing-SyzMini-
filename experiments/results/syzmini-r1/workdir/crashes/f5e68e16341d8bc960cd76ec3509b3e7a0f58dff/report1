@@ -1,0 +1,6 @@
+r0 = openat2$dir(0xffffffffffffff9c, &(0x7f0000000000)='./file1\x00', &(0x7f0000000040)={0x400000, 0x4, 0x4}, 0x18)
+r1 = openat(r0, &(0x7f0000000080)='./file1\x00', 0x105042, 0x1fe)
+read(r1, &(0x7f0000000200)=""/249, 0xf9)
+r2 = openat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x105042, 0x1ff)
+fchown(r2, 0x0, 0x0)
+2026/11/10 05:19:10 SYZFATAL: executor 6 failed 11 times: executor 6: failed to write control pipe: write |1: broken pipe

@@ -1,0 +1,515 @@
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+==================================================================
+BUG: KASAN: stack-out-of-bounds in profile_pc+0x59/0x90
+Read of size 8 at addr ffffc90002b977f8 by task syz-executor.0/13926
+
+CPU: 0 PID: 13926 Comm: syz-executor.0 Not tainted 5.15.0+ #2
+loop7: detected capacity change from 0 to 128
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x6e/0x91
+ print_address_description.constprop.0+0x1f/0x140
+ kasan_report.cold+0x7f/0x11b
+ profile_pc+0x59/0x90
+ profile_tick+0x8f/0xd0
+ tick_sched_timer+0x11c/0x150
+ __hrtimer_run_queues+0x2c8/0x5b0
+FAT-fs (loop7): Directory bread(block 12992) failed
+ hrtimer_interrupt+0x1e1/0x3f0
+ __sysvec_apic_timer_interrupt+0x79/0x150
+FAT-fs (loop7): Directory bread(block 12993) failed
+ sysvec_apic_timer_interrupt+0x65/0x90
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20
+RIP: 0010:_raw_spin_lock+0x83/0xd0
+Code: c7 44 24 20 00 00 00 00 e8 ea d0 7f fe be 04 00 00 00 48 8d 7c 24 20 e8 db d0 7f fe ba 01 00 00 00 8b 44 24 20 f0 0f b1 55 00 <75> 29 48 b8 00 00 00 00 00 fc ff df 48 c7 04 03 00 00 00 00 48 8b
+RSP: 0018:ffffc90002b977f8 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 1ffff92000572eff RCX: ffffffff8cdf1255
+RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffffc90002b97818
+RBP: ffffffff8dc56414 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff52000572f03 R11: 0000000000000001 R12: 8000000039434163
+R13: ffff88804145a1c8 R14: 0000000000000001 R15: fffff52002038000
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+ kasan_populate_vmalloc_pte+0xc1/0x140
+ __apply_to_page_range+0x8ec/0x10e0
+ alloc_vmap_area+0x36e/0x12a0
+ __get_vm_area_node.constprop.0+0x115/0x250
+ __vmalloc_node_range+0x126/0x630
+FAT-fs (loop7): Directory bread(block 12996) failed
+ __vmalloc_node+0x94/0xc0
+FAT-fs (loop7): Directory bread(block 12997) failed
+ profile_init+0xb8/0xe0
+ profiling_store+0x40/0xa0
+ kobj_attr_store+0x3e/0x60
+ sysfs_kf_write+0xa2/0xc0
+FAT-fs (loop7): Directory bread(block 12998) failed
+ kernfs_fop_write_iter+0x231/0x2f0
+ new_sync_write+0x30a/0x430
+FAT-fs (loop7): Directory bread(block 12999) failed
+ vfs_write+0x442/0x510
+ ksys_write+0xf1/0x1e0
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fceb7330c9d
+FAT-fs (loop7): Directory bread(block 12992) failed
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc10064b28 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00007fceb7480f80 RCX: 00007fceb7330c9d
+RDX: 0000000000000048 RSI: 0000000020000100 RDI: 0000000000000007
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fceb7480f80
+R13: 00007ffc10064d50 R14: 00007fceb7480f8c R15: 0000000000000000
+
+
+addr ffffc90002b977f8 is located in stack of task syz-executor.0/13926 at offset 0 in frame:
+ _raw_spin_lock+0x0/0xd0
+
+this frame has 1 object:
+ [32, 36) 'val'
+
+Memory state around the buggy address:
+ ffffc90002b97680: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90002b97700: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffffc90002b97780: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 f1
+                                                                ^
+ ffffc90002b97800: f1 f1 f1 04 f3 f3 f3 00 00 00 00 00 00 00 00 00
+ ffffc90002b97880: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+hpet: Lost 7 RTC interrupts
+FAT-fs (loop7): Directory bread(block 12993) failed
+hpet: Lost 1 RTC interrupts
+hpet: Lost 17 RTC interrupts
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+tmpfs: Bad value for 'mpol'
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+netlink: 'syz-executor.5': attribute type 153 has an invalid length.
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+netlink: 120 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop7: detected capacity change from 0 to 128
+loop1: detected capacity change from 0 to 736
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+sctp: [Deprecated]: syz-executor.4 (pid 14079) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+device lo entered promiscuous mode
+device lo entered promiscuous mode
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+netlink: 260 bytes leftover after parsing attributes in process `syz-executor.1'.
+device lo left promiscuous mode
+device lo left promiscuous mode
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): Unrecognized mount option "ˇˇˇˇˇˇˇˇ" or missing value
+loop1: detected capacity change from 0 to 736
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop1: detected capacity change from 0 to 2048
+EXT4-fs (loop1): Ignoring removed nomblk_io_submit option
+EXT4-fs error (device loop1): ext4_fill_super:4816: inode #2: comm syz-executor.1: iget: bad extended attribute block 281474976710655
+EXT4-fs (loop1): get root inode failed
+EXT4-fs (loop1): mount failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+loop1: detected capacity change from 0 to 736
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+loop1: detected capacity change from 0 to 512
+sd 0:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sd 0:0:0:0: tag#0 CDB: Write attributes
+sd 0:0:0:0: tag#0 CDB[00]: 8d 24 c5 11 6b 8c 2d cd 54 3f 80 0e 2f 76 b1 e6
+sd 0:0:0:0: tag#0 CDB[10]: c8 2f 6b db 2a 89 33 95 51 c5 f2 25 6d a3 96 21
+sd 0:0:0:0: tag#0 CDB[20]: 18 dd 0d d5 ee 74 9f 72 cb 1e 75 c0 d7 c9 52 87
+sd 0:0:0:0: tag#0 CDB[30]: b4 c7 2f f4 8f 45 84 af 37 6a 64 b9 3d 30 ea 9d
+sd 0:0:0:0: tag#0 CDB[40]: 77 92 65 3a 9b e0 8e 0a e9 6a c0 ab 53 db 9d bd
+sd 0:0:0:0: tag#0 CDB[50]: e8 f2 a1 31 63 33 c6 e8 56 ad 2f 4b 8b 14 fa 9f
+sd 0:0:0:0: tag#0 CDB[60]: 4d 4e 7e 54 77 3c b3 ae f6 87 6b a9 04 83 91 71
+sd 0:0:0:0: tag#0 CDB[70]: e3 26 f9 72 45 ee 70 2c ba 8f 98 65 7f 52 8a 3a
+sd 0:0:0:0: tag#0 CDB[80]: 81 ee ea e4 7a 0e
+sg_write: data in/out 633/171 bytes for SCSI command 0xfc-- guessing data in;
+   program syz-executor.3 not setting count and/or reply_len properly
+loop1: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop1): Unrecognized mount option "èπœh{ûBjÛ(¸PÿZ‹ìiØØéêàŸRócç°zãÆc" or missing value
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+sctp: [Deprecated]: syz-executor.2 (pid 14201) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 6 (only 16 groups)
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+netlink: 'syz-executor.0': attribute type 29 has an invalid length.
+netlink: 56 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 'syz-executor.0': attribute type 29 has an invalid length.
+netlink: 56 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop1: detected capacity change from 0 to 4096
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+EXT4-fs (loop1): mounted filesystem without journal. Opts: max_batch_time=0x0000000000000041,abort,noauto_da_alloc,,errors=continue. Quota mode: writeback.
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+loop1: detected capacity change from 0 to 2048
+FAT-fs (loop7): Directory bread(block 12993) failed
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir4135750853/syzkaller.XsVLVP/212/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+loop1: detected capacity change from 0 to 512
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir4135750853/syzkaller.XsVLVP/213/file0 supports timestamps until 2038 (0x7fffffff)
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+loop1: detected capacity change from 0 to 4096
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+EXT4-fs (loop1): ext4_check_descriptors: Checksum for group 0 failed (38750!=55237)
+EXT4-fs (loop1): group descriptors corrupted!
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+netlink: 4896 bytes leftover after parsing attributes in process `syz-executor.0'.
+FAT-fs (loop7): Directory bread(block 12997) failed
+netlink: 4896 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 2332 bytes leftover after parsing attributes in process `syz-executor.0'.
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop1: detected capacity change from 0 to 736
+netlink: 436 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+FAT-fs (loop7): Directory bread(block 12994) failed
+FAT-fs (loop7): Directory bread(block 12995) failed
+FAT-fs (loop7): Directory bread(block 12996) failed
+FAT-fs (loop7): Directory bread(block 12997) failed
+FAT-fs (loop7): Directory bread(block 12998) failed
+FAT-fs (loop7): Directory bread(block 12999) failed
+FAT-fs (loop7): Directory bread(block 12992) failed
+FAT-fs (loop7): Directory bread(block 12993) failed
+----------------
+Code disassembly (best guess):
+   0:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%rsp)
+   7:	00
+   8:	e8 ea d0 7f fe       	call   0xfe7fd0f7
+   d:	be 04 00 00 00       	mov    $0x4,%esi
+  12:	48 8d 7c 24 20       	lea    0x20(%rsp),%rdi
+  17:	e8 db d0 7f fe       	call   0xfe7fd0f7
+  1c:	ba 01 00 00 00       	mov    $0x1,%edx
+  21:	8b 44 24 20          	mov    0x20(%rsp),%eax
+  25:	f0 0f b1 55 00       	lock cmpxchg %edx,0x0(%rbp)
+* 2a:	75 29                	jne    0x55 <-- trapping instruction
+  2c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  33:	fc ff df
+  36:	48 c7 04 03 00 00 00 	movq   $0x0,(%rbx,%rax,1)
+  3d:	00
+  3e:	48                   	rex.W
+  3f:	8b                   	.byte 0x8b

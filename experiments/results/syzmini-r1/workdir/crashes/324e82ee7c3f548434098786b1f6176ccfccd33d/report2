@@ -1,0 +1,111 @@
+==================================================================
+BUG: KASAN: stack-out-of-bounds in profile_pc+0x59/0x90
+Read of size 8 at addr ffffc90001b5fe80 by task syz-executor.5/41055
+
+CPU: 0 PID: 41055 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x6e/0x91
+ print_address_description.constprop.0+0x1f/0x140
+ kasan_report.cold+0x7f/0x11b
+ profile_pc+0x59/0x90
+ profile_tick+0x8f/0xd0
+ tick_sched_timer+0x11c/0x150
+ __hrtimer_run_queues+0x2c8/0x5b0
+ hrtimer_interrupt+0x1e1/0x3f0
+ __sysvec_apic_timer_interrupt+0x79/0x150
+ sysvec_apic_timer_interrupt+0x65/0x90
+ </IRQ>
+ asm_sysvec_apic_timer_interrupt+0x12/0x20
+RIP: 0010:_raw_spin_lock+0x83/0xd0
+Code: c7 44 24 20 00 00 00 00 e8 ea d0 7f fe be 04 00 00 00 48 8d 7c 24 20 e8 db d0 7f fe ba 01 00 00 00 8b 44 24 20 f0 0f b1 55 00 <75> 29 48 b8 00 00 00 00 00 fc ff df 48 c7 04 03 00 00 00 00 48 8b
+RSP: 0018:ffffc90001b5fe80 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 1ffff9200036bfd0 RCX: ffffffff8a5f1255
+RDX: 0000000000000001 RSI: 0000000000000004 RDI: ffffc90001b5fea0
+RBP: ffff888006be77c0 R08: 0000000000000001 R09: 0000000000000003
+R10: fffff5200036bfd4 R11: 0000000000000001 R12: 0000000000000008
+R13: 0000000000000000 R14: ffff888006be77c0 R15: 0000000000000000
+ close_fd+0x3b/0x130
+ __x64_sys_close+0x1c/0x90
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f6e88a9b0d6
+Code: 47 ba 04 00 00 00 48 c7 c0 e8 ff ff ff 64 89 10 48 c7 c2 ff ff ff ff c9 48 89 d0 c3 0f 1f 84 00 00 00 00 00 48 8b 45 10 0f 05 <48> 89 c2 48 3d 00 f0 ff ff 77 0f c9 48 89 d0 c3 66 2e 0f 1f 84 00
+RSP: 002b:00007fff94d80b80 EFLAGS: 00000202 ORIG_RAX: 0000000000000003
+RAX: ffffffffffffffda RBX: 0000000000000009 RCX: 00007f6e88a9b0d6
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000008
+RBP: 00007fff94d80b90 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 00007f6e885fe1f8
+R13: 00007f6e889fe000 R14: 00007f6e885fe000 R15: 0000000000000000
+
+
+addr ffffc90001b5fe80 is located in stack of task syz-executor.5/41055 at offset 0 in frame:
+ _raw_spin_lock+0x0/0xd0
+
+this frame has 1 object:
+ [32, 36) 'val'
+
+Memory state around the buggy address:
+ ffffc90001b5fd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90001b5fe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffffc90001b5fe80: f1 f1 f1 f1 04 f3 f3 f3 00 00 00 00 00 00 00 00
+                   ^
+ ffffc90001b5ff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffffc90001b5ff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+loop1: detected capacity change from 0 to 512
+sctp: [Deprecated]: syz-executor.1 (pid 41068) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+loop1: detected capacity change from 0 to 128
+EXT4-fs warning (device sda): verify_group_input:157: Reserved blocks too high (2047)
+EXT4-fs (loop1): mounted filesystem without journal. Opts: norecovery,noquota,auto_da_alloc,barrier,noblock_validity,nodiscard,data_err=ignore,inode_readahead_blks=0x0000000000000080,,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir4277453795/syzkaller.S9lnEt/1983/mnt supports timestamps until 2038 (0x7fffffff)
+netlink: 392 bytes leftover after parsing attributes in process `syz-executor.3'.
+loop1: detected capacity change from 0 to 128
+netlink: 4572 bytes leftover after parsing attributes in process `syz-executor.2'.
+sg_write: data in/out 175851904/4 bytes for SCSI command 0x0-- guessing data in;
+   program syz-executor.1 not setting count and/or reply_len properly
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 576 bytes leftover after parsing attributes in process `syz-executor.1'.
+device lo entered promiscuous mode
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+device lo left promiscuous mode
+netlink: 'syz-executor.2': attribute type 153 has an invalid length.
+loop1: detected capacity change from 0 to 4096
+EXT4-fs (loop1): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop1): mounted filesystem without journal. Opts: nouid32,grpjquota=./file0,discard,,errors=continue. Quota mode: writeback.
+EXT4-fs error (device loop1): ext4_mb_generate_buddy:1141: group 0, block bitmap and bg descriptor inconsistent: 32 vs 25 free clusters
+sg_write: data in/out 633/171 bytes for SCSI command 0xfc-- guessing data in;
+   program syz-executor.5 not setting count and/or reply_len properly
+loop1: detected capacity change from 0 to 512
+[EXT4 FS bs=4096, gc=1, bpg=28672, ipg=32, mo=a842c018, mo2=0000]
+System zones: 0-2, 18-18, 34-34
+EXT4-fs (loop1): orphan cleanup on readonly fs
+EXT4-fs error (device loop1): ext4_ext_check_inode:460: inode #11: comm syz-executor.1: pblk 0 bad header/extent: invalid eh_max - magic f30a, entries 1, max 0(0), depth 0(0)
+EXT4-fs error (device loop1): ext4_orphan_get:1396: comm syz-executor.1: couldn't read orphan inode 11 (err -117)
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+audit: type=1400 audit(1795158626.484:350): avc:  denied  { map } for  pid=41236 comm="syz-executor.5" path="/proc/41236" dev="proc" ino=225105 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=dir permissive=1
+tmpfs: Bad value for 'mpol'
+loop1: detected capacity change from 0 to 512
+FAT-fs (loop1): Unrecognized mount option "jbâ.Ê7¨5ùÈ;?gcÞñ?]az!q|€\Ñ" or missing value
+netlink: 'syz-executor.6': attribute type 3 has an invalid length.
+loop1: detected capacity change from 0 to 2368
+----------------
+Code disassembly (best guess):
+   0:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%rsp)
+   7:	00
+   8:	e8 ea d0 7f fe       	call   0xfe7fd0f7
+   d:	be 04 00 00 00       	mov    $0x4,%esi
+  12:	48 8d 7c 24 20       	lea    0x20(%rsp),%rdi
+  17:	e8 db d0 7f fe       	call   0xfe7fd0f7
+  1c:	ba 01 00 00 00       	mov    $0x1,%edx
+  21:	8b 44 24 20          	mov    0x20(%rsp),%eax
+  25:	f0 0f b1 55 00       	lock cmpxchg %edx,0x0(%rbp)
+* 2a:	75 29                	jne    0x55 <-- trapping instruction
+  2c:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  33:	fc ff df
+  36:	48 c7 04 03 00 00 00 	movq   $0x0,(%rbx,%rax,1)
+  3d:	00
+  3e:	48                   	rex.W
+  3f:	8b                   	.byte 0x8b

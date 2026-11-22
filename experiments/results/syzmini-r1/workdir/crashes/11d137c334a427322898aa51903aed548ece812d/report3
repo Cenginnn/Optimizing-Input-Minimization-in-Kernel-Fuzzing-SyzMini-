@@ -1,0 +1,10 @@
+ioctl$FS_IOC_GET_ENCRYPTION_POLICY_EX(r0, 0xc0096616, &(0x7f0000000140)={0x8, [0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0]})
+getsockopt$inet_sctp6_SCTP_STREAM_SCHEDULER(r0, 0x84, 0x7b, &(0x7f0000000080)={r1, 0x5ea}, &(0x7f00000000c0)=0x8)
+setsockopt$inet_sctp6_SCTP_ASSOCINFO(r0, 0x84, 0x1, &(0x7f0000000100)={0x0, 0x5, 0xd03e, 0xfffffbff, 0x6}, 0x14)
+2026/11/12 15:31:18 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

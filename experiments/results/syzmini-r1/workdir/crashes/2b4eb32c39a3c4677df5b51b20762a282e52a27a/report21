@@ -1,0 +1,134 @@
+Process accounting resumed
+==================================================================
+BUG: KASAN: null-ptr-deref in cgroup_file_write+0xae/0x3b0
+Read of size 8 at addr 0000000000000040 by task syz-executor.4/22771
+
+CPU: 1 PID: 22771 Comm: syz-executor.4 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ dump_stack_lvl+0x6e/0x91
+ kasan_report.cold+0x116/0x11b
+ cgroup_file_write+0xae/0x3b0
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+hpet: Lost 1 RTC interrupts
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ get_signal+0x2ec/0x10f0
+ arch_do_signal_or_restart+0x1df/0xb60
+ exit_to_user_mode_prepare+0xbf/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ ret_from_fork+0x15/0x30
+RIP: 0033:0x7fbd13619c9d
+Code: Unable to access opcode bytes at RIP 0x7fbd13619c73.
+RSP: 002b:0000000020000080 EFLAGS: 00000206 ORIG_RAX: 0000000000000038
+RAX: 0000000000000000 RBX: 00007fbd13769f80 RCX: 00007fbd13619c9d
+RDX: 0000000020000100 RSI: 0000000020000080 RDI: 0000000008000000
+RBP: 0000000000000000 R08: 0000000020000440 R09: 0000000020000440
+R10: 0000000020000000 R11: 0000000000000206 R12: 00007fbd13769f80
+R13: 00007ffe632eecf0 R14: 00007fbd13769f8c R15: 0000000000000000
+==================================================================
+BUG: kernel NULL pointer dereference, address: 0000000000000040
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 0 P4D 0 
+Oops: 0000 [#1] SMP KASAN NOPTI
+CPU: 1 PID: 22771 Comm: syz-executor.4 Tainted: G    B             5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc9000263f6f0 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff920004c7ee1 RCX: ffffffff945f0a9d
+RDX: 1ffffffff2c76c89 RSI: 0000000000000246 RDI: ffffffff963b6448
+RBP: ffff888006f49200 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff88800f083680 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 000000004f810006 CR4: 0000000000370ee0
+DR0: 0000000020000000 DR1: 0000000000000008 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ get_signal+0x2ec/0x10f0
+ arch_do_signal_or_restart+0x1df/0xb60
+ exit_to_user_mode_prepare+0xbf/0x130
+ syscall_exit_to_user_mode+0x1d/0x40
+ ret_from_fork+0x15/0x30
+RIP: 0033:0x7fbd13619c9d
+Code: Unable to access opcode bytes at RIP 0x7fbd13619c73.
+RSP: 002b:0000000020000080 EFLAGS: 00000206 ORIG_RAX: 0000000000000038
+RAX: 0000000000000000 RBX: 00007fbd13769f80 RCX: 00007fbd13619c9d
+RDX: 0000000020000100 RSI: 0000000020000080 RDI: 0000000008000000
+RBP: 0000000000000000 R08: 0000000020000440 R09: 0000000020000440
+R10: 0000000020000000 R11: 0000000000000206 R12: 00007fbd13769f80
+R13: 00007ffe632eecf0 R14: 00007fbd13769f8c R15: 0000000000000000
+Modules linked in:
+CR2: 0000000000000040
+---[ end trace eb94380fc9680487 ]---
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc9000263f6f0 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff920004c7ee1 RCX: ffffffff945f0a9d
+RDX: 1ffffffff2c76c89 RSI: 0000000000000246 RDI: ffffffff963b6448
+RBP: ffff888006f49200 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff88800f083680 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 000000004f810006 CR4: 0000000000370ee0
+DR0: 0000000020000000 DR1: 0000000000000008 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Fixing recursive fault but reboot is needed!
+Process accounting resumed
+netlink: 6728 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 416 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 5720 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 5 bytes leftover after parsing attributes in process `syz-executor.7'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+SELinux:  duplicate or incompatible mount options
+netlink: 'syz-executor.7': attribute type 1 has an invalid length.
+netlink: 1760 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 'syz-executor.1': attribute type 29 has an invalid length.
+netlink: 12 bytes leftover after parsing attributes in process `syz-executor.1'.
+sctp: [Deprecated]: syz-executor.5 (pid 56055) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=19129 sclass=netlink_route_socket pid=56526 comm=syz-executor.7
+----------------
+Code disassembly (best guess):
+   0:	4d 85 e4             	test   %r12,%r12
+   3:	0f 84 58 01 00 00    	je     0x161
+   9:	e8 0e fa 03 00       	call   0x3fa1c
+   e:	49 8d bd 18 07 00 00 	lea    0x718(%r13),%rdi
+  15:	e8 22 a7 1e 00       	call   0x1ea73c
+  1a:	4d 8b ad 18 07 00 00 	mov    0x718(%r13),%r13
+  21:	49 8d 7d 40          	lea    0x40(%r13),%rdi
+  25:	e8 12 a7 1e 00       	call   0x1ea73c
+* 2a:	49 8b 45 40          	mov    0x40(%r13),%rax <-- trapping instruction
+  2e:	48 89 ef             	mov    %rbp,%rdi
+  31:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  36:	e8 01 a7 1e 00       	call   0x1ea73c
+  3b:	4c 8b 6d 00          	mov    0x0(%rbp),%r13
+  3f:	49                   	rex.WB
