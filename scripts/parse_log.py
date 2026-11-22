@@ -4,6 +4,8 @@
 import argparse
 import csv
 import re
+import os
+import tempfile
 from pathlib import Path
 
 STATUS = re.compile(
@@ -13,7 +15,7 @@ STATUS = re.compile(
     r"crashes\s+(?P<crashes>\d+),\s+repro\s+(?P<repro>\d+),\s+"
     r"triageQLen\s+(?P<triage_queue>\d+)"
 )
-FIELDS = ["timestamp", "vms", "executed", "cover", "signal_current", "signal_total", "crashes", "repro", "triage_queue"]
+FIELDS = ["source_line", "timestamp", "vms", "executed", "cover", "signal_current", "signal_total", "crashes", "repro", "triage_queue"]
 
 
 def main() -> None:
@@ -24,21 +26,49 @@ def main() -> None:
     if not args.log.is_file():
         parser.error(f"log file does not exist: {args.log}")
     output = args.output or args.log.with_name("metrics.csv")
-    rows = []
-    for line in args.log.read_text(encoding="utf-8", errors="replace").splitlines():
-        match = STATUS.search(line)
-        if not match:
-            continue
-        row = match.groupdict()
-        rows.append({"timestamp": f"{row.pop('date')} {row.pop('time')}", **{k: int(v) for k, v in row.items()}})
-    if not rows:
-        raise SystemExit("No manager status lines found; check that this is the correct log format.")
-    with output.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=FIELDS)
-        writer.writeheader()
-        writer.writerows(rows)
-    print(f"Parsed {len(rows)} status samples -> {output}")
-    print(f"Last sample: executed={rows[-1]['executed']}, cover={rows[-1]['cover']}, crashes={rows[-1]['crashes']}")
+    # resolve() catches relative paths/symlinks; samefile() also catches hard links.
+    if output.resolve() == args.log.resolve() or (
+        output.exists() and output.samefile(args.log)
+    ):
+        parser.error("output must not refer to the input log")
+    temporary = None
+    count = 0
+    last = None
+    try:
+        # Write beside the destination, then atomically replace only after success.
+        # An empty/unrecognized log must not destroy an existing metrics CSV.
+        with args.log.open(encoding="utf-8", errors="replace") as source:
+            with tempfile.NamedTemporaryFile(
+                mode="w", newline="", encoding="utf-8",
+                dir=output.parent, prefix=f".{output.name}.", suffix=".tmp",
+                delete=False,
+            ) as stream:
+                temporary = Path(stream.name)
+                writer = csv.DictWriter(stream, fieldnames=FIELDS)
+                writer.writeheader()
+                for line_number, line in enumerate(source, start=1):
+                    match = STATUS.search(line)
+                    if not match:
+                        continue
+                    row = match.groupdict()
+                    last = {
+                        "source_line": line_number,
+                        "timestamp": f"{row.pop('date')} {row.pop('time')}",
+                        **{k: int(v) for k, v in row.items()},
+                    }
+                    writer.writerow(last)
+                    count += 1
+        if not count:
+            parser.error("No manager status lines found; check that this is the correct log format.")
+        os.replace(temporary, output)
+    except OSError as error:
+        parser.error(str(error))
+    finally:
+        if temporary is not None:
+            temporary.unlink(missing_ok=True)
+    print(f"Parsed {count} status samples -> {output}")
+    print(f"Last sample: executed={last['executed']}, cover={last['cover']}, crashes={last['crashes']}")
+
 
 
 if __name__ == "__main__":

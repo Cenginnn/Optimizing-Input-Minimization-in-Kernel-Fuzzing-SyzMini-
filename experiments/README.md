@@ -60,3 +60,28 @@ Create a separate Paper-vs-Ours table only after matching the paper's metric and
 If hardware, kernel, duration, corpus, VM count, or other conditions differ, list each
 as a deviation and explain it. Do not claim a paper result was reproduced from a single
 successful fuzzing session.
+
+## Traceable log parsing and regression checks
+
+The parser reads manager logs one line at a time, so long fuzzing sessions do not
+require loading the entire log and CSV into memory. Each newly generated CSV row
+includes `source_line`, the 1-based line number in the original `manager.log`.
+Keep that log alongside the CSV without editing it after parsing; the line number
+and timestamp together locate the source status sample. Existing CSVs are not
+rewritten automatically, and `summarize_runs.py` accepts the additional column.
+
+The output path must differ from the input log (including aliases). Output is
+written to a temporary file beside the destination and replaced only after a
+successful parse. If no status samples are found, an existing CSV is preserved.
+The output directory must already exist.
+
+Run parser regression checks from the repository root with Python 3.10 or newer:
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+These tests use synthetic counters to check traceability, input preservation,
+failed-parse preservation, custom output paths and compatibility with the
+mean/sample-standard-deviation summary. They are software checks, not evidence
+of kernel fuzzing performance or independent experiment runs.
