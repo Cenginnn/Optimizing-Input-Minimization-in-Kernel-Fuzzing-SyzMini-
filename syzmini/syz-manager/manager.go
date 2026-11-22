@@ -266,41 +266,7 @@ func RunManager(cfg *mgrconfig.Config) {
 		}
 	}()
 	
-	func validateInfluenceMatrix(
-		matrix [][]uint8,
-		expected int,
-	) error {
-		if len(matrix) == 0 {
-			return fmt.Errorf("influence matrix is empty")
-		}
-
-		if len(matrix) != expected {
-			return fmt.Errorf(
-				"invalid matrix rows: got %d, want %d",
-				len(matrix), expected,
-			)
-		}
-
-		for i, row := range matrix {
-			if len(row) != expected {
-				return fmt.Errorf(
-					"invalid matrix row %d: got %d columns, want %d",
-					i, len(row), expected,
-				)
-			}
-
-			for j, value := range row {
-				if value > 1 {
-					return fmt.Errorf(
-						"invalid matrix value at [%d][%d]: %d",
-						i, j, value,
-					)
-				}
-			}
-		}
-
-		return nil
-	}
+	
 
 	if *flagInfluence_read != "" {
 		if err := readArrayFromFile(
