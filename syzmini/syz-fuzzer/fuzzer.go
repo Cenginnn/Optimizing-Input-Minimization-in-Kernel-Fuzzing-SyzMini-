@@ -694,45 +694,97 @@ func parseOutputType(str string) OutputType {
 
 // consume code
 func (fuzzer *Fuzzer) getInfluenceFromManager() {
-	r := &rpctype.InfluenceArgs{
-		InfluenceMatrix: nil,
-	}
-	a := 0
-	if err := fuzzer.manager.Call("Manager.GetInfluence", &a, r); err != nil {
-		log.SyzFatalf("Manager.GetInfluence call failed: %v", err)
-	}
-	// influence info
-	count := 0
-	if r.InfluenceMatrix != nil {
-		for i := 0; i < len(r.InfluenceMatrix); i++ {
-			for j := 0; j < len(r.InfluenceMatrix); j++ {
-				if r.InfluenceMatrix[i][j] == 1 && fuzzer.target.InfluenceMatrix[i][j] != 1 {
-					// if len(fuzzer.target.Syscalls[i].Args) == 0{
+    r := &rpctype.InfluenceArgs{
+        InfluenceMatrix: nil,
+    }
 
-					// }
+    a := 0
+    if err := fuzzer.manager.Call(
+        "Manager.GetInfluence",
+        &a,
+        r,
+    ); err != nil {
+        log.SyzFatalf(
+            "Manager.GetInfluence call failed: %v",
+            err,
+        )
+    }
 
-					// fuzzer.target.InfluenceMatrix[i][j] = 1
-					// count++
+    // No dynamic influence matrix was provided.
+    // Keep the static influence matrix unchanged.
+    if len(r.InfluenceMatrix) == 0 {
+        log.Logf(0, "manager returned empty influence matrix")
+        return
+    }
 
-					fmt.Printf("%v->%v\n", fuzzer.target.Syscalls[i].Name, fuzzer.target.Syscalls[j].Name)
-				}
-			}
-		}
-		fmt.Printf("fuzzer:load %v influence successfully\n", count)
-	}
-	if r.InfluenceMatrix[i][j] == 1 &&
-	  fuzzer.target.InfluenceMatrix[i][j] != 1 {
+    // Check matrix dimensions.
+    expected := len(fuzzer.target.Syscalls)
 
-		fmt.Printf(
-			"%v->%v\n",
-			fuzzer.target.Syscalls[i].Name,
-			fuzzer.target.Syscalls[j].Name,
-		)
-}
-	if r.InfluenceMatrix[i][j] == 1 &&
-	   fuzzer.target.InfluenceMatrix[i][j] == 0 {
+    if len(r.InfluenceMatrix) != expected {
+        log.SyzFatalf(
+            "invalid manager influence matrix: got %d rows, want %d",
+            len(r.InfluenceMatrix), expected,
+        )
+    }
 
-		fuzzer.target.InfluenceMatrix[i][j] = 1
-		count++
-	}
+    for i, row := range r.InfluenceMatrix {
+        if len(row) != expected {
+            log.SyzFatalf(
+                "invalid manager influence matrix row %d: got %d columns, want %d",
+                i, len(row), expected,
+            )
+        }
+
+        for j, value := range row {
+            if value > 1 {
+                log.SyzFatalf(
+                    "invalid manager influence value at [%d][%d]: %d",
+                    i, j, value,
+                )
+            }
+        }
+    }
+
+    // Check and initialize the local static influence matrix.
+    if len(fuzzer.target.InfluenceMatrix) != expected {
+        log.SyzFatalf(
+            "invalid local influence matrix: got %d rows, want %d",
+            len(fuzzer.target.InfluenceMatrix), expected,
+        )
+    }
+
+    for i, row := range fuzzer.target.InfluenceMatrix {
+        if len(row) != expected {
+            log.SyzFatalf(
+                "invalid local influence matrix row %d: got %d columns, want %d",
+                i, len(row), expected,
+            )
+        }
+    }
+
+    // Merge dynamic influence relations into static relations.
+    // Preserve all existing static influence relations.
+    count := 0
+
+    for i, row := range r.InfluenceMatrix {
+        for j, value := range row {
+            if value == 1 &&
+                fuzzer.target.InfluenceMatrix[i][j] == 0 {
+
+                fuzzer.target.InfluenceMatrix[i][j] = 1
+                count++
+
+                fmt.Printf(
+                    "%v -> %v\n",
+                    fuzzer.target.Syscalls[i].Name,
+                    fuzzer.target.Syscalls[j].Name,
+                )
+            }
+        }
+    }
+
+    fmt.Printf(
+        "fuzzer: loaded %v new dynamic influence relations successfully\n",
+        count,
+    )
 }
