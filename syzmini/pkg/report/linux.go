@@ -400,20 +400,77 @@ func (ctx *linux) symbolize(rep *Report) error {
 	symb := symbolizer.NewSymbolizer(ctx.config.target)
 	defer symb.Close()
 	var symbolized []byte
-	s := bufio.NewScanner(bytes.NewReader(rep.Report))
-	prefix := rep.reportPrefixLen
-	for s.Scan() {
-		line := append([]byte{}, s.Bytes()...)
-		line = append(line, '\n')
-		newLine := symbolizeLine(symb.Symbolize, ctx.symbols, ctx.vmlinux, ctx.kernelBuildSrc, line)
-		if prefix > len(symbolized) {
-			prefix += len(newLine) - len(line)
-		}
-		symbolized = append(symbolized, newLine...)
+	
+	// Replace the default scanner initialization.
+	scanner := bufio.NewScanner(bytes.NewReader(rep.Report))
+	
+	const defaultBufferSize = 64 * 1024
+	
+	maxTokenSize := len(rep.Report)
+	if maxTokenSize < defaultBufferSize {
+	    maxTokenSize = defaultBufferSize
 	}
+	
+	scanner.Buffer(
+	    make([]byte, defaultBufferSize),
+	    maxTokenSize,
+	)
+	
+	prefix := rep.reportPrefixLen
+	
+	for scanner.Scan() {
+	    line := append([]byte{}, scanner.Bytes()...)
+	    line = append(line, '\n')
+	
+	    newLine := symbolizeLine(
+	        symb.Symbolize,
+	        ctx.symbols,
+	        ctx.vmlinux,
+	        ctx.kernelBuildSrc,
+	        line,
+	    )
+	
+	    if prefix > len(symbolized) {
+	        prefix += len(newLine) - len(line)
+	    }
+	
+	    symbolized = append(symbolized, newLine...)
+	}
+	
+	// Do not silently accept a truncated report.
+	if err := scanner.Err(); err != nil {
+	    return fmt.Errorf(
+	        "failed to scan kernel report: %w",
+	        err,
+	    )
+	}
+	
+	// Make sure the prefix remains valid.
+	if prefix < 0 || prefix > len(symbolized) {
+	    return fmt.Errorf(
+	        "invalid report prefix: %d, report length: %d",
+	        prefix,
+	        len(symbolized),
+	    )
+	}
+	
 	rep.Report = symbolized
 	rep.reportPrefixLen = prefix
+	
 	return nil
+
+}
+
+func (ctx *linux) extractGuiltyFile(rep *Report) string {
+    if rep.reportPrefixLen < 0 ||
+        rep.reportPrefixLen > len(rep.Report) {
+        return ""
+    }
+
+    return ctx.extractGuiltyFileRaw(
+        rep.Title,
+        rep.Report[rep.reportPrefixLen:],
+    )
 }
 
 func symbolizeLine(symbFunc func(bin string, pc uint64) ([]symbolizer.Frame, error),
