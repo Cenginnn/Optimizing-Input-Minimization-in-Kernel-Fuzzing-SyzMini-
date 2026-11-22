@@ -12,10 +12,10 @@ STATUS = re.compile(
     r"^(?P<date>\d{4}/\d{2}/\d{2})\s+(?P<time>\d{2}:\d{2}:\d{2})\s+"
     r"VMs\s+(?P<vms>\d+),\s+executed\s+(?P<executed>\d+),\s+"
     r"cover\s+(?P<cover>\d+),\s+signal\s+(?P<signal_current>\d+)/(?P<signal_total>\d+),\s+"
-    r"crashes\s+(?P<crashes>\d+),\s+repro\s+(?P<repro>\d+),\s+"
+    r"crashes\s+(?P<crashes>\d+),\s+repro_in_progress\s+(?P<repro_in_progress>\d+),\s+"
     r"triageQLen\s+(?P<triage_queue>\d+)"
 )
-FIELDS = ["source_line", "timestamp", "vms", "executed", "cover", "signal_current", "signal_total", "crashes", "repro", "triage_queue"]
+FIELDS = ["source_line", "timestamp", "vms", "executed", "cover", "signal_current", "signal_total", "crashes", "repro_in_progress", "triage_queue"]
 
 
 def main() -> None:
