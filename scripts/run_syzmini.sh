@@ -21,11 +21,25 @@ MANAGER="${SYZKALLER_DIR}/bin/syz-manager"
 CONFIG="${ROOT}/configs/generated/v515.cfg"
 RUN_ID="${RUN_ID:-$(date +%Y%m%d-%H%M%S)}"
 RUN_DURATION="${RUN_DURATION:-24h}"
+
+# Validate experiment ID.
+if [[ ! "$RUN_ID" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+    echo "ERROR: Invalid RUN_ID: $RUN_ID"
+    exit 1
+fi
+
 RESULT_DIR="${ROOT}/experiments/results/${RUN_ID}"
-mkdir -p "$RESULT_DIR"
-cp "$CONFIG" "$RESULT_DIR/manager.cfg"
-# 为每次实验创建独立的工作目录
+
+# Refuse to overwrite existing experiments.
+if [[ -e "$RESULT_DIR" ]]; then
+    echo "ERROR: Experiment directory already exists:"
+    echo "$RESULT_DIR"
+    exit 1
+fi
+
 mkdir -p "$RESULT_DIR/workdir"
+cp "$CONFIG" "$RESULT_DIR/manager.cfg"
+
 
 # 修改本次实验的 manager.cfg
 python3 - "$RESULT_DIR/manager.cfg" "$RESULT_DIR/workdir" <<'PY'
@@ -45,9 +59,15 @@ with open(config_path, "w", encoding="utf-8") as f:
     f.write("\n")
 PY
 
-printf 'run_id=%s\nstarted_at=%s\n' \
-  "$RUN_ID" "$(date --iso-8601=seconds)" \
-  >> "$RESULT_DIR/run-info.txt"
+{
+    printf 'run_id=%s\n' "$RUN_ID"
+    printf 'started_at=%s\n' "$(date --iso-8601=seconds)"
+    printf 'planned_duration=%s\n' "$RUN_DURATION"
+    printf 'repository_commit=%s\n' \
+        "$(git -C "$ROOT" rev-parse HEAD)"
+    printf 'influence_sha256=%s\n' \
+        "$(sha256sum "$INFLUENCE_FILE" | awk '{print $1}')"
+} > "$RESULT_DIR/run-info.txt"
 
 echo "Starting SyzMini..."
 echo "Config: $RESULT_DIR/manager.cfg"
@@ -56,20 +76,13 @@ echo "Log: $RESULT_DIR/manager.log"
 cd "$SYZKALLER_DIR"
 
 set +e
-timeout --signal=INT --kill-after=5m "$RUN_DURATION" "$MANAGER" \
+timeout --signal=INT --kill-after=60s "$RUN_DURATION" "$MANAGER" \
     -config "$RESULT_DIR/manager.cfg" \
     -influence_read "$(realpath "$INFLUENCE_FILE")" \
     2>&1 | tee "$RESULT_DIR/manager.log"
 
 status=${PIPESTATUS[0]}
 set -e
-# Automatically generate experiment metrics
-if [[ -s "$RESULT_DIR/manager.log" ]]; then
-    if ! python3 "${ROOT}/scripts/parse_log.py" \
-        "$RESULT_DIR/manager.log"; then
-        echo "WARNING: Failed to parse manager log."
-    fi
-fi
 
 printf 'exit_code=%s\nfinished_at=%s\n' \
   "$status" "$(date --iso-8601=seconds)" \
