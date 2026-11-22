@@ -113,6 +113,10 @@ type Stats struct {
 	StartTime           StatTime
 	// Calls stores statistics for all supported system calls.
 	Calls StatMapStringToCallStats
+
+	// 添加下面这两行，用于记录影响矩阵的状态 (新增)
+	InfluenceMatrixLoaded bool
+	InfluenceMatrixSize   int
 }
 
 func (stats *Stats) Init() *Stats {
@@ -197,6 +201,13 @@ func (stats *Stats) GetTextDescription(deltaTime float64) string {
 		"executed: %d / %d (%0.2f %%)\n\n",
 		stats.TotalCallMismatches.Get(), tc, getPercentage(stats.TotalCallMismatches.Get(), tc))
 	fmt.Fprintf(&result, "programs / minute: %0.2f\n\n", float64(stats.TotalProgs.Get())/deltaTime)
+
+	// 新增：如果加载了影响矩阵，则打印信息 (新增)
+	if stats.InfluenceMatrixLoaded {
+		fmt.Fprintf(&result, "Influence Matrix successfully loaded. Size: %dx%d\n\n",
+			stats.InfluenceMatrixSize, stats.InfluenceMatrixSize)
+	}
+
 	fmt.Fprintf(&result, "true mismatching programs: %d / total number of programs: %d (%0.2f %%)\n",
 		stats.MismatchingProgs.Get(), stats.TotalProgs.Get(),
 		getPercentage(stats.MismatchingProgs.Get(), stats.TotalProgs.Get()))
