@@ -1,0 +1,85 @@
+==================================================================
+BUG: KASAN: null-ptr-deref in scsi_queue_rq+0x14f1/0x16f0
+Read of size 1 at addr 0000000000000000 by task kworker/0:1H/53
+
+CPU: 0 PID: 53 Comm: kworker/0:1H Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Workqueue: kblockd blk_mq_run_work_fn
+Call Trace:
+ dump_stack_lvl+0x6e/0x91
+ kasan_report.cold+0x116/0x11b
+netlink: 'syz-executor.3': attribute type 11 has an invalid length.
+ scsi_queue_rq+0x14f1/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+netlink: 'syz-executor.3': attribute type 3 has an invalid length.
+netlink: 8936 bytes leftover after parsing attributes in process `syz-executor.3'.
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ blk_mq_run_work_fn+0x4a/0x60
+ process_one_work+0x509/0x900
+ worker_thread+0x370/0x990
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+==================================================================
+BUG: kernel NULL pointer dereference, address: 0000000000000000
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 7875067 P4D 7875067 PUD 8d7e067 PMD 0 
+Oops: 0000 [#1] SMP KASAN NOPTI
+CPU: 0 PID: 53 Comm: kworker/0:1H Tainted: G    B             5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Workqueue: kblockd blk_mq_run_work_fn
+RIP: 0010:scsi_queue_rq+0x14f1/0x16f0
+Code: 44 89 e6 e8 d1 8b 1c ff 66 45 85 e4 75 79 e8 36 92 1c ff 4c 89 ef e8 4e 3f 37 ff 4c 8b a3 f0 01 00 00 4c 89 e7 e8 ff 3b 37 ff <41> 0f b6 04 24 bf 7f 00 00 00 89 c6 88 44 24 48 e8 7a 8b 1c ff 0f
+RSP: 0000:ffffc900002c7b10 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: ffff8880037d6300 RCX: ffffffffa85f0a9d
+RDX: 1ffffffff5476c89 RSI: 0000000000000246 RDI: ffffffffaa3b6448
+RBP: ffff888001c45000 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff8880037d64f0 R14: 0000000000000000 R15: ffff8880037d631c
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000003d60003 CR4: 0000000000370ef0
+Call Trace:
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ blk_mq_run_work_fn+0x4a/0x60
+ process_one_work+0x509/0x900
+ worker_thread+0x370/0x990
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+Modules linked in:
+CR2: 0000000000000000
+---[ end trace f99fa2517538338b ]---
+RIP: 0010:scsi_queue_rq+0x14f1/0x16f0
+Code: 44 89 e6 e8 d1 8b 1c ff 66 45 85 e4 75 79 e8 36 92 1c ff 4c 89 ef e8 4e 3f 37 ff 4c 8b a3 f0 01 00 00 4c 89 e7 e8 ff 3b 37 ff <41> 0f b6 04 24 bf 7f 00 00 00 89 c6 88 44 24 48 e8 7a 8b 1c ff 0f
+RSP: 0000:ffffc900002c7b10 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: ffff8880037d6300 RCX: ffffffffa85f0a9d
+RDX: 1ffffffff5476c89 RSI: 0000000000000246 RDI: ffffffffaa3b6448
+RBP: ffff888001c45000 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff8880037d64f0 R14: 0000000000000000 R15: ffff8880037d631c
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000003d60003 CR4: 0000000000370ef0
+----------------
+Code disassembly (best guess):
+   0:	44 89 e6             	mov    %r12d,%esi
+   3:	e8 d1 8b 1c ff       	call   0xff1c8bd9
+   8:	66 45 85 e4          	test   %r12w,%r12w
+   c:	75 79                	jne    0x87
+   e:	e8 36 92 1c ff       	call   0xff1c9249
+  13:	4c 89 ef             	mov    %r13,%rdi
+  16:	e8 4e 3f 37 ff       	call   0xff373f69
+  1b:	4c 8b a3 f0 01 00 00 	mov    0x1f0(%rbx),%r12
+  22:	4c 89 e7             	mov    %r12,%rdi
+  25:	e8 ff 3b 37 ff       	call   0xff373c29
+* 2a:	41 0f b6 04 24       	movzbl (%r12),%eax <-- trapping instruction
+  2f:	bf 7f 00 00 00       	mov    $0x7f,%edi
+  34:	89 c6                	mov    %eax,%esi
+  36:	88 44 24 48          	mov    %al,0x48(%rsp)
+  3a:	e8 7a 8b 1c ff       	call   0xff1c8bb9
+  3f:	0f                   	.byte 0xf

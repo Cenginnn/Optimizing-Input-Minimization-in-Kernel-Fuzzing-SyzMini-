@@ -1,0 +1,6 @@
+1000, 0xac, 0x0, 0x2}, &(0x7f0000001700)={0x0, 0x0, 0x0, 0x5, 0xf76, 0xffffffffffffffff, &(0x7f0000001640)="6d09886a0c66b316dc3a1e3793d36b63d2fe8b6bb1d6ada2d77a162d4609957f39c5f11619eb29417c38608c5ead019636b85399e6bdca8c5c81f32ddaf3b4a5435df092edd625f726edbd4fa70e0a2c03023bacd62b92665d45b894f2e45c5546a89f171bfe0577a79744c8bc06fd27de3366afa36fed8451be395cfd7ea1cb1904720e82dfe0bb6b7f6a3c4d69a9ece988439f5fc6932b61a50ece42ef6dcadd4da872c6dc5599681ff506cb30d31c9f1b6a3b27a97afacb1472116b221276", 0xc0, 0xfe27}])
+2026/11/25 23:21:46 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

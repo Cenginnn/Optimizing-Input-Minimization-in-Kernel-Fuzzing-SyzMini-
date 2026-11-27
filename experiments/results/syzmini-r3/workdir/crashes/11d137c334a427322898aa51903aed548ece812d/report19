@@ -1,0 +1,11 @@
+io_uring_register$IORING_REGISTER_BUFFERS(r0, 0x10, &(0x7f00000001c0), 0x0)
+03:38:58 executing program 1:
+r0 = io_uring_setup(0x26b8, &(0x7f0000000000)={0x0, 0xae55, 0x40, 0x3, 0x91})
+io_uring_register$IORING_REGISTER_BUFFERS(r0, 0x11, &(0x7f00000001c0), 0x0)
+2026/11/26 03:38:58 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

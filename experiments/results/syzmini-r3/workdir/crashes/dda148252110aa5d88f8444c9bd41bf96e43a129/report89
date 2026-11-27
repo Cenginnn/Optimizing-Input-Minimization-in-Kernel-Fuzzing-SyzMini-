@@ -1,0 +1,162 @@
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 14618 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 32
+CPU: 1 PID: 14618 Comm: syz-executor.7 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 12 90 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000b4c75c8 EFLAGS: 00010286
+RAX: 0000000000000243 RBX: ffff8880038d3110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90004e53000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003433000
+R13: ffff8880038d3000 R14: ffffffff907a9aa0 R15: ffff8880038d301c
+FS:  0000555556069480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b32f22000 CR3: 0000000008066003 CR4: 0000000000370ee0
+DR0: 00000000200000c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f8eafc65c9d
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+loop4: detected capacity change from 0 to 2048
+RSP: 002b:00007ffc2a2dcc68 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8eafdb5f80 RCX: 00007f8eafc65c9d
+EXT4-fs (loop4): Unrecognized mount option "noioread_nolock" or missing value
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f8eafdb5f80
+R13: 00007ffc2a2dce90 R14: 00007f8eafdb5f8c R15: 0000000000000000
+---[ end trace 209f9c07797b8647 ]---
+debugfs: File 'dropped' in directory 'loop5' already present!
+debugfs: File 'msg' in directory 'loop5' already present!
+loop6: detected capacity change from 0 to 1024
+debugfs: File 'dropped' in directory 'loop5' already present!
+debugfs: File 'msg' in directory 'loop5' already present!
+blktrace: Concurrent blktraces are not allowed on loop5
+EXT4-fs (loop6): Unrecognized mount option "noinit_itablerrors=continue" or missing value
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop4): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop4): Ignoring removed mblk_io_submit option
+EXT4-fs (loop4): Ignoring removed orlov option
+EXT4-fs error (device loop4): ext4_init_orphan_info:586: comm syz-executor.4: inode #0: comm syz-executor.4: iget: illegal inode #
+EXT4-fs (loop4): get orphan inode failed
+EXT4-fs (loop4): mount failed
+netlink: 240 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop7: detected capacity change from 0 to 2048
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): Unrecognized mount option "errors=ret-ro" or missing value
+EXT4-fs (loop7): unsupported inode size: 4096
+EXT4-fs (loop7): blocksize: 2048
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+print_req_error: 2 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 2 prio class 2
+loop7: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): __ext4_iget:4792: inode #4: block 127754: comm syz-executor.7: invalid block
+Process accounting paused
+EXT4-fs error (device loop7): ext4_quota_enable:6315: comm syz-executor.7: Bad quota inode # 4
+loop6: detected capacity change from 0 to 2048
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop6): Ignoring removed mblk_io_submit option
+EXT4-fs (loop6): Ignoring removed orlov option
+EXT4-fs (loop7): mount failed
+EXT4-fs error (device loop6): ext4_ext_check_inode:460: inode #4: comm syz-executor.6: pblk 0 bad header/extent: too large eh_max - magic f30a, entries 1, max 181(4), depth 0(0)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+netlink: 3684 bytes leftover after parsing attributes in process `syz-executor.4'.
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop7: detected capacity change from 0 to 160
+EXT4-fs (loop6): mount failed
+validate_nla: 4 callbacks suppressed
+netlink: 'syz-executor.4': attribute type 8 has an invalid length.
+netlink: 'syz-executor.6': attribute type 10 has an invalid length.
+loop7: detected capacity change from 0 to 2048
+ loop7: p1 p3
+loop7: p3 size 3120562176 extends beyond EOD, truncated
+ loop7: p1 p3
+loop7: p3 size 3120562176 extends beyond EOD, truncated
+netlink: 252 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop7: detected capacity change from 0 to 128
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop7): Ignoring removed nomblk_io_submit option
+EXT4-fs (loop4): couldn't mount as ext3 due to feature incompatibilities
+EXT4-fs (loop7): Unrecognized mount option "jqfít=vfsold" or missing value
+loop5: detected capacity change from 0 to 2048
+ loop5: p1 p2 p3
+ loop5: p1 p2 p3
+netlink: 180 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 196 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 156 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 'syz-executor.7': attribute type 8 has an invalid length.
+netlink: 240 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop6: detected capacity change from 0 to 2048
+ loop6: p1 p3
+loop6: p3 size 3120562176 extends beyond EOD, truncated
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "nomblk_io_subqit" or missing value
+netlink: 'syz-executor.4': attribute type 21 has an invalid length.
+netlink: 'syz-executor.4': attribute type 16 has an invalid length.
+netlink: 44 bytes leftover after parsing attributes in process `syz-executor.4'.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=14793 comm=syz-executor.2
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=14793 comm=syz-executor.2
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop5): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop5): Unrecognized mount option "mblk_io_submiodelalloc" or missing value
+tmpfs: Bad value for 'mpol'
+netlink: 192 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop7: detected capacity change from 0 to 164
+netlink: 180 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.5': attribute type 26 has an invalid length.
+loop7: detected capacity change from 0 to 164
+----------------
+Code disassembly (best guess):
+   0:	ff c3                	inc    %ebx
+   2:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+   9:	00 00 00
+   c:	90                   	nop
+   d:	f3 0f 1e fa          	endbr64
+  11:	48 89 f8             	mov    %rdi,%rax
+  14:	48 89 f7             	mov    %rsi,%rdi
+  17:	48 89 d6             	mov    %rdx,%rsi
+  1a:	48 89 ca             	mov    %rcx,%rdx
+  1d:	4d 89 c2             	mov    %r8,%r10
+  20:	4d 89 c8             	mov    %r9,%r8
+  23:	4c 8b 4c 24 08       	mov    0x8(%rsp),%r9
+  28:	0f 05                	syscall
+* 2a:	48 3d 01 f0 ff ff    	cmp    $0xfffffffffffff001,%rax <-- trapping instruction
+  30:	73 01                	jae    0x33
+  32:	c3                   	ret
+  33:	48 c7 c1 e8 ff ff ff 	mov    $0xffffffffffffffe8,%rcx
+  3a:	f7 d8                	neg    %eax
+  3c:	64 89 01             	mov    %eax,%fs:(%rcx)
+  3f:	48                   	rex.W

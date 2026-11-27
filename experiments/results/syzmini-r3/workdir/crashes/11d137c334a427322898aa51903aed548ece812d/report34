@@ -1,0 +1,11 @@
+io_pgetevents(0x0, 0x3, 0x0, &(0x7f0000000300), 0xfffffffffffffffe, &(0x7f0000000380)={&(0x7f0000000340)={[0x20]}, 0x8})
+08:47:34 executing program 0:
+mknodat$null(0xffffffffffffff9c, &(0x7f0000002100)='./file0\x00', 0xc050, 0x103)
+fchownat(0xffffffffffffff9c, &(0x7f0000000140)='./file0\x00', 0xee01, 0x0, 0x30)
+2026/11/26 08:47:34 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

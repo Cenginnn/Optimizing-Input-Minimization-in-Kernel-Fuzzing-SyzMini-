@@ -1,0 +1,10 @@
+0, 0x0, 0x4000}, 0xc, &(0x7f0000002300)={&(0x7f0000000040)=ANY=[@ANYBLOB="0000e6f3226e76c55b3a1325a7b028fe9444c0cc06ecb630bbd42c6687de4c6dd59ededf0dcad88dab2db74dab02846bd6b1a130cafab86db0f69ab8030dd80bc7f94e17d1417d94f38bbc1b07fd1c", @ANYRES16=0x0, @ANYBLOB="200029bd7000fbdbdf250600000014000200fc020000000000000000000000000001"], 0x28}, 0x1, 0x0, 0x0, 0x800}, 0x20000080)
+04:20:15 executing program 3:
+getsockopt$inet6_mreq(0xffffffffffffffff, 0x29, 0x43, &(0x7f0000000000)={@empty}, &(0x7f0000000040)=0x14)
+2026/11/26 04:20:15 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3999664 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

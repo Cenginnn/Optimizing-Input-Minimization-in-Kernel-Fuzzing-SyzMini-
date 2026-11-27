@@ -1,0 +1,189 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 9706 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 9706 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 92 b9 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900071a75c8 EFLAGS: 00010286
+RAX: 000000000000023f RBX: ffff8880037a6110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90002f8b000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880037b1000
+R13: ffff8880037a6000 R14: ffffffffb9fa9aa0 R15: ffff8880037a601c
+FS:  0000555555e8f480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33a21000 CR3: 0000000042646003 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7ff866abfc9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffc4ae3b5c8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ff866c0ff80 RCX: 00007ff866abfc9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ff866c0ff80
+R13: 00007ffc4ae3b7f0 R14: 00007ff866c0ff8c R15: 0000000000000000
+---[ end trace 07d47a995f78d18b ]---
+loop2: detected capacity change from 0 to 2048
+EXT4-fs (loop2): Unrecognized mount option "nombcace" or missing value
+loop5: detected capacity change from 0 to 164
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+print_req_error: 9 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 32 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 1 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 6 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 7 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 7, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 3 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 01 00 00 01 00
+blk_update_request: I/O error, dev sr0, sector 4 op 0x0:(READ) flags 0x0 phys_seg 4 prio class 0
+netlink: 5416 bytes leftover after parsing attributes in process `syz-executor.0'.
+tc_dump_action: action bad kind
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 9 (only 16 groups)
+loop2: detected capacity change from 0 to 512
+EXT4-fs (loop2): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop2): orphan cleanup on readonly fs
+EXT4-fs error (device loop2): __ext4_iget:4792: inode #4: block 127744: comm syz-executor.2: invalid block
+EXT4-fs error (device loop2): ext4_quota_enable:6315: comm syz-executor.2: Bad quota inode # 4
+EXT4-fs warning (device loop2): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop2): Cannot turn on quotas: error -117
+EXT4-fs (loop2): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop2: detected capacity change from 0 to 736
+loop4: detected capacity change from 0 to 2048
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 7 (only 16 groups)
+EXT4-fs error (device loop4): ext4_ext_check_inode:460: inode #3: comm syz-executor.4: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+EXT4-fs error (device loop4): ext4_quota_enable:6315: comm syz-executor.4: Bad quota inode # 3
+EXT4-fs warning (device loop4): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop4): mount failed
+Process accounting resumed
+loop7: detected capacity change from 0 to 736
+device sit0 entered promiscuous mode
+loop7: detected capacity change from 0 to 128
+EXT4-fs (loop7): mounted filesystem without journal. Opts: max_batch_time=0x0000000000010001,commit=0x0000000000000000,stripe=0x0000000000000002,bsdgroups,bsdgroups,grpquota,quota,init_itable=0x0000000000008001,,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3696435491/syzkaller.2C8zag/279/mnt supports timestamps until 2038 (0x7fffffff)
+loop4: detected capacity change from 0 to 128
+FAT-fs (loop4): Unrecognized mount option "½½
+¿	X*:"šˆy£	( ã°P†ã&P" or missing value
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): Unrecognized mount option "" or missing value
+loop0: detected capacity change from 0 to 8192
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1025 (only 16 groups)
+rtc_cmos 00:05: Alarms can be up to one day in the future
+rtc_cmos 00:05: Alarms can be up to one day in the future
+rtc_cmos 00:05: Alarms can be up to one day in the future
+rtc_cmos 00:05: Alarms can be up to one day in the future
+rtc_cmos 00:05: Alarms can be up to one day in the future
+rtc rtc0: __rtc_set_alarm: err=-22
+netlink: 'syz-executor.3': attribute type 11 has an invalid length.
+netlink: 'syz-executor.7': attribute type 6 has an invalid length.
+netlink: 20856 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2257630793/syzkaller.13sBxC/277/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+loop7: detected capacity change from 0 to 1024
+audit: type=1401 audit(1795690254.668:37): op=setxattr invalid_context=73797374656D5F753A6F626A6563745F723A68616C645F6C6F675F743A73300061997B9E53
+[EXT4 FS bs=1024, gc=1, bpg=131072, ipg=32, mo=2802c029, mo2=0002]
+System zones: 0-1, 3-12
+EXT4-fs error (device loop7): ext4_orphan_get:1419: comm syz-executor.7: bad orphan inode 6
+EXT4-fs (loop7): Remounting filesystem read-only
+EXT4-fs (loop7): mounted filesystem without journal. Opts: noinit_itable,errors=continue,nombcache,abort,debug,data_err=ignore,debug_want_extra_isize=0x0000000000000066,errors=remount-ro,sysvgroups,. Quota mode: none.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 7 (only 16 groups)
+audit: type=1400 audit(1795690254.923:38): avc:  denied  { create } for  pid=9831 comm="syz-executor.5" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:semanage_read_lock_t:s0 tclass=key permissive=1
+SELinux:  Context system_u:object_r:systemd_logger_exec_t:s0 is not valid (left unmapped).
+audit: type=1400 audit(1795690254.956:39): avc:  denied  { relabelto } for  pid=9833 comm="syz-executor.1" name="SCTP" dev="sockfs" ino=43408 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=sctp_socket permissive=1 trawcon="system_u:object_r:systemd_logger_exec_t:s0"
+loop0: detected capacity change from 0 to 736
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3696435491/syzkaller.2C8zag/285/file2 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs error (device loop7): ext4_mb_generate_buddy:1141: group 0, block bitmap and bg descriptor inconsistent: 204 vs 206 free clusters
+loop2: detected capacity change from 0 to 2048
+EXT4-fs (loop2): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop2): Ignoring removed mblk_io_submit option
+EXT4-fs (loop2): Mount option "nodelalloc" incompatible with ext3
+netlink: 'syz-executor.0': attribute type 10 has an invalid length.
+netlink: 'syz-executor.0': attribute type 10 has an invalid length.
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): Invalid journal IO priority (must be 0-7)
+SELinux:  duplicate or incompatible mount options
+loop4: detected capacity change from 0 to 2097151
+blk_update_request: I/O error, dev loop4, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop4, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 6 callbacks suppressed
+Buffer I/O error on dev loop4, logical block 0, async page read
+blk_update_request: I/O error, dev loop4, sector 3 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop4, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 3, async page read
+Buffer I/O error on dev loop4, logical block 1, async page read
+blk_update_request: I/O error, dev loop4, sector 4 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+blk_update_request: I/O error, dev loop4, sector 2 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 4, async page read
+Buffer I/O error on dev loop4, logical block 2, async page read
+blk_update_request: I/O error, dev loop4, sector 5 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 5, async page read
+blk_update_request: I/O error, dev loop4, sector 6 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 6, async page read
+blk_update_request: I/O error, dev loop4, sector 7 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 7, async page read
+blk_update_request: I/O error, dev loop4, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 0
+Buffer I/O error on dev loop4, logical block 0, async page read
+Buffer I/O error on dev loop4, logical block 1, async page read
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): unsupported inode size: 143
+EXT4-fs (loop0): blocksize: 8192
+loop5: detected capacity change from 0 to 2048
+Alternate GPT is invalid, using primary GPT.
+ loop5: p1 p2 p3
+Alternate GPT is invalid, using primary GPT.
+ loop5: p1 p2 p3
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2

@@ -1,0 +1,12 @@
+06:55:59 executing program 2:
+ioctl$sock_SIOCGIFINDEX(0xffffffffffffffff, 0x89b0, &(0x7f0000000900)={'sit0\x00'})
+06:55:59 executing program 1:
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+sendmsg$nl_route_sched_retired(r0, &(0x7f00000000c0)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x10000000}, 0xc, &(0x7f0000000080)={&(0x7f0000000240)=@newchain={0x128, 0x64, 0x2, 0x70bd28, 0x25dfdbfd, {0x0, 0x0, 0x0, 0x0, {0xfff3, 0xd}, {0xfff1, 0xa}, {0xfff2, 0x6}}, [@f_rsvp6={{0xa}, {0xf8, 0x2, [@TCA_RSVP_ACT={0xec, 0x6, [@m_tunnel_key={0xe8, 0x0, 0x0, 0x0, {{0xf}, {0x28, 0x2, 0x0, 0x1, [@TCA_TUNNEL_KEY_ENC_IPV4_SRC={0x8, 0x3, @empty}, @TCA_TUNNEL_KEY_ENC_IPV6_DST={0x14, 0x6, @mcast2}, @TCA_TUNNEL_KEY_ENC_IPV4_SRC={0x8, 0x3, @remote}]}, {0x94, 0x6, "6bea48cc1ab8fafbd1659a32953fabac4d638b8fcb8ca43f9185a04521f67e9a9296ae1229950fb93405fdb2300cf02de647c9006bb5b06f162e3dfc41e4aed1ee5be7b2014573830ec2f9088346200f3753e70c28ec08569aab2f52fbd8951fa593f6221246532de4a0caaa42ba0347bad0b204b45bdd9f71b37ec7180fe861acec32da655479d469fbd51f9b897ef9"}, {0x28, 0x7, {0x0, 0x1}}, {0xc, 0x8, {0x2, 0x3}}}}]}, @TCA_RSVP_CLASSID={0x8, 0x1, {0x3, 0x1}}]}}]}, 0x128}, 0x1, 0x20000000, 0x10, 0x200401c4}, 0x4004084)
+2026/11/26 06:55:59 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,139 @@
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 0
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 71 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 71 Comm: scsi_eh_1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 92 9e e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900007cf8e0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff88800381e110 RCX: ffffffff9d27356f
+RDX: ffff888003768f80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003721000
+R13: ffff88800381e000 R14: ffffffff9efa9aa0 R15: ffff88800381e01c
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fbb87eb0524 CR3: 0000000006cec006 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_run_hw_queues+0xcc/0x250
+ scsi_run_queue+0x3b4/0x680
+ scsi_run_host_queues+0x33/0x50
+ scsi_error_handler+0x313/0x880
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 91ab541a1cc1b09b ]---
+__nla_validate_parse: 20 callbacks suppressed
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 180 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop7: detected capacity change from 0 to 8192
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop7: detected capacity change from 0 to 736
+Unable to read rock-ridge attributes
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+Can not set IPV6_FL_F_REFLECT if flowlabel_consistency sysctl is enable
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): couldn't mount as ext2 due to feature incompatibilities
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 00 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 0 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 40 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 256 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 80 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 512 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 00 c0 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 768 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 01 00 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 1024 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 01 40 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 1280 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+selinux_netlink_send: 4 callbacks suppressed
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=9449 comm=syz-executor.2
+loop7: detected capacity change from 0 to 512
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=63 sclass=netlink_tcpdiag_socket pid=9449 comm=syz-executor.2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Illegal Request [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Invalid command operation code
+sr 1:0:0:0: [sr0] tag#0 CDB: Write(10) 2a 00 00 00 01 80 00 00 40 00
+blk_update_request: critical target error, dev sr0, sector 1536 op 0x1:(WRITE) flags 0xc800 phys_seg 33 prio class 2
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1792 op 0x1:(WRITE) flags 0x8800 phys_seg 32 prio class 2
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2047 op 0x1:(WRITE) flags 0xc800 phys_seg 32 prio class 2
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop7): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop7): write access unavailable, skipping orphan cleanup
+EXT4-fs (loop7): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=9458 comm=syz-executor.0
+netlink: 'syz-executor.7': attribute type 8 has an invalid length.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "mblk_io_su" or missing value
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): Unrecognized mount option "Å“" or missing value
+loop7: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 736
+loop6: detected capacity change from 0 to 32768
+ loop6: p1 p3 < >
+ loop6: p1 p3 < >
+__nla_validate_parse: 6 callbacks suppressed
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Unrecognized mount option "jouYnal_dev=0x0000000000000 04" or missing value
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop7: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): Unrecognized mount option "journal_" or missing value
+netlink: 'syz-executor.3': attribute type 4 has an invalid length.
+netlink: 64 bytes leftover after parsing attributes in process `syz-executor.3'.
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop6): ext4_orphan_get:1419: comm syz-executor.6: bad orphan inode 458752
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+netlink: 'syz-executor.0': attribute type 1 has an invalid length.
+sctp: [Deprecated]: syz-executor.3 (pid 9552) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+netlink: 6112 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop7: detected capacity change from 0 to 160
+sctp: [Deprecated]: syz-executor.0 (pid 9563) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=9605 comm=syz-executor.3
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=63 sclass=netlink_tcpdiag_socket pid=9605 comm=syz-executor.3

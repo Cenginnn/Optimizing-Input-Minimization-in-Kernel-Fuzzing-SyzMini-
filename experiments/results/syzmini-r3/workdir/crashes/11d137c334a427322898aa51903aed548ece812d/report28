@@ -1,0 +1,12 @@
+mmap$IORING_OFF_SQES(&(0x7f0000ffa000/0x3000)=nil, 0x3000, 0xcb595066d996e9f, 0x12, r1, 0x10000000)
+06:39:14 executing program 2:
+openat$sysfs(0xffffffffffffff9c, &(0x7f0000000000)='/sys/module/nf_conntrack_irc', 0x200203, 0x43)
+06:39:14 executing program 2:
+openat$sysfs(0xffffffffffffff9c, &(0x7f0000000180)='/sys/kernel/vmcoreinfo', 0x400302, 0x50)
+2026/11/26 06:39:14 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

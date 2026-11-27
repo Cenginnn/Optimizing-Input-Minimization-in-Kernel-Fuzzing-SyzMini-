@@ -1,0 +1,145 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 6448 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 6448 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de b2 8e e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000099f5c8 EFLAGS: 00010286
+RAX: 0000000000000233 RBX: ffff8880038b5410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90005e79000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002c37000
+R13: ffff8880038b5300 R14: ffffffff8f1a9aa0 R15: ffff8880038b531c
+FS:  0000555555a01480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33521000 CR3: 0000000003466006 CR4: 0000000000370ef0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f2d0c6b7c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffd1bee57f8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f2d0c807f80 RCX: 00007f2d0c6b7c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f2d0c807f80
+R13: 00007ffd1bee5a20 R14: 00007f2d0c807f8c R15: 0000000000000000
+---[ end trace 245a5b76af801808 ]---
+Process accounting resumed
+Process accounting resumed
+loop7: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop7): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop7): Ignoring removed nobh option
+EXT4-fs (loop7): mounted filesystem without journal. Opts: user_xattr,journal_ioprio=0x0000000000000001,grpjquota=./file0,auto_da_alloc,nobh,delalloc,nolazytime,,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: resgid=0x000000000000ee01,,errors=continue. Quota mode: writeback.
+SELinux: security_context_str_to_sid(staff_u) failed for (dev loop7, type ext4) errno=-22
+netlink: 9604 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Unrecognized mount option " " or missing value
+netlink: 1420 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: iget: bad extended attribute block 281474976710655
+EXT4-fs (loop7): get root inode failed
+EXT4-fs (loop7): mount failed
+loop7: detected capacity change from 0 to 1024
+EXT4-fs (loop7): Unrecognized mount option "debug_w_extra_isize=0x0000000000000066" or missing value
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): can't mount with commit=32769, fs mounted w/o journal
+netlink: 'syz-executor.6': attribute type 5 has an invalid length.
+netlink: 236 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop7: detected capacity change from 0 to 128
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=768 sclass=netlink_route_socket pid=6581 comm=syz-executor.2
+EXT4-fs (loop7): Unrecognized mount option "max_batch_time=0x00°0000000010001" or missing value
+sctp: [Deprecated]: syz-executor.3 (pid 6604) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+netlink: 136 bytes leftover after parsing attributes in process `syz-executor.5'.
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=60 sclass=netlink_xfrm_socket pid=6628 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=44 sclass=netlink_xfrm_socket pid=6628 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=44 sclass=netlink_xfrm_socket pid=6628 comm=syz-executor.5
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop0): ext4_orphan_get:1419: comm syz-executor.0: bad orphan inode 458752
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+EXT4-fs warning (device loop0): ext4_update_dynamic_rev:1054: updating to rev 1 because of new feature flag, running e2fsck is recommended
+loop7: detected capacity change from 0 to 1024
+netlink: 448 bytes leftover after parsing attributes in process `syz-executor.1'.
+sg_write: data in/out 989/31 bytes for SCSI command 0x85-- guessing data in;
+   program syz-executor.5 not setting count and/or reply_len properly
+netlink: 448 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 15 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 448 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 15 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop6: detected capacity change from 0 to 2048
+netlink: 448 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 15 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop6): Invalid log cluster size: 64
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 22 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 7 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+Buffer I/O error on dev sr0, logical block 5, async page read
+Buffer I/O error on dev sr0, logical block 6, async page read
+Buffer I/O error on dev sr0, logical block 7, async page read
+loop7: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 2048
+tmpfs: Bad value for 'mpol'
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=1537 sclass=netlink_route_socket pid=6690 comm=syz-executor.1
+device sit0 entered promiscuous mode
+device sit0 left promiscuous mode
+netlink: 'syz-executor.0': attribute type 4 has an invalid length.
+netlink: 'syz-executor.1': attribute type 2 has an invalid length.
+netlink: 'syz-executor.1': attribute type 3 has an invalid length.
+netlink: 'syz-executor.0': attribute type 1 has an invalid length.
+netlink: 'syz-executor.0': attribute type 2 has an invalid length.
+netlink: 'syz-executor.0': attribute type 1 has an invalid length.
+netlink: 'syz-executor.0': attribute type 2 has an invalid length.
+netlink: 'syz-executor.0': attribute type 1 has an invalid length.
+netlink: 'syz-executor.0': attribute type 2 has an invalid length.
+netlink: 'syz-executor.0': attribute type 1 has an invalid length.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1025 (only 16 groups)
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): unsupported inode size: 4096
+EXT4-fs (loop7): blocksize: 2048
+loop7: detected capacity change from 0 to 128
+EXT4-fs (loop7): Unrecognized mount option "×" or missing value
+loop7: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 256
+FAT-fs (loop6): Unrecognized mount option "roir" or missing value
+loop7: detected capacity change from 0 to 128
+EXT4-fs (loop7): ext4_check_descriptors: Block bitmap for group 0 not in group (block 82)!
+EXT4-fs (loop7): group descriptors corrupted!

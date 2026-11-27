@@ -1,0 +1,85 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 16139 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 16139 Comm: syz-executor.7 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 b1 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900002a75c8 EFLAGS: 00010286
+RAX: 000000000000023b RBX: ffff888003840410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90000ae1000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880038a0000
+R13: ffff888003840300 R14: ffffffffb23a9aa0 R15: ffff88800384031c
+FS:  0000555555861480(0000) GS:ffff888069900000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33424000 CR3: 000000004ba8a005 CR4: 0000000000370ee0
+DR0: 00000000200000c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fad4bfc1c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff756e4848 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fad4c111f80 RCX: 00007fad4bfc1c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fad4c111f80
+R13: 00007fff756e4a70 R14: 00007fad4c111f8c R15: 0000000000000000
+---[ end trace d25ae67e223bf0a5 ]---
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+warning: checkpointing journal with EXT4_IOC_CHECKPOINT_FLAG_ZEROOUT can be slow
+netlink: 'syz-executor.4': attribute type 83 has an invalid length.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.4'.
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=16186 comm=syz-executor.4
+blktrace: Concurrent blktraces are not allowed on loop0
+device sit0 left promiscuous mode
+netlink: 'syz-executor.7': attribute type 3 has an invalid length.
+netlink: 20 bytes leftover after parsing attributes in process `syz-executor.7'.
+nvme_fabrics: unknown parameter or missing value 'œúØžÙÚØÃT×—ÍÙÄ ö”Ø	²·' in ctrl creation request
+sr 1:0:0:0: [sr0] CDROM not ready.  Make sure there is a disc in the drive.
+autofs4:pid:16243:validate_dev_ioctl: invalid path supplied for cmd(0xc0189374)
+netlink: 'syz-executor.4': attribute type 2 has an invalid length.
+netlink: 72 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 'syz-executor.4': attribute type 4 has an invalid length.
+netlink: 148 bytes leftover after parsing attributes in process `syz-executor.4'.
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=20 sclass=netlink_audit_socket pid=16279 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=16 sclass=netlink_audit_socket pid=16279 comm=syz-executor.5
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=16279 comm=syz-executor.5
+blktrace: Concurrent blktraces are not allowed on loop0
+audit: type=1400 audit(2000004276.724:66): avc:  denied  { execmod } for  pid=16289 comm="syz-executor.4" path=2F73797A6B616C6C65722D74657374646972343132363035353237352F73797A6B616C6C65722E3464513743522F38332F66696C6530202864656C6574656429 dev="sda" ino=17403 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+netlink: 39276 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 12 bytes leftover after parsing attributes in process `syz-executor.4'.
+audit: type=1400 audit(2000004277.834:67): avc:  denied  { relabelto } for  pid=16328 comm="syz-executor.4" name="NETLINK" dev="sockfs" ino=84712 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:gpg_helper_exec_t:s0 tclass=netlink_generic_socket permissive=1
+sctp: [Deprecated]: syz-executor.7 (pid 16336) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.5'.
+scsi_io_completion_action: 12 callbacks suppressed
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: Read element status attached
+sr 1:0:0:0: tag#0 CDB[00]: b4 e2 00 cc e9 40 0c 7b 10 72 45 55 fd b8 9a b0
+sr 1:0:0:0: tag#0 CDB[10]: c2 b0 da 54 43 fe 8a e9 36 b5 70 9b d7 09 88 4b
+sr 1:0:0:0: tag#0 CDB[20]: 9f e6 25 0a 1d 2a 6c 23 ba 12 59 7a 2f 2e fa 22
+sr 1:0:0:0: tag#0 CDB[30]: 8b 6a 1c 3e 72 1f c0 06 22 6c 19 b1 e7 64 89 fa
+sr 1:0:0:0: tag#0 CDB[40]: f3 fa b7 a5 2e e4 79 03 96
+program syz-executor.3 is using a deprecated SCSI ioctl, please convert it to SG_IO
+device lo entered promiscuous mode
+device lo left promiscuous mode
+EXT4-fs warning (device sda): __ext4_ioctl:878: Setting inode version is not supported with metadata_csum enabled.
+tmpfs: Bad value for 'mpol'

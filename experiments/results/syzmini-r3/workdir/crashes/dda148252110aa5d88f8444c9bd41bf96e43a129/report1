@@ -1,0 +1,87 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 37983 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 37983 Comm: syz-executor.4 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 9a e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90000a7f5c8 EFLAGS: 00010286
+RAX: 0000000000000232 RBX: ffff888003918410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc900080a1000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002c76000
+R13: ffff888003918300 R14: ffffffff9b3a9aa0 R15: ffff88800391831c
+FS:  00005555560f7480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b31c21000 CR3: 000000002b3bc003 CR4: 0000000000370ef0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fa83e646c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fff3c93e8d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fa83e796f80 RCX: 00007fa83e646c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fa83e796f80
+R13: 00007fff3c93eb00 R14: 00007fa83e796f8c R15: 0000000000000000
+---[ end trace 6706f3a0946841a6 ]---
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=1001 sclass=netlink_route_socket pid=37991 comm=syz-executor.0
+cgroup: noprefix used incorrectly
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 92 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 'syz-executor.0': attribute type 4 has an invalid length.
+netlink: 148 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 20 bytes leftover after parsing attributes in process `syz-executor.7'.
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=38064 comm=syz-executor.0
+SELinux: unrecognized netlink message: protocol=4 nlmsg_type=63 sclass=netlink_tcpdiag_socket pid=38064 comm=syz-executor.0
+program syz-executor.7 is using a deprecated SCSI ioctl, please convert it to SG_IO
+ata2.00: exception Emask 0x0 SAct 0x0 SErr 0x0 action 0x6 frozen
+ata2.00: ATAPI check failed (ireason=0x2 bytes=18)
+ata2.00: cmd a0/00:00:00:8a:00/00:00:00:00:00/a0 tag 0 pio 140 out
+         Request Sense 03 00 00 00 ac b1res 58/00:02:00:12:00/00:00:b2:3a:44/a0 Emask 0x2 (HSM violation)
+ata2.00: status: { DRDY DRQ }
+ata2: soft resetting link
+tmpfs: Bad value for 'mpol'
+SELinux:  Context * is not valid (left unmapped).
+audit: type=1400 audit(2000000169.232:149): avc:  denied  { associate } for  pid=38075 comm="syz-executor.0" name="cgroup.procs" dev="cgroup" ino=31 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:cgroup_t:s0 tclass=filesystem permissive=1 srawcon="*"
+ata2.00: configured for MWDMA2
+ata2: EH complete
+dns_resolver: Unsupported server list version (33)
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=47 sclass=netlink_xfrm_socket pid=38094 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=45 sclass=netlink_xfrm_socket pid=38094 comm=syz-executor.7
+netlink: 172 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 244 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 48 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 472 bytes leftover after parsing attributes in process `syz-executor.2'.
+sctp: [Deprecated]: syz-executor.0 (pid 38122) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+netlink: 56 bytes leftover after parsing attributes in process `syz-executor.0'.
+systemd-journald[115]: Time jumped backwards, rotating.
+netlink: 4284 bytes leftover after parsing attributes in process `syz-executor.0'.
+sg_write: data in/out 989/31 bytes for SCSI command 0x85-- guessing data in;
+   program syz-executor.0 not setting count and/or reply_len properly
+debugfs: Directory 'sg1' with parent 'block' already present!
+blktrace: debugfs_dir not present for sg1 so skipping
+netlink: 196 bytes leftover after parsing attributes in process `syz-executor.2'.
+sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+cgroup: Bad value for 'name'
+netlink: 400 bytes leftover after parsing attributes in process `syz-executor.0'.
+netlink: 578 bytes leftover after parsing attributes in process `syz-executor.7'.

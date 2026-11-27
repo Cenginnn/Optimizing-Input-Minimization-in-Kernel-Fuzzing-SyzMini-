@@ -1,0 +1,2 @@
+sendmsg$NLBL_MGMT_C_ADDDEF(r1, &(0x7f0000000340)={&(0x7f0000000440)={0x10, 0x0, 0x0, 0x200000}, 0xc, &(0x7f0000000300)={&(0x7f0000000600)=ANY=[@ANYBLOB='H\x00\x00\x00', @ANYRES16=r2, @ANYBLOB="210029788600ffdbdf250500000014000600fe88000000000200000008000700ac141400"/60], 0x48}}, 0x40)
+2026/11/25 23:53:29 SYZFATAL: executor 7 failed 11 times: executor 7: failed to write control pipe: write |1: broken pipe

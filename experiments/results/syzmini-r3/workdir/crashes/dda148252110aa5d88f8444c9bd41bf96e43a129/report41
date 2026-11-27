@@ -1,0 +1,198 @@
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 4
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 4227 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+EXT4-fs (loop3): mount failed
+Modules linked in:
+CPU: 1 PID: 4227 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 52 b3 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90007f5f5c8 EFLAGS: 00010286
+RAX: 000000000000023f RBX: ffff8880037a6110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc900025d9000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800191f000
+R13: ffff8880037a6000 R14: ffffffffb3ba9aa0 R15: ffff8880037a601c
+FS:  0000555557547480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b33325000 CR3: 0000000009100003 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fea513e2c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffdba8cc6c8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fea51532f80 RCX: 00007fea513e2c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fea51532f80
+R13: 00007ffdba8cc8f0 R14: 00007fea51532f8c R15: 0000000000000000
+---[ end trace 3a663aeb01dd4abe ]---
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop5): Quota format mount options ignored when QUOTA feature is enabled
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.1'.
+EXT4-fs (loop5): Warning: mounting with an experimental mount option 'dioread_nolock' for blocksize < PAGE_SIZE
+netlink: 28 bytes leftover after parsing attributes in process `syz-executor.1'.
+EXT4-fs (loop5): ext4_check_descriptors: Inode bitmap for group 0 overlaps block group descriptors
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop5): ext4_check_descriptors: Checksum for group 0 failed (63427!=55237)
+EXT4-fs (loop6): orphan cleanup on readonly fs
+netlink: 64 bytes leftover after parsing attributes in process `syz-executor.1'.
+EXT4-fs error (device loop6): ext4_ext_check_inode:460: inode #4: comm syz-executor.6: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+netlink: 8 bytes leftover after parsing attributes in process `syz-executor.1'.
+FAT-fs (loop4): bogus number of FAT sectors
+FAT-fs (loop4): Can't find a valid FAT filesystem
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs error (device loop5): ext4_fill_super:4816: inode #2: comm syz-executor.5: casefold flag without casefold feature
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+EXT4-fs (loop5): failed to initialize system zone (-117)
+EXT4-fs (loop5): mount failed
+EXT4-fs (loop7): Unrecognized mount option "" or missing value
+sctp: [Deprecated]: syz-executor.4 (pid 4262) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+loop1: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop1): orphan cleanup on readonly fs
+EXT4-fs error (device loop1): ext4_ext_check_inode:460: inode #4: comm syz-executor.1: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+EXT4-fs error (device loop1): ext4_quota_enable:6315: comm syz-executor.1: Bad quota inode # 4
+EXT4-fs warning (device loop1): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop1): Cannot turn on quotas: error -117
+EXT4-fs (loop1): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop5: detected capacity change from 0 to 164
+loop2: detected capacity change from 0 to 128
+EXT4-fs (loop2): Unrecognized mount option "stripe=0x#000000000000441" or missing value
+loop3: detected capacity change from 0 to 2048
+EXT4-fs error (device loop3): ext4_fill_super:4816: inode #2: comm syz-executor.3: casefold flag without casefold feature
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop3): warning: mounting fs with errors, running e2fsck is recommended
+loop0: detected capacity change from 0 to 164
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop2: detected capacity change from 0 to 512
+EXT4-fs (loop2): orphan cleanup on readonly fs
+loop7: detected capacity change from 0 to 32768
+Quota error (device loop2): v2_read_file_info: Block with free entry too big (14 >= 6).
+loop6: detected capacity change from 0 to 256
+(syz-executor.7,4313,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,4313,1):ocfs2_fill_super:1186 ERROR: status = -22
+EXT4-fs warning (device loop2): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop2): Cannot turn on quotas: error -117
+EXT4-fs error (device loop2): ext4_orphan_get:1419: comm syz-executor.2: bad orphan inode 458752
+EXT4-fs (loop2): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop1: detected capacity change from 0 to 2048
+EXT4-fs error (device loop1): ext4_fill_super:4816: inode #2: comm syz-executor.1: casefold flag without casefold feature
+EXT4-fs (loop1): warning: mounting fs with errors, running e2fsck is recommended
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+EXT4-fs error (device loop1): ext4_map_blocks:593: inode #2: block 4: comm syz-executor.1: lblock 0 mapped to illegal pblock 4 (length 1)
+loop5: detected capacity change from 0 to 8192
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop2: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 732
+isofs_fill_super: root inode is not a directory. Corrupted media?
+audit: type=1400 audit(1795684934.834:7): avc:  denied  { module_load } for  pid=4376 comm="syz-executor.6" path="/sys/kernel/kexec_crash_loaded" dev="sysfs" ino=92 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:sysfs_t:s0 tclass=system permissive=1
+loop7: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 8192
+EXT4-fs (loop7): Unrecognized mount option "T·–¬Á2¿é¨°;ΩccøˆÂ≈N-0Á)™B∆W±Ú‚2‚STÓ¬w'·|Kˇbÿ¸öWˆcsFA∑ÖëâC˙UiK∆◊;({≠åﬂk^¬b =dÍƒ„.úßƒîS¡ÆVı¨Añ!m5àîÈ2≈å≈Ÿ°ä=
+~'Ç„œXlä~“Q’ï@â¡ë¯ÚØppxgÎ`„|©‰–⁄6%ˆ9Å˝∂ÿ2ÜxæıÜã≠ì¿‡ßa6xC•g" or missing value
+loop3: detected capacity change from 0 to 32768
+(syz-executor.3,4389,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.3,4389,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop2: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 2048
+EXT4-fs (loop1): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir3910319283/syzkaller.EnomrC/34/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs (loop2): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 5 prio class 0
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+loop0: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 8192
+netlink: 196 bytes leftover after parsing attributes in process `syz-executor.2'.
+device sit0 entered promiscuous mode
+loop0: detected capacity change from 0 to 1024
+loop5: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 128
+EXT4-fs error (device loop0): ext4_orphan_get:1419: comm syz-executor.0: bad orphan inode 458752
+EXT4-fs (loop0): mounted filesystem without journal. Opts: noinit_itable,errors=continue,,errors=continue. Quota mode: none.
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=4444 comm=syz-executor.4
+syz-executor.7 uses obsolete (PF_INET,SOCK_PACKET)
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=4444 comm=syz-executor.4
+loop4: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ext4 filesystem being mounted at /syzkaller-testdir212324714/syzkaller.O7DuRX/28/file0 supports timestamps until 2038 (0x7fffffff)
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2 op 0x0:(READ) flags 0x0 phys_seg 6 prio class 0
+Buffer I/O error on dev sr0, logical block 2, async page read
+Buffer I/O error on dev sr0, logical block 3, async page read
+Buffer I/O error on dev sr0, logical block 4, async page read
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop3): Unrecognized mount option ":ƒ896$\=ÇU@" or missing value
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=40987 sclass=netlink_xfrm_socket pid=4473 comm=syz-executor.6
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=62 sclass=netlink_xfrm_socket pid=4473 comm=syz-executor.6
+netlink: 16 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 72 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 4076 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop3: detected capacity change from 0 to 512
+EXT4-fs (loop3): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop3): orphan cleanup on readonly fs
+EXT4-fs error (device loop3): ext4_ext_check_inode:460: inode #16: comm syz-executor.3: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+EXT4-fs error (device loop3): ext4_quota_enable:6315: comm syz-executor.3: Bad quota inode # 16
+EXT4-fs warning (device loop3): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop3): Cannot turn on quotas: error -117
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop1: detected capacity change from 0 to 1024
+EXT4-fs (loop1): Unrecognized mount option "-" or missing value
+netlink: 248 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop4: detected capacity change from 0 to 512
+blktrace: Concurrent blktraces are not allowed on sg1
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir212324714/syzkaller.O7DuRX/31/file0 supports timestamps until 2038 (0x7fffffff)
+loop2: detected capacity change from 0 to 128
+EXT4-fs (loop2): Ignoring removed bh option
+EXT4-fs (loop2): mounted filesystem without journal. Opts: quota,bh,discard,init_itable=0x00000000000006bf,,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3961804515/syzkaller.sKaocX/34/mnt supports timestamps until 2038 (0x7fffffff)

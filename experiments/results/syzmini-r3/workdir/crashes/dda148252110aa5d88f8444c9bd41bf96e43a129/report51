@@ -1,0 +1,148 @@
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+print_req_error: 109 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 17939 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 17939 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 8a e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000187f5c8 EFLAGS: 00010286
+RAX: 0000000000000228 RBX: ffff8880038d9410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90008039000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888002c26000
+R13: ffff8880038d9300 R14: ffffffff8b3a9aa0 R15: ffff8880038d931c
+FS:  00005555556a0480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b31b22000 CR3: 0000000007e80006 CR4: 0000000000370ee0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7ff83ca40c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe7047cbc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ff83cb90f80 RCX: 00007ff83ca40c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ff83cb90f80
+R13: 00007ffe7047cdf0 R14: 00007ff83cb90f8c R15: 0000000000000000
+---[ end trace 12b34f9f848bc267 ]---
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ref_ctr_offset mismatch. inode: 0x43fa offset: 0xb ref_ctr_offset(old): 0x0 ref_ctr_offset(new): 0x2
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop6): Ignoring removed nomblk_io_submit option
+[EXT4 FS bs=2048, gc=1, bpg=262144, ipg=32, mo=e004e11c, mo2=0002]
+System zones: 0-5
+EXT4-fs (loop6): mounted filesystem without journal. Opts: nouser_xattr,max_dir_size_kb=0x0000000000000003,usrjquota=
+errors=continue,nomblk_io_submit,noload,usrjquota=,journal_dev=0x0000000000000003,data=writeback,user_xattr,,errors=continue. Quota mode: writeback.
+netlink: 3876 bytes leftover after parsing attributes in process `syz-executor.0'.
+device lo entered promiscuous mode
+device lo left promiscuous mode
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x800 phys_seg 3 prio class 0
+buffer_io_error: 150 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+netlink: 188 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop7: detected capacity change from 0 to 2048
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=186 sclass=netlink_route_socket pid=18022 comm=syz-executor.7
+netlink: 236 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 'syz-executor.3': attribute type 29 has an invalid length.
+netlink: 220 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 'syz-executor.3': attribute type 29 has an invalid length.
+netlink: 220 bytes leftover after parsing attributes in process `syz-executor.3'.
+loop3: detected capacity change from 0 to 128
+EXT4-fs (loop3): mounted filesystem without journal. Opts: nolazytime,nobarrier,grpjquota=,commit=0x0000000000000005,,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir2539233797/syzkaller.3gKx87/879/mnt supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x4000 phys_seg 10 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 40 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 256 op 0x0:(READ) flags 0x4000 phys_seg 11 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 80 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 512 op 0x0:(READ) flags 0x4000 phys_seg 10 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 c0 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 768 op 0x0:(READ) flags 0x4000 phys_seg 11 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1024 op 0x0:(READ) flags 0x4000 phys_seg 11 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 40 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1280 op 0x0:(READ) flags 0x4000 phys_seg 12 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 80 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1536 op 0x0:(READ) flags 0x4000 phys_seg 9 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 c0 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 1792 op 0x0:(READ) flags 0x4000 phys_seg 9 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 2048 op 0x0:(READ) flags 0x4000 phys_seg 9 prio class 2
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 40 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 2304 op 0x0:(READ) flags 0x4000 phys_seg 9 prio class 2
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop7): Ignoring removed mblk_io_submit option
+EXT4-fs (loop7): Ignoring removed orlov option
+EXT4-fs error (device loop7): ext4_ext_check_inode:460: inode #4: comm syz-executor.7: pblk 0 bad header/extent: too large eh_max - magic f30a, entries 1, max 181(4), depth 0(0)
+EXT4-fs error (device loop7): ext4_quota_enable:6315: comm syz-executor.7: Bad quota inode # 4
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop7): mount failed
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1025 (only 16 groups)
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=58 sclass=netlink_xfrm_socket pid=18083 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=56 sclass=netlink_xfrm_socket pid=18083 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=65 sclass=netlink_xfrm_socket pid=18083 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=42 sclass=netlink_xfrm_socket pid=18083 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=42 sclass=netlink_xfrm_socket pid=18083 comm=syz-executor.7
+netlink: 236 bytes leftover after parsing attributes in process `syz-executor.7'.

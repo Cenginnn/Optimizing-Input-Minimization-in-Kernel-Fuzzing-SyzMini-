@@ -1,0 +1,8 @@
+ 0x14, 0x14, 0x34}, @empty, @empty, @rand_addr=0x64010101, @local, @private=0xa010102, @broadcast, @local, @private=0xa010100]}, @lsrr={0x83, 0x1b, 0xc3, [@remote, @local, @multicast2, @loopback, @empty, @remote]}, @timestamp_prespec={0x44, 0x1c, 0xfe, 0x3, 0x8, [{@private=0xa010101, 0x80000000}, {@broadcast, 0x200000}, {@rand_addr=0x64010102, 0xdd}]}, @noop, @ssrr={0x89, 0x1b, 0x4d, [@multicast2, @remote, @rand_addr=0x64010100, @multicast1, @local, @rand_addr=0x64010101]}]}}}], 0x220}}], 0xa, 0x20000001)
+2026/11/25 18:56:15 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

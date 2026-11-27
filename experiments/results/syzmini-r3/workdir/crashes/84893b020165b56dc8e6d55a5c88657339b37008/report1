@@ -1,0 +1,331 @@
+------------[ cut here ]------------
+Trying to write to read-only block-device loop7 (partno 0)
+WARNING: CPU: 0 PID: 24284 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+Modules linked in:
+CPU: 0 PID: 24284 Comm: kmmpd-loop7 Not tainted 5.15.0+ #2
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 7b b1 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+RSP: 0018:ffffc90003e4fa88 EFLAGS: 00010282
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+RAX: 0000000000000000 RBX: 1ffff920007c9f58 RCX: 0000000000000000
+RDX: ffff888006c38000 RSI: 0000000000000000 RDI: fffff520007c9f43
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+RBP: ffff888030149900 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888030149910
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+R13: ffff888001483400 R14: ffff888003513720 R15: ffff888030149908
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007febe71a8000 CR3: 0000000025410004 CR4: 0000000000370ef0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ write_mmp_block+0x18c/0x340
+ kmmpd+0x321/0x710
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace e8affead37816154 ]---
+EXT4-fs (loop7): write access unavailable, skipping orphan cleanup
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop0): 1 truncate cleaned up
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_find:1824: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs (loop0): 1 truncate cleaned up
+loop5: detected capacity change from 0 to 512
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+loop1: detected capacity change from 0 to 512
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs (loop6): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+loop7: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+__nla_validate_parse: 47 callbacks suppressed
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+loop1: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop0): 1 truncate cleaned up
+EXT4-fs (loop1): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+EXT4-fs error (device loop5): ext4_xattr_block_find:1824: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+loop7: detected capacity change from 0 to 512
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop1): ext4_xattr_block_find:1824: inode #15: comm syz-executor.1: corrupted xattr block 19
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs (loop0): 1 truncate cleaned up
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop6: detected capacity change from 0 to 512
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop0): 1 truncate cleaned up
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop7: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+netlink: 1224 bytes leftover after parsing attributes in process `syz-executor.2'.
+EXT4-fs (loop0): 1 truncate cleaned up
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+loop1: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_find:1824: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+loop7: detected capacity change from 0 to 512
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop7: detected capacity change from 0 to 512
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+Process accounting resumed
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop0): 1 truncate cleaned up
+loop1: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): 1 truncate cleaned up
+loop0: detected capacity change from 0 to 512
+loop1: detected capacity change from 0 to 512
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+loop5: detected capacity change from 0 to 512
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_find:1824: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_find:1824: inode #15: comm syz-executor.1: corrupted xattr block 19
+loop6: detected capacity change from 0 to 512
+loop1: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs (loop6): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_get:536: inode #15: comm syz-executor.6: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop6 ino=15
+EXT4-fs error (device loop6): ext4_xattr_block_find:1824: inode #15: comm syz-executor.6: corrupted xattr block 19
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+loop6: detected capacity change from 0 to 512
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs (loop0): 1 truncate cleaned up
+EXT4-fs (loop6): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_find:1824: inode #15: comm syz-executor.1: corrupted xattr block 19
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): Unrecognized mount option "00000000000000000000!Ç]W–Q$ ¾x‹w
+Œ" or missing value
+loop0: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): feature flags set on rev 0 fs, running e2fsck is recommended
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop1): 1 truncate cleaned up
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+EXT4-fs (loop6): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+EXT4-fs error (device loop1): ext4_xattr_block_get:536: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop1 ino=15
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop0): 1 truncate cleaned up
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop1): ext4_xattr_block_find:1824: inode #15: comm syz-executor.1: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs (loop6): 1 truncate cleaned up
+loop7: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop5): 1 truncate cleaned up
+EXT4-fs (loop0): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+EXT4-fs error (device loop5): ext4_xattr_block_get:536: inode #15: comm syz-executor.5: corrupted xattr block 19
+EXT4-fs (loop0): 1 truncate cleaned up
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop5 ino=15
+loop7: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512

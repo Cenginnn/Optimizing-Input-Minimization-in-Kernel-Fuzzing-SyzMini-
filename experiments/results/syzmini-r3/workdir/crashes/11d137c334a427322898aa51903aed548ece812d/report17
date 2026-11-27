@@ -1,0 +1,8 @@
+_STRINGSET_ID={0x8, 0x1, 0x7}, @ETHTOOL_A_STRINGSET_ID={0x8, 0x1, 0x1}]}, {0x24, 0x1, 0x0, 0x1, [@ETHTOOL_A_STRINGSET_ID={0x8, 0x1, 0x6}, @ETHTOOL_A_STRINGSET_ID={0x8, 0x1, 0x6}, @ETHTOOL_A_STRINGSET_ID={0x8, 0x1, 0x1}, @ETHTOOL_A_STRINGSET_ID={0x8, 0x1, 0x7}]}]}, @ETHTOOL_A_STRSET_HEADER={0xc, 0x1, 0x0, 0x1, [@ETHTOOL_A_HEADER_DEV_INDEX={0x8, 0x1, r11}]}, @ETHTOOL_A_STRSET_COUNTS_ONLY={0x4}, @ETHTOOL_A_STRSET_COUNTS_ONLY={0x4}, @ETHTOOL_A_STRSET_COUNTS_ONLY={0x4}]}, 0x178}, 0x1, 0x0, 0x0, 0xc0}, 0x40044)
+2026/11/26 01:23:30 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3590064 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,437 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 8002 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 8002 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de d2 8a e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90000aaf5c8 EFLAGS: 00010286
+RAX: 0000000000000236 RBX: ffff888003880410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90000dba000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800133d000
+R13: ffff888003880300 R14: ffffffff8b3a9aa0 R15: ffff88800388031c
+FS:  0000555556d9f480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555556da0678 CR3: 0000000016934006 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7ffbce6c8c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe65184c18 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ffbce818f80 RCX: 00007ffbce6c8c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007ffbce818f80
+R13: 00007ffe65184e40 R14: 00007ffbce818f8c R15: 0000000000000000
+---[ end trace f2270a0b266fd010 ]---
+audit: type=1400 audit(2000000119.351:29): avc:  denied  { module_load } for  pid=8008 comm="syz-executor.5" path="/sys/kernel/kexec_crash_loaded" dev="sysfs" ino=92 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:sysfs_t:s0 tclass=system permissive=1
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): Unrecognized mount option "˜™˙a&çxâE" or missing value
+loop6: detected capacity change from 0 to 2048
+loop7: detected capacity change from 0 to 8192
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_ext_check_inode:460: inode #4: comm syz-executor.6: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop7): 1 truncate cleaned up
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop6: detected capacity change from 0 to 736
+EXT4-fs error (device loop7): ext4_xattr_block_get:536: inode #15: comm syz-executor.7: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop7 ino=15
+EXT4-fs error (device loop7): ext4_xattr_block_get:536: inode #15: comm syz-executor.7: corrupted xattr block 19
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop7 ino=15
+loop6: detected capacity change from 0 to 2048
+FAT-fs (loop6): Unrecognized mount option "nnonumtail=1" or missing value
+loop7: detected capacity change from 0 to 512
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 8 (only 16 groups)
+loop6: detected capacity change from 0 to 128
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=47 sclass=netlink_xfrm_socket pid=8123 comm=syz-executor.2
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=45 sclass=netlink_xfrm_socket pid=8123 comm=syz-executor.2
+netlink: 172 bytes leftover after parsing attributes in process `syz-executor.2'.
+device lo entered promiscuous mode
+device lo left promiscuous mode
+loop2: detected capacity change from 0 to 512
+EXT4-fs (loop2): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop6: detected capacity change from 0 to 8192
+FAT-fs (loop6): Unrecognized mount option "f€–ılπg" or missing value
+netlink: 31584 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop2: detected capacity change from 0 to 2048
+Alternate GPT is invalid, using primary GPT.
+ loop2: p1 p2 p3
+Alternate GPT is invalid, using primary GPT.
+ loop2: p1 p2 p3
+loop6: detected capacity change from 0 to 2048
+audit: type=1400 audit(2000000122.799:30): avc:  denied  { dyntransition } for  pid=8169 comm="syz-executor.6" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:dhcp_state_t:s0 tclass=process permissive=1
+audit: type=1400 audit(2000000122.810:31): avc:  denied  { create } for  pid=8169 comm="syz-executor.6" scontext=system_u:object_r:dhcp_state_t:s0 tcontext=system_u:object_r:dhcp_state_t:s0 tclass=netlink_route_socket permissive=1
+netlink: 4456 bytes leftover after parsing attributes in process `syz-executor.6'.
+netlink: 'syz-executor.6': attribute type 14 has an invalid length.
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=16 sclass=netlink_audit_socket pid=8192 comm=syz-executor.7
+SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=8192 comm=syz-executor.7
+SELinux:  Context system_u:object_r:apm_bios_t:s0 is not valid (left unmapped).
+audit: type=1400 audit(2000000123.295:32): avc:  denied  { associate } for  pid=8202 comm="syz-executor.7" name="event0" dev="devtmpfs" ino=124 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=filesystem permissive=1 srawcon="system_u:object_r:apm_bios_t:s0"
+loop2: detected capacity change from 0 to 8192
+loop6: detected capacity change from 0 to 8192
+FAT-fs (loop6): Unrecognized mount option "check=striít" or missing value
+loop2: detected capacity change from 0 to 164
+loop7: detected capacity change from 0 to 2048
+cgroup: Unknown subsys name 'smackfsdef'
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: iget: bad extended attribute block 281474976710655
+EXT4-fs (loop7): get root inode failed
+EXT4-fs (loop7): mount failed
+loop2: detected capacity change from 0 to 1024
+EXT4-fs (loop2): Unrecognized mount option "_∫&µ∑q°tÇ›ö»ø≤U‚óë‚{º.ú@b<ï∂ÕúR◊ú∏j™§˜§öú #>o–G—ÕKHñNÉBf9¶¨Ñ>Uπñ“?Ñªe;xq˛IW˙˙ûs∫∫m;SÅáTjÀåD·˚	´/˝G`2ﬁ~˘¿ù'6SÍ	°F•Ÿ∫˛øàï™‡Ì#T≤mÀ¶BE;≠	0`&3ûGw“±∆˝”/4æÏZŒrè…pBπãuΩçg#w"5Â[O~$h∏5–í∂Uù$´V.˛ Ò" or missing value
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=65 sclass=netlink_route_socket pid=8228 comm=syz-executor.6
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=53 sclass=netlink_route_socket pid=8228 comm=syz-executor.6
+netlink: 624 bytes leftover after parsing attributes in process `syz-executor.6'.
+sock: sock_timestamping_bind_phc: sock not bind to device
+loop2: detected capacity change from 0 to 2048
+ loop2: p2 p3 p7
+loop6: detected capacity change from 0 to 1024
+netlink: 'syz-executor.7': attribute type 2 has an invalid length.
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): Ignoring removed bh option
+EXT4-fs (loop6): Warning: mounting with an experimental mount option 'dioread_nolock' for blocksize < PAGE_SIZE
+EXT4-fs (loop6): mounted filesystem without journal. Opts: quota,bh,dioread_nolock,nojournal_checksum,,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3292314885/syzkaller.P7PWeJ/423/mnt supports timestamps until 2038 (0x7fffffff)
+loop2: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 128
+EXT4-fs (loop7): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): Journaled quota options ignored when QUOTA feature is enabled
+EXT4-fs (loop6): dax option not supported
+netlink: 3980 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): feature flags set on rev 0 fs, running e2fsck is recommended
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs (loop6): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 1024
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop6): Unrecognized mount option "" or missing value
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+loop7: detected capacity change from 0 to 8192
+loop6: detected capacity change from 0 to 1024
+netlink: 'syz-executor.1': attribute type 10 has an invalid length.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.1'.
+EXT4-fs (loop6): 1 truncate cleaned up
+EXT4-fs (loop6): mounted filesystem without journal. Opts: noinit_itable,errors=continue,,errors=continue. Quota mode: none.
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=0 sclass=netlink_route_socket pid=8329 comm=syz-executor.1
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop6): The Hurd can't support 64-bit file systems
+loop6: detected capacity change from 0 to 8192
+ loop6: p1 p2 p3
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+buffer_io_error: 1 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+Buffer I/O error on dev sr0, logical block 5, lost async page write
+Buffer I/O error on dev sr0, logical block 6, lost async page write
+Buffer I/O error on dev sr0, logical block 7, lost async page write
+Buffer I/O error on dev sr0, logical block 8, lost async page write
+Buffer I/O error on dev sr0, logical block 9, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 127 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 254 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 381 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 508 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 635 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 762 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 889 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1016 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1143 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop7: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop7): ext4_orphan_get:1419: comm syz-executor.7: bad orphan inode 10
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop7): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir2577958017/syzkaller.PczlQE/248/file0 supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sg_write: data in/out 8392668/64 bytes for SCSI command 0xff-- guessing data in;
+   program syz-executor.1 not setting count and/or reply_len properly
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sctp: [Deprecated]: syz-executor.6 (pid 8403) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+tmpfs: Bad value for 'mpol'

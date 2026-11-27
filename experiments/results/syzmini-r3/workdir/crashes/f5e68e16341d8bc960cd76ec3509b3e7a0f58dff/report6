@@ -1,0 +1,2 @@
+io_cancel(r1, &(0x7f00000000c0)={0x0, 0x0, 0x0, 0x6, 0x800, r0, &(0x7f0000000040)="e60bbddab5fe1ae6a03a92786dc001c74c5d5643b3a9d4548c38e2c722a9ce8ad98aae65aef3f36a6a6f1d506ff48c560bf4d2ddc0fbc4f81cbca2152cd7625e3cbebc5a14d882d67f892a7a28a2cd4573e58d27d3af58383c50577b169b0f0e41def052393d1eb0e3c2e5a8a6763a5deb059134256e39bd", 0x78, 0x8, 0x0, 0x3, r0}, &(0x7f0000000100))
+2026/11/26 05:04:05 SYZFATAL: executor 4 failed 11 times: executor 4: failed to write control pipe: write |1: broken pipe

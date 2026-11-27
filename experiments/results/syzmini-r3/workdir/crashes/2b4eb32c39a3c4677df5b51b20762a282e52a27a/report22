@@ -1,0 +1,178 @@
+==================================================================
+BUG: KASAN: null-ptr-deref in cgroup_file_write+0xae/0x3b0
+Read of size 8 at addr 0000000000000040 by task syz-executor.0/420
+
+CPU: 0 PID: 420 Comm: syz-executor.0 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Call Trace:
+ dump_stack_lvl+0x6e/0x91
+ kasan_report.cold+0x116/0x11b
+ cgroup_file_write+0xae/0x3b0
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ __x64_sys_exit_group+0x28/0x30
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fae9deb9c9d
+Code: Unable to access opcode bytes at RIP 0x7fae9deb9c73.
+RSP: 002b:00007ffcbd959a48 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007fae9deb9c9d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000043
+RBP: 0000000000000000 R08: 0000000000000026 R09: 0000000000001388
+R10: 00007ffcbd959940 R11: 0000000000000206 R12: 00007fae9df45978
+R13: 000000000003dacc R14: 0000000000001388 R15: 0000000000000032
+==================================================================
+BUG: kernel NULL pointer dereference, address: 0000000000000040
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 6de6067 P4D 6de6067 PUD 0 
+Oops: 0000 [#1] SMP KASAN NOPTI
+CPU: 0 PID: 420 Comm: syz-executor.0 Tainted: G    B             5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc90007aef928 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000f5df28 RCX: ffffffffb47f0a9d
+RDX: 1ffffffff6cb6c89 RSI: 0000000000000246 RDI: ffffffffb65b6448
+RBP: ffff88803c34ad00 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888001fdb500 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000008d52004 CR4: 0000000000370ef0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ __x64_sys_exit_group+0x28/0x30
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fae9deb9c9d
+Code: Unable to access opcode bytes at RIP 0x7fae9deb9c73.
+RSP: 002b:00007ffcbd959a48 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007fae9deb9c9d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000043
+RBP: 0000000000000000 R08: 0000000000000026 R09: 0000000000001388
+R10: 00007ffcbd959940 R11: 0000000000000206 R12: 00007fae9df45978
+R13: 000000000003dacc R14: 0000000000001388 R15: 0000000000000032
+Modules linked in:
+CR2: 0000000000000040
+---[ end trace 455b2c226a93144b ]---
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc90007aef928 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000f5df28 RCX: ffffffffb47f0a9d
+RDX: 1ffffffff6cb6c89 RSI: 0000000000000246 RDI: ffffffffb65b6448
+RBP: ffff88803c34ad00 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888001fdb500 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000008d52004 CR4: 0000000000370ef0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Fixing recursive fault but reboot is needed!
+BUG: kernel NULL pointer dereference, address: 0000000000000040
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD c145067 P4D c145067 PUD 85b1067 PMD 0 
+Oops: 0000 [#2] SMP KASAN NOPTI
+CPU: 1 PID: 379 Comm: syz-executor.4 Tainted: G    B D           5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc900027b7928 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: 1ffff920004f6f28 RCX: ffffffffb2e031fe
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: 0000000000000040
+RBP: ffff888008bbad00 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000040 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888003f80600 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000003486005 CR4: 0000000000370ee0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ kernfs_fop_write_iter+0x231/0x2f0
+ __kernel_write+0x33d/0x700
+ do_acct_process+0x97b/0xc20
+ acct_pin_kill+0x20/0xa0
+ pin_kill+0x10b/0x2f0
+ mnt_pin_kill+0x23/0x50
+ cleanup_mnt+0x2c5/0x300
+ task_work_run+0xb2/0x100
+ do_exit+0x706/0x1520
+ do_group_exit+0x95/0x180
+ __x64_sys_exit_group+0x28/0x30
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f838c933c9d
+Code: Unable to access opcode bytes at RIP 0x7f838c933c73.
+RSP: 002b:00007ffc5ba53408 EFLAGS: 00000202 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000002 RCX: 00007f838c933c9d
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000043
+RBP: 0000000000000000 R08: 0000000000000026 R09: 0000000000001388
+R10: 00007ffc5ba53300 R11: 0000000000000202 R12: 00007f838c9bf978
+R13: 000000000003da72 R14: 0000000000001388 R15: 0000000000000032
+Modules linked in:
+CR2: 0000000000000040
+---[ end trace 455b2c226a93144c ]---
+RIP: 0010:cgroup_file_write+0xae/0x3b0
+Code: 4d 85 e4 0f 84 58 01 00 00 e8 0e fa 03 00 49 8d bd 18 07 00 00 e8 22 a7 1e 00 4d 8b ad 18 07 00 00 49 8d 7d 40 e8 12 a7 1e 00 <49> 8b 45 40 48 89 ef 48 89 44 24 10 e8 01 a7 1e 00 4c 8b 6d 00 49
+RSP: 0018:ffffc90007aef928 EFLAGS: 00010286
+RAX: 0000000000000001 RBX: 1ffff92000f5df28 RCX: ffffffffb47f0a9d
+RDX: 1ffffffff6cb6c89 RSI: 0000000000000246 RDI: ffffffffb65b6448
+RBP: ffff88803c34ad00 R08: 0000000000000007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000040
+R13: 0000000000000000 R14: ffff888001fdb500 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000040 CR3: 0000000003486005 CR4: 0000000000370ee0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Fixing recursive fault but reboot is needed!
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+Failed to initialize the IGMP autojoin socket (err -2)
+----------------
+Code disassembly (best guess):
+   0:	4d 85 e4             	test   %r12,%r12
+   3:	0f 84 58 01 00 00    	je     0x161
+   9:	e8 0e fa 03 00       	call   0x3fa1c
+   e:	49 8d bd 18 07 00 00 	lea    0x718(%r13),%rdi
+  15:	e8 22 a7 1e 00       	call   0x1ea73c
+  1a:	4d 8b ad 18 07 00 00 	mov    0x718(%r13),%r13
+  21:	49 8d 7d 40          	lea    0x40(%r13),%rdi
+  25:	e8 12 a7 1e 00       	call   0x1ea73c
+* 2a:	49 8b 45 40          	mov    0x40(%r13),%rax <-- trapping instruction
+  2e:	48 89 ef             	mov    %rbp,%rdi
+  31:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  36:	e8 01 a7 1e 00       	call   0x1ea73c
+  3b:	4c 8b 6d 00          	mov    0x0(%rbp),%r13
+  3f:	49                   	rex.WB

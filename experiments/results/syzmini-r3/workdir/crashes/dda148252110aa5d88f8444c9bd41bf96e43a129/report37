@@ -1,0 +1,179 @@
+WARNING: CPU: 1 PID: 14004 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 14004 Comm: syz-executor.5 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de b2 8c e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc90000aaf5c8 EFLAGS: 00010286
+RAX: 000000000000023f RBX: ffff8880038b3110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90006813000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff8880020c3000
+R13: ffff8880038b3000 R14: ffffffff8d1a9aa0 R15: ffff8880038b301c
+FS:  0000555555e95480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b31b21000 CR3: 0000000031830002 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f9d5f967c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffeb78c0358 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f9d5fab7f80 RCX: 00007f9d5f967c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000004
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007f9d5fab7f80
+R13: 00007ffeb78c0580 R14: 00007f9d5fab7f8c R15: 0000000000000000
+---[ end trace 78891de2f3b2a3d6 ]---
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+sctp: [Deprecated]: syz-executor.7 (pid 14012) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir1095153128/syzkaller.pMYQpG/36/file0 supports timestamps until 2038 (0x7fffffff)
+__nla_validate_parse: 3 callbacks suppressed
+netlink: 56 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop1: detected capacity change from 0 to 512
+audit: type=1400 audit(1795684451.026:48): avc:  denied  { module_load } for  pid=14041 comm="syz-executor.7" path=2F6D656D66643A6465766C696E6B202864656C6574656429 dev="hugetlbfs" ino=46436 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:hugetlbfs_t:s0 tclass=system permissive=1
+loop1: detected capacity change from 0 to 8192
+netlink: 196 bytes leftover after parsing attributes in process `syz-executor.3'.
+device sit0 entered promiscuous mode
+Module has invalid ELF structures
+netlink: 2 bytes leftover after parsing attributes in process `syz-executor.1'.
+netlink: 432 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop1: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 32768
+ loop7: p1 p3 < p5 p6 >
+loop7: detected capacity change from 0 to 128
+FAT-fs (loop7): bogus logical sector size 0
+FAT-fs (loop7): Can't find a valid FAT filesystem
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop7: detected capacity change from 0 to 128
+EXT4-fs (loop7): ext4_check_descriptors: Block bitmap for group 0 not in group (block 0)!
+EXT4-fs (loop7): group descriptors corrupted!
+loop7: detected capacity change from 0 to 732
+netlink: 36 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "noblock_vaLidity" or missing value
+netlink: 304 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop1: detected capacity change from 0 to 512
+EXT4-fs (loop1): Unrecognized mount option "dcl" or missing value
+loop0: detected capacity change from 0 to 1024
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+program syz-executor.0 is using a deprecated SCSI ioctl, please convert it to SG_IO
+loop2: detected capacity change from 0 to 512
+EXT4-fs (loop2): orphan cleanup on readonly fs
+Quota error (device loop2): v2_read_file_info: Block with free entry too big (14 >= 6).
+EXT4-fs warning (device loop2): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop2): Cannot turn on quotas: error -117
+EXT4-fs error (device loop2): ext4_orphan_get:1419: comm syz-executor.2: bad orphan inode 458752
+EXT4-fs (loop2): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 65536
+(syz-executor.7,14163,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,14163,0):ocfs2_fill_super:1186 ERROR: status = -22
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+netlink: 28 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop2: detected capacity change from 0 to 2048
+EXT4-fs (loop2): Ignoring removed mblk_io_submit option
+EXT4-fs (loop2): Warning: mounting with an experimental mount option 'dioread_nolock' for blocksize < PAGE_SIZE
+EXT4-fs error (device loop2): ext4_quota_enable:6313: inode #3: comm syz-executor.2: iget: bogus i_mode (3600)
+EXT4-fs (loop2): Remounting filesystem read-only
+EXT4-fs error (device loop2): ext4_quota_enable:6315: comm syz-executor.2: Bad quota inode # 3
+EXT4-fs warning (device loop2): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop2): mount failed
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=62 sclass=netlink_xfrm_socket pid=14185 comm=syz-executor.2
+netlink: 16 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 120 bytes leftover after parsing attributes in process `syz-executor.2'.
+netlink: 4076 bytes leftover after parsing attributes in process `syz-executor.2'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "Rc?àû†" or missing value
+kernel read not supported for file /-., (pid: 14203 comm: syz-executor.4)
+loop7: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: casefold flag without casefold feature
+EXT4-fs (loop7): mounted filesystem without journal. Opts: journal_dev=0x0000000000000004,norecovery,acl,journal_ioprio=0x0000000000000001,grpid,errors=remount-ro,. Quota mode: writeback.
+SELinux:  Context system_u:object_r:depmod_exec_t:s0 is not valid (left unmapped).
+audit: type=1400 audit(1795684456.004:49): avc:  denied  { associate } for  pid=14232 comm="syz-executor.5" name="cgroup.procs" dev="cgroup2" ino=731 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:cgroup_t:s0 tclass=filesystem permissive=1 srawcon="system_u:object_r:depmod_exec_t:s0"
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): mounted filesystem without journal. Opts: resgid=0x000000000000ee01,,errors=continue. Quota mode: writeback.
+netlink: 144 bytes leftover after parsing attributes in process `syz-executor.5'.
+SELinux: security_context_str_to_sid(staff_u) failed for (dev loop7, type ext4) errno=-22
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop1: detected capacity change from 0 to 2048
+ext4 filesystem being mounted at /syzkaller-testdir3617581029/syzkaller.XELGWp/37/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs (loop1): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop1): Ignoring removed nomblk_io_submit option
+EXT4-fs (loop1): journaled quota format not specified
+loop4: detected capacity change from 0 to 4096
+netlink: 144 bytes leftover after parsing attributes in process `syz-executor.7'.
+EXT4-fs (loop4): Unrecognized mount option "smackfsroot=ext4" or missing value
+netlink: 144 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop4: detected capacity change from 0 to 2048
+[EXT4 FS bs=2048, gc=1, bpg=262144, ipg=32, mo=e000e01c, mo2=0002]
+System zones: 0-5
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir3617581029/syzkaller.XELGWp/41/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 160
+sg_write: data in/out 65500/81 bytes for SCSI command 0x8-- guessing data in;
+   program syz-executor.1 not setting count and/or reply_len properly
+netlink: 172 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop4: detected capacity change from 0 to 736
+ISOFS: Unable to identify CD-ROM format.
+loop4: detected capacity change from 0 to 2048
+Alternate GPT is invalid, using primary GPT.
+ loop4: p1 p2 p3
+netlink: 92 bytes leftover after parsing attributes in process `syz-executor.1'.
+loop1: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): Unrecognized mount option "aclŒùãw'54l_path=./giorecovery" or missing value
+[EXT4 FS bs=1024, gc=1, bpg=131072, ipg=32, mo=2802c029, mo2=0002]
+System zones: 0-1, 3-12
+EXT4-fs error (device loop1): ext4_xattr_ibody_find:2187: inode #11: comm syz-executor.1: corrupted in-inode xattr
+EXT4-fs (loop1): Remounting filesystem read-only
+EXT4-fs error (device loop1): ext4_orphan_get:1396: comm syz-executor.1: couldn't read orphan inode 11 (err -117)
+EXT4-fs (loop1): mounted filesystem without journal. Opts: noinit_itable,errors=continue,nombcache,abort,debug,data_err=ignore,debug_want_extra_isize=0x0000000000000066,errors=remount-ro,sysvgroups,. Quota mode: none.
+netlink: 216 bytes leftover after parsing attributes in process `syz-executor.4'.
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1025 (only 16 groups)
+netlink: 2120 bytes leftover after parsing attributes in process `syz-executor.4'.
+loop1: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 1024
+EXT4-fs (loop7): inodes count not valid: 22 vs 32
+EXT4-fs (loop1): invalid first ino: 0
+tmpfs: Bad value for 'nr_inodes'
+blktrace: Concurrent blktraces are not allowed on loop0
+loop1: detected capacity change from 0 to 8192
+ loop1: p1 p2 p3
+autofs4:pid:14371:validate_dev_ioctl: invalid path supplied for cmd(0xc0189379)
+ loop1: p1 p2 p3
+EXT4-fs warning (device sda): verify_group_input:136: Cannot add at group 1025 (only 16 groups)
+netlink: 'syz-executor.5': attribute type 83 has an invalid length.
+netlink: 31584 bytes leftover after parsing attributes in process `syz-executor.7'.
+loop7: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 2048
+EXT4-fs (loop7): ext4_check_descriptors: Block bitmap for group 0 overlaps superblock
+EXT4-fs (loop7): ext4_check_descriptors: Checksum for group 0 failed (38340!=55237)
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: casefold flag without casefold feature
+EXT4-fs (loop7): failed to initialize system zone (-117)
+EXT4-fs (loop7): mount failed

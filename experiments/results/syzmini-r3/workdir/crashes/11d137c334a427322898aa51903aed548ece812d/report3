@@ -1,0 +1,8 @@
+io_uring_register$IORING_REGISTER_BUFFERS2(r1, 0xf, &(0x7f0000001480)={0x7, 0x0, 0x0, &(0x7f00000013c0)=[{&(0x7f0000000000)=""/103, 0x67}, {&(0x7f0000000080)=""/147, 0x93}, {&(0x7f0000000140)=""/144, 0x90}, {&(0x7f0000000200)=""/176, 0xb0}, {&(0x7f00000002c0)}, {&(0x7f0000000300)=""/4096, 0x1000}, {&(0x7f0000001300)=""/147, 0x93}], &(0x7f0000001440)=[0x8000, 0x2]}, 0x20)
+2026/11/25 17:51:41 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

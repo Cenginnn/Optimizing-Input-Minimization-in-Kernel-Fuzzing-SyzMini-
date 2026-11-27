@@ -1,0 +1,6 @@
+sendmsg$DEVLINK_CMD_GET(r3, &(0x7f0000000100)={&(0x7f0000000040)={0x10, 0x0, 0x0, 0x80000}, 0xc, &(0x7f00000000c0)={&(0x7f00000001c0)={0x88, 0x0, 0x800, 0x70bd29, 0x25dfdbfb, {}, [@nsim={{0xe}, {0xf, 0x2, {'netdevsim', 0x0}}}, @pci={{0x8}, {0x11}}, @pci={{0x8}, {0x11}}, @pci={{0x8}, {0x11}}]}, 0x88}, 0x1, 0x0, 0x0, 0x4000}, 0x4)
+2026/11/26 07:50:27 SYZFATAL: executor 4 failed 11 times: executor 4: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

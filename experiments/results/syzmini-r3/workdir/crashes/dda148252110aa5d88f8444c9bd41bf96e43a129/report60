@@ -1,0 +1,530 @@
+sr 1:0:0:0: tag#0 CDB[20]: 9f e6 25 0a 1d 2a 6c 23 ba 12 59 7a 2f 2e fa 22
+sr 1:0:0:0: tag#0 CDB[30]: 8b 6a 1c 3e 72 1f c0 06 22 6c 19 b1 e7 64 89 fa
+sr 1:0:0:0: tag#0 CDB[40]: f3 fa b7 a5 2e e4 79 03 96
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 73 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 73 Comm: kworker/0:1H Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+Workqueue: kblockd blk_mq_run_work_fn
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de f2 ab e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000084fa50 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff8880038a1110 RCX: ffffffffaa87356f
+RDX: ffff8880036c2e80 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003802000
+R13: ffff8880038a1000 R14: ffffffffac5a9aa0 R15: ffff8880038a101c
+FS:  0000000000000000(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+loop7: detected capacity change from 0 to 512
+CR2: 00007f781ab6e020 CR3: 0000000014610001 CR4: 0000000000370ef0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+loop1: detected capacity change from 0 to 2048
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ blk_mq_run_work_fn+0x4a/0x60
+ process_one_work+0x509/0x900
+ worker_thread+0x370/0x990
+ kthread+0x214/0x250
+ ret_from_fork+0x1f/0x30
+---[ end trace 4e05127ea0947a5e ]---
+EXT4-fs (loop7): Unrecognized mount option "grpqYota" or missing value
+EXT4-fs (loop1): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop1): Ignoring removed mblk_io_submit option
+EXT4-fs (loop1): Ignoring removed orlov option
+blktrace: Concurrent blktraces are not allowed on loop5
+EXT4-fs warning (device loop1): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-22). Please run e2fsck to fix.
+EXT4-fs (loop1): mount failed
+loop6: detected capacity change from 0 to 128
+EXT4-fs (loop6): Ignoring removed bh option
+EXT4-fs (loop6): Unrecognized mount option "min" or missing value
+loop0: detected capacity change from 0 to 160
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop3): mounted filesystem without journal. Opts: min_batch_time=0x0000000000000008,max_batch_time=0x0000000000008001,,errors=continue. Quota mode: none.
+loop1: detected capacity change from 0 to 128
+EXT4-fs (loop1): Unrecognized mount option "K¬Aü¬ñ×ÑÚşrŠqâĞí’7w'š#SpÂa¥r|±1+Ÿ3š€Á"0¨csš~ç¿]P+eÃ‹Û+“}ö­}gÿØº·.…9\øüÿC¸»P¢>“_ë™Ñ©®M(ÎÒ¯[!æá1TTÜ	" or missing value
+loop0: detected capacity change from 0 to 2048
+netlink: 'syz-executor.0': attribute type 5 has an invalid length.
+loop0: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 2048
+EXT4-fs error (device loop0): ext4_fill_super:4816: inode #2: comm syz-executor.0: casefold flag without casefold feature
+EXT4-fs (loop0): warning: mounting fs with errors, running e2fsck is recommended
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 262144
+FAT-fs (loop4): Unrecognized mount option "ê÷ÆºRİ‹u˜"5GÉ" or missing value
+loop3: detected capacity change from 0 to 128
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 02 00
+print_req_error: 506 callbacks suppressed
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 1 prio class 0
+EXT4-fs (loop0): Unrecognized mount option "he" or missing value
+EXT4-fs (loop3): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+loop4: detected capacity change from 0 to 128
+loop7: detected capacity change from 0 to 2048
+loop5: detected capacity change from 0 to 512
+loop3: detected capacity change from 0 to 2048
+EXT4-fs (loop7): Unrecognized mount option "MÎºÿ­9—Oùæ½H‹Ÿ|5ÄS»
+Ú°¡„ €1" or missing value
+loop0: detected capacity change from 0 to 8192
+EXT4-fs (loop4): Unrecognized mount option "barrier=noauto_da_alloc" or missing value
+EXT4-fs (loop5): feature flags set on rev 0 fs, running e2fsck is recommended
+FAT-fs (loop0): Unrecognized mount option "do46ş¤Aåãts" or missing value
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop5): orphan cleanup on readonly fs
+EXT4-fs error (device loop5): ext4_ext_check_inode:460: inode #4: comm syz-executor.5: pblk 0 bad header/extent: invalid magic - magic f300, entries 1, max 4(0), depth 0(0)
+EXT4-fs (loop6): Unrecognized mount option "jqfmt=vfgş±9b" or missing value
+EXT4-fs error (device loop5): ext4_quota_enable:6315: comm syz-executor.5: Bad quota inode # 4
+EXT4-fs warning (device loop5): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop5): Cannot turn on quotas: error -117
+EXT4-fs (loop5): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop6: detected capacity change from 0 to 2048
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-22). Please run e2fsck to fix.
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop6): mount failed
+EXT4-fs (loop4): Unrecognized mount option "nombca" or missing value
+loop7: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): ext4_fill_super:4816: inode #2: comm syz-executor.7: casefold flag without casefold feature
+EXT4-fs (loop7): mounted filesystem without journal. Opts: journal_dev=0x0000000000000004,norecovery,acl,journal_ioprio=0x0000000000000001,grpid,errors=remount-ro,. Quota mode: writeback.
+loop0: detected capacity change from 0 to 512
+loop3: detected capacity change from 0 to 8192
+loop2: detected capacity change from 0 to 512
+FAT-fs (loop3): Unrecognized mount option "ÿÿ" or missing value
+EXT4-fs (loop0): orphan cleanup on readonly fs
+EXT4-fs error (device loop0): ext4_ext_check_inode:460: inode #4: comm syz-executor.0: pblk 0 bad header/extent: invalid eh_entries - magic f30a, entries 32513, max 4(4), depth 0(0)
+loop4: detected capacity change from 0 to 2048
+EXT4-fs (loop4): dax option not supported
+EXT4-fs error (device loop0): ext4_quota_enable:6315: comm syz-executor.0: Bad quota inode # 4
+loop3: detected capacity change from 0 to 512
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop0): Cannot turn on quotas: error -117
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop1: detected capacity change from 0 to 8192
+loop1: detected capacity change from 0 to 2048
+EXT4-fs (loop1): Unrecognized mount option "n" or missing value
+netlink: 188 bytes leftover after parsing attributes in process `syz-executor.1'.
+Process accounting resumed
+Process accounting resumed
+tmpfs: Bad value for 'mpol'
+tmpfs: Bad value for 'nr_blocks'
+loop1: detected capacity change from 0 to 512
+FAT-fs (loop1): Invalid FSINFO signature: 0x00000010, 0x00000000 (sector = 1)
+FAT-fs (loop1): Invalid FSINFO signature: 0x00000010, 0x00000000 (sector = 1)
+FAT-fs (loop1): Invalid FSINFO signature: 0x00000010, 0x00000000 (sector = 1)
+loop0: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): orphan cleanup on readonly fs
+Quota error (device loop4): v2_read_header: Failed header read: expected=8 got=0
+EXT4-fs warning (device loop4): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-22). Please run e2fsck to fix.
+EXT4-fs (loop4): Cannot turn on quotas: error -22
+EXT4-fs error (device loop4): ext4_orphan_get:1419: comm syz-executor.4: bad orphan inode 458752
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop2: detected capacity change from 0 to 128
+EXT4-fs (loop2): ext4_check_descriptors: Checksum for group 0 failed (55074!=39978)
+EXT4-fs (loop2): group descriptors corrupted!
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+loop7: detected capacity change from 0 to 512
+netlink: 'syz-executor.6': attribute type 4 has an invalid length.
+netlink: 148 bytes leftover after parsing attributes in process `syz-executor.6'.
+EXT4-fs (loop7): feature flags set on rev 0 fs, running e2fsck is recommended
+loop2: detected capacity change from 0 to 1024
+EXT4-fs (loop7): orphan cleanup on readonly fs
+loop1: detected capacity change from 0 to 2048
+EXT4-fs error (device loop7): ext4_ext_check_inode:460: inode #16: comm syz-executor.7: pblk 0 bad header/extent: invalid extent entries - magic f30a, entries 1, max 4(4), depth 0(0)
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 08 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x80700 phys_seg 4 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+buffer_io_error: 65510 callbacks suppressed
+Buffer I/O error on dev sr0, logical block 0, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 1, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 2 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 2, async page read
+EXT4-fs error (device loop7): ext4_quota_enable:6315: comm syz-executor.7: Bad quota inode # 16
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 3 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 3, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop3: detected capacity change from 0 to 512
+EXT4-fs warning (device loop7): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+blk_update_request: I/O error, dev sr0, sector 4 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+EXT4-fs (loop7): Cannot turn on quotas: error -117
+Buffer I/O error on dev sr0, logical block 4, async page read
+EXT4-fs (loop7): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 5 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 5, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop3): Unrecognized mount option "dont_measure" or missing value
+blk_update_request: I/O error, dev sr0, sector 6 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 6, async page read
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 7 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+Buffer I/O error on dev sr0, logical block 7, async page read
+EXT4-fs (loop2): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+EXT4-fs (loop1): Unrecognized mount option "nombcaThe" or missing value
+capability: warning: `syz-executor.3' uses deprecated v2 capabilities in a way that may be insecure
+program syz-executor.2 is using a deprecated SCSI ioctl, please convert it to SG_IO
+loop3: detected capacity change from 0 to 8192
+loop7: detected capacity change from 0 to 512
+FAT-fs (loop3): Unrecognized mount option "nnonumtail=1" or missing value
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): Unrecognized mount option "g" or missing value
+loop3: detected capacity change from 0 to 160
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): Unrecognized mount option "grpquo" or missing value
+loop6: detected capacity change from 0 to 736
+netlink: 228 bytes leftover after parsing attributes in process `syz-executor.7'.
+ISOFS: Unable to identify CD-ROM format.
+loop4: detected capacity change from 0 to 2048
+loop6: detected capacity change from 0 to 2048
+EXT4-fs (loop4): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop4): Ignoring removed mblk_io_submit option
+EXT4-fs (loop4): Ignoring removed orlov option
+loop7: detected capacity change from 0 to 164
+EXT4-fs (loop6): unsupported inode size: 3
+EXT4-fs (loop6): blocksize: 8192
+Quota error (device loop4): v2_read_file_info: Block with free entry too big (7 >= 6).
+EXT4-fs warning (device loop4): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-117). Please run e2fsck to fix.
+loop3: detected capacity change from 0 to 8192
+EXT4-fs (loop4): mount failed
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop6): invalid inodes per group: 0
+
+netlink: 'syz-executor.3': attribute type 4 has an invalid length.
+netlink: 148 bytes leftover after parsing attributes in process `syz-executor.3'.
+netlink: 5588 bytes leftover after parsing attributes in process `syz-executor.3'.
+device sit0 entered promiscuous mode
+loop5: detected capacity change from 0 to 128
+EXT4-fs (loop5): Unrecognized mount option "max_batch_time" or missing value
+netlink: 'syz-executor.3': attribute type 26 has an invalid length.
+loop6: detected capacity change from 0 to 8192
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 00 00 00 40 00
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x4000 phys_seg 6 prio class 2
+loop5: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+loop6: detected capacity change from 0 to 128
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 40 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 80 00 00 40 00
+EXT4-fs (loop6): mounted filesystem without journal. Opts: max_batch_time=0x0000000000010001,commit=0x000,errors=continue. Quota mode: none.
+ext4 filesystem being mounted at /syzkaller-testdir26243595/syzkaller.Iwetbr/199/mnt supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 00 c0 00 00 40 00
+netlink: 8900 bytes leftover after parsing attributes in process `syz-executor.4'.
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 00 00 00 40 00
+loop5: detected capacity change from 0 to 2048
+netlink: 12 bytes leftover after parsing attributes in process `syz-executor.7'.
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 40 00 00 40 00
+EXT4-fs (loop5): Ignoring removed mblk_io_submit option
+EXT4-fs (loop5): Unrecognized mount option "errors=remount-r" or missing value
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 80 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 01 c0 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_OK driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: [sr0] tag#0 Sense Key : Not Ready [current] 
+sr 1:0:0:0: [sr0] tag#0 Add. Sense: Medium not present
+sr 1:0:0:0: [sr0] tag#0 CDB: Read(10) 28 00 00 00 02 00 00 00 40 00
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 'syz-executor.0': attribute type 10 has an invalid length.
+netlink: 4456 bytes leftover after parsing attributes in process `syz-executor.0'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+audit: type=1400 audit(1795691089.742:22): avc:  denied  { dyntransition } for  pid=6076 comm="syz-executor.6" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:unconfined_exec_t:s0 tclass=process permissive=1
+tmpfs: Bad value for 'mpol'
+loop6: detected capacity change from 0 to 2048
+SELinux: security_context_str_to_sid(user_usubj_role=:\#-,context=staff_u,smackfsroot=:\#-,dirsync,dont_hash,) failed for (dev loop6, type vfat) errno=-22

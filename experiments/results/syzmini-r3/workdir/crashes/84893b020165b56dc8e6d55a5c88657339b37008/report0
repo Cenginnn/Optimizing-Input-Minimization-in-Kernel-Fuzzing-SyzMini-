@@ -1,0 +1,230 @@
+loop3: detected capacity change from 0 to 1024
+------------[ cut here ]------------
+Trying to write to read-only block-device loop3 (partno 0)
+WARNING: CPU: 1 PID: 18358 at block/blk-core.c:706 submit_bio_checks+0x9f9/0xa80
+Modules linked in:
+CPU: 1 PID: 18358 Comm: syz-executor.3 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:submit_bio_checks+0x9f9/0xa80
+Code: 24 48 89 ef 48 8d 74 24 58 0f b6 90 30 03 00 00 89 14 24 e8 99 34 ff ff 8b 14 24 48 c7 c7 60 b8 9b 91 48 89 c6 e8 3d 34 16 01 <0f> 0b e9 e9 fb ff ff e8 2b aa 85 ff 48 8b 3c 24 e8 e2 54 a0 ff 0f
+RSP: 0018:ffffc9000ba9f6c8 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: 1ffff92001753ee0 RCX: 0000000000000000
+RDX: 0000000000040000 RSI: ffffc90006071000 RDI: fffff52001753ecb
+RBP: ffff88800fc58600 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800fc58610
+R13: ffff888002af9380 R14: ffff8880034f97a0 R15: ffff88800fc58608
+FS:  0000555557552480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fff879e8d00 CR3: 0000000027546003 CR4: 0000000000370ee0
+Call Trace:
+ __submit_bio+0x381/0x590
+ submit_bio_noacct+0x51b/0x590
+ submit_bio+0x11e/0x1e0
+ submit_bh_wbc.constprop.0+0x344/0x3a0
+ write_mmp_block+0x18c/0x340
+ ext4_multi_mount_protect+0x370/0x760
+netlink: 'syz-executor.0': attribute type 3 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.0'.
+ ext4_fill_super+0x5c03/0x74e0
+ mount_bdev+0x271/0x2d0
+ legacy_get_tree+0x6e/0xe0
+ vfs_get_tree+0x48/0x170
+ path_mount+0x5f3/0x1390
+ __x64_sys_mount+0x216/0x260
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7f5ff917c42e
+Code: 0f 1f 40 00 48 c7 c2 e8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 a5 00 00 00 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffeb0aff828 EFLAGS: 00000202 ORIG_RAX: 00000000000000a5
+RAX: ffffffffffffffda RBX: 00007ffeb0aff8c0 RCX: 00007f5ff917c42e
+RDX: 0000000020000540 RSI: 0000000020000580 RDI: 00007ffeb0aff880
+RBP: 0000000020000540 R08: 00007ffeb0aff8c0 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000202 R12: 0000000020000580
+R13: 00007ffeb0aff880 R14: 000000000000053d R15: 00000000200005c0
+---[ end trace 71dff5abefebcd45 ]---
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): revision level too high, forcing read-only mode
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 0
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18355,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18355,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 2
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 5
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 6
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 7
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 8
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18402,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18402,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): invalid first ino: 9
+loop3: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+netlink: 12 bytes leftover after parsing attributes in process `syz-executor.2'.
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18439,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18439,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18479,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18479,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18504,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18504,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop7: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+(syz-executor.7,18524,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18524,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18550,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18550,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 0
+EXT4-fs (loop4): blocksize: 1024
+netlink: 980 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18590,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18590,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 3
+EXT4-fs (loop4): blocksize: 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 4
+EXT4-fs (loop4): blocksize: 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 6
+EXT4-fs (loop4): blocksize: 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 7
+EXT4-fs (loop4): blocksize: 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 10
+EXT4-fs (loop4): blocksize: 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 11
+EXT4-fs (loop4): blocksize: 1024
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+loop7: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 12
+EXT4-fs (loop4): blocksize: 1024
+(syz-executor.7,18633,0):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18633,0):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 13
+EXT4-fs (loop4): blocksize: 1024
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 14
+EXT4-fs (loop4): blocksize: 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 16
+EXT4-fs (loop4): blocksize: 1024
+loop3: detected capacity change from 0 to 1024
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+netlink: 'syz-executor.0': attribute type 3 has an invalid length.
+netlink: 52 bytes leftover after parsing attributes in process `syz-executor.0'.
+loop6: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 17
+EXT4-fs (loop4): blocksize: 1024
+ext4 filesystem being mounted at /syzkaller-testdir3305472384/syzkaller.oFxCUX/601/file0 supports timestamps until 2038 (0x7fffffff)
+loop3: detected capacity change from 0 to 1024
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18673,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18673,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 18
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop4): blocksize: 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 127
+EXT4-fs (loop4): blocksize: 1024
+netlink: 20 bytes leftover after parsing attributes in process `syz-executor.6'.
+loop1: detected capacity change from 0 to 262144
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 160
+EXT4-fs (loop4): blocksize: 1024
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): unsupported inode size: 164
+EXT4-fs (loop4): blocksize: 1024
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18711,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18711,1):ocfs2_fill_super:1186 ERROR: status = -22
+loop4: detected capacity change from 0 to 1024
+EXT4-fs error (device loop4): ext4_fill_super:4816: inode #2: comm syz-executor.4: iget: root inode unallocated
+EXT4-fs (loop4): get root inode failed
+EXT4-fs (loop4): mount failed
+loop4: detected capacity change from 0 to 1024
+EXT4-fs mount: 27 callbacks suppressed
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: none.
+loop3: detected capacity change from 0 to 1024
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): failed to open journal device unknown-block(0,0) -6
+loop1: detected capacity change from 0 to 262144
+loop4: detected capacity change from 0 to 1024
+loop3: detected capacity change from 0 to 1024
+EXT4-fs (loop4): failed to open journal device unknown-block(0,0) -6
+loop4: detected capacity change from 0 to 1024
+EXT4-fs (loop4): failed to open journal device unknown-block(0,0) -6
+loop7: detected capacity change from 0 to 262144
+(syz-executor.7,18750,1):ocfs2_parse_options:1477 ERROR: Invalid heartbeat mount options
+(syz-executor.7,18750,1):ocfs2_fill_super:1186 ERROR: status = -22

@@ -1,0 +1,6 @@
+7b9892b9df3a8b789abdc50f4fd4f3decdeb3d1c80fe801c57", 0x1000}, {&(0x7f00000002c0)="178b9ec6ef4ab99d3dd7d1574cf37029017230514ca98f8e96", 0x19}, {&(0x7f0000002500)="4b734a24401630b1bc859a78c606aefb998af3dbf2486ce35e7775439d7e401ff3271e5d794b3f2f156db99d069b1ae9a3c6f0f5cf94793c7335a2fc5529f6816313101c036e8f77d512f04c02a7cf93ce570fc53720d38fe1a7c10f7deba0128c117d", 0x63}, {&(0x7f0000000300)="137e6f0d98cabfb338bb512424eb0191172b0818f1b0c87aa9483a34a8a2eb8e8cf858de2b8b2c53d6c43c2e2843", 0x2e}], 0x9, 0x2136, 0x4)
+2026/11/26 13:05:07 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

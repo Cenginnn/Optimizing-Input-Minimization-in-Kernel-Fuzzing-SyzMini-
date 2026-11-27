@@ -1,0 +1,9 @@
+add_key$fscrypt_v1(&(0x7f0000000080), &(0x7f00000000c0)={'fscrypt:', @desc4}, &(0x7f0000000100)={0x0, "853e7a0d267728cc1db81ac36bf128e31cdcca39e70b42d3c751bc5dd842bb3065f00919f69092c235e0f92842c2e190800932f0661f509275e62952f3cec0e4", 0x401}, 0x48, r3)
+keyctl$unlink(0x9, r3, 0xfffffffffffffffd)
+2026/11/26 11:08:26 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

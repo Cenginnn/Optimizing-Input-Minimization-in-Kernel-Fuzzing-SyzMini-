@@ -1,0 +1,6 @@
+sendmsg$nl_route_sched_retired(r1, &(0x7f0000000140)={&(0x7f0000000000)={0x10, 0x0, 0x0, 0x200000}, 0xc, &(0x7f0000000100)={&(0x7f00000094c0)=ANY=[@ANYBLOB="7c7b0000180001002bbd7002fddbdf250a000300", @ANYRES32=0x0, @ANYRES8, @ANYRES16=r0], 0x7b7c}, 0x1, 0x0, 0x600, 0x4040080}, 0x80)
+2026/11/25 19:06:15 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,688 @@
+------------[ cut here ]------------
+WARNING: CPU: 1 PID: 11543 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 1 PID: 11543 Comm: syz-executor.1 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 92 ae e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc9000865f5c8 EFLAGS: 00010286
+RAX: 0000000000000243 RBX: ffff888003809110 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc90000dc2000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff888003899000
+R13: ffff888003809000 R14: ffffffffaefa9aa0 R15: ffff88800380901c
+FS:  00005555568b3480(0000) GS:ffff88806d500000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b31021000 CR3: 000000002bc9e001 CR4: 0000000000370ee0
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+loop0: detected capacity change from 0 to 262144
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fcd351bac9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffff4b4a558 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fcd3530af80 RCX: 00007fcd351bac9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fcd3530af80
+R13: 00007ffff4b4a780 R14: 00007fcd3530af8c R15: 0000000000000000
+---[ end trace dc19ab68bf7fb872 ]---
+audit: type=1400 audit(1795674592.261:43): avc:  denied  { associate } for  pid=11550 comm="syz-executor.5" name="cgroup.procs" dev="cgroup2" ino=747 scontext=system_u:object_r:apt_var_cache_t:s0 tcontext=system_u:object_r:cgroup_t:s0 tclass=filesystem permissive=1
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+loop5: detected capacity change from 0 to 128
+loop7: detected capacity change from 0 to 160
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs (loop5): Unrecognized mount option "∑" or missing value
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop7: detected capacity change from 0 to 160
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+SELinux:  Context system_u:object_r:hald_log_t:s0 is not valid (left unmapped).
+audit: type=1400 audit(1795674592.417:44): avc:  denied  { associate } for  pid=11566 comm="syz-executor.5" name="cgroup.procs" dev="cgroup" ino=161 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:cgroup_t:s0 tclass=filesystem permissive=1 srawcon="system_u:object_r:hald_log_t:s0"
+loop6: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/725/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop5: detected capacity change from 0 to 164
+SELinux:  duplicate or incompatible mount options
+loop5: detected capacity change from 0 to 732
+isofs_fill_super: root inode is not a directory. Corrupted media?
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop4: detected capacity change from 0 to 512
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/730/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+netlink: 'syz-executor.0': attribute type 11 has an invalid length.
+netlink: 'syz-executor.0': attribute type 14 has an invalid length.
+loop6: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 160
+EXT4-fs (loop6): orphan cleanup on readonly fs
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/731/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop4): ext4_xattr_block_get:536: inode #15: comm syz-executor.4: corrupted xattr block 32
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sctp: [Deprecated]: syz-executor.7 (pid 11641) Use of struct sctp_assoc_value in delayed_ack socket option.
+Use struct sctp_sack_info instead
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop4 ino=15
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs error (device loop4): ext4_xattr_block_get:536: inode #15: comm syz-executor.4: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop4 ino=15
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs error (device loop4): ext4_xattr_block_find:1824: inode #15: comm syz-executor.4: corrupted xattr block 32
+loop7: detected capacity change from 0 to 160
+netlink: 600 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 40 bytes leftover after parsing attributes in process `syz-executor.4'.
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+netlink: 7484 bytes leftover after parsing attributes in process `syz-executor.3'.
+loop4: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 160
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/734/file0 supports timestamps until 2038 (0x7fffffff)
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/735/file0 supports timestamps until 2038 (0x7fffffff)
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=1187 sclass=netlink_route_socket pid=11694 comm=syz-executor.3
+netlink: 120 bytes leftover after parsing attributes in process `syz-executor.5'.
+netlink: 16 bytes leftover after parsing attributes in process `syz-executor.5'.
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop4: detected capacity change from 0 to 512
+autofs4:pid:11710:autofs_fill_super: called with bogus options
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/736/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+Module has invalid ELF structures
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop0: detected capacity change from 0 to 128
+EXT4-fs (loop0): Unrecognized mount option "resgid=0x00000000000000007" or missing value
+loop0: detected capacity change from 0 to 2048
+EXT4-fs (loop0): Mount option "nouser_xattr" will be removed by 3.5
+Contact linux-ext4@vger.kernel.org if you think we should keep it.
+
+EXT4-fs (loop0): Ignoring removed mblk_io_submit option
+EXT4-fs (loop0): Ignoring removed orlov option
+Quota error (device loop0): v2_read_file_info: Block with free entry too big (7 >= 6).
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+EXT4-fs warning (device loop0): ext4_enable_quotas:6352: Failed to enable quota tracking (type=0, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop0): mount failed
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 8192
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+FAT-fs (loop5): Unrecognized mount option "sùd÷hkrtnañ#Äme=lower" or missing value
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+program syz-executor.5 is using a deprecated SCSI ioctl, please convert it to SG_IO
+sd 0:0:0:0: tag#0 FAILED Result: hostbyte=DID_ABORT driverbyte=DRIVER_OK cmd_age=0s
+sd 0:0:0:0: tag#0 CDB: Spare (out), Mechanism status
+sd 0:0:0:0: tag#0 CDB[00]: bd dc ff c2 16 0a 1f 27 64 8c 78 66 7a 8b c4 55
+sd 0:0:0:0: tag#0 CDB[10]: f1 a4 aa 7a ab 15 d0 0c 85 42 15 28 37 c1 23 d9
+sd 0:0:0:0: tag#0 CDB[20]: 95 67 65 7f 11 30 97 d5 b2 ca 18 a5
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/738/file0 supports timestamps until 2038 (0x7fffffff)
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 2048
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs (loop5): Unrecognized mount option "" or missing value
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+netlink: 24768 bytes leftover after parsing attributes in process `syz-executor.1'.
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop5: detected capacity change from 0 to 736
+loop6: detected capacity change from 0 to 512
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+loop5: detected capacity change from 0 to 512
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/739/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 256
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+loop7: detected capacity change from 0 to 160
+loop4: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+EXT4-fs mount: 36 callbacks suppressed
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/740/file0 supports timestamps until 2038 (0x7fffffff)
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+loop7: detected capacity change from 0 to 160
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+audit: type=1400 audit(1795674598.497:45): avc:  denied  { setattr } for  pid=11834 comm="syz-executor.3" name="cgroup.procs" dev="cgroup2" ino=779 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:fuse_device_t:s0 tclass=file permissive=1
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+EXT4-fs error (device loop4): ext4_xattr_block_get:536: inode #15: comm syz-executor.4: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop4 ino=15
+EXT4-fs error (device loop4): ext4_xattr_block_get:536: inode #15: comm syz-executor.4: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop4 ino=15
+EXT4-fs error (device loop4): ext4_xattr_block_get:536: inode #15: comm syz-executor.4: corrupted xattr block 32
+SELinux: inode_doinit_use_xattr:  getxattr returned 117 for dev=loop4 ino=15
+loop7: detected capacity change from 0 to 160
+tmpfs: Bad value for 'mpol'
+loop6: detected capacity change from 0 to 512
+loop5: detected capacity change from 0 to 2048
+audit: type=1400 audit(1795674598.648:46): avc:  denied  { relabelfrom } for  pid=11819 comm="syz-executor.4" name="" dev="pipefs" ino=13788 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=fifo_file permissive=1
+audit: type=1400 audit(1795674598.648:47): avc:  denied  { relabelto } for  pid=11819 comm="syz-executor.4" name="" dev="pipefs" ino=13788 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:framebuf_device_t:s0 tclass=fifo_file permissive=1
+loop7: detected capacity change from 0 to 160
+FAT-fs (loop5): Unrecognized mount option "ZÆ)›¿›#lïáZ°›;ERé&¥w¬⁄⁄j.3rjëë∂xW}¸L∞îDË¥∫üd®E`/n]ÎÖ‘zÛk!Ü‡±≥–£“1E®”ìgæë∆ΩÛ‘¨≈}ôP}?\ûP	w¿À/œWOÃG˝VËP'M$„#ﬁU√Ù¿=ÎBA&8‹ûG∂Œ«rmgh†ì¯0˙ê∫œ™" or missing value
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+netlink: 'syz-executor.3': attribute type 1 has an invalid length.
+netlink: 'syz-executor.3': attribute type 2 has an invalid length.
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+netlink: 'syz-executor.3': attribute type 1 has an invalid length.
+netlink: 'syz-executor.3': attribute type 2 has an invalid length.
+netlink: 'syz-executor.3': attribute type 1 has an invalid length.
+netlink: 'syz-executor.3': attribute type 2 has an invalid length.
+netlink: 'syz-executor.3': attribute type 1 has an invalid length.
+netlink: 'syz-executor.3': attribute type 2 has an invalid length.
+netlink: 'syz-executor.3': attribute type 1 has an invalid length.
+netlink: 'syz-executor.3': attribute type 2 has an invalid length.
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+loop4: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 160
+loop5: detected capacity change from 0 to 128
+EXT4-fs (loop5): Unrecognized mount option "barrier=noauto_da_alloc" or missing value
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+isofs_fill_super: bread failed, dev=loop7, iso_blknum=40, block=80
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/741/file0 supports timestamps until 2038 (0x7fffffff)
+loop6: detected capacity change from 0 to 512
+loop7: detected capacity change from 0 to 160
+loop4: detected capacity change from 0 to 512
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop0): Invalid journal IO priority (must be 0-7)
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+autofs4:pid:11879:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(33488897.520093696), cmd(0xc018937d)
+autofs4:pid:11879:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc018937d)
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/742/file0 supports timestamps until 2038 (0x7fffffff)
+loop0: detected capacity change from 0 to 512
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+cgroup: Invalid name
+audit: type=1400 audit(1795674599.507:48): avc:  denied  { mounton } for  pid=11886 comm="syz-executor.3" path="/syzcgroup/unified/syz3/cgroup.procs" dev="cgroup2" ino=779 scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:object_r:fuse_device_t:s0 tclass=file permissive=1
+EXT4-fs (loop0): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir4205932059/syzkaller.p8lk2v/315/file0 supports timestamps until 2038 (0x7fffffff)
+platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): Unrecognized mount option "0x0000000000000003ˇˇˇˇˇˇˇˇ00000000000000000003" or missing value
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 512
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=9 sclass=netlink_xfrm_socket pid=11913 comm=syz-executor.0
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/745/file0 supports timestamps until 2038 (0x7fffffff)
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 3 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+loop7: detected capacity change from 0 to 160
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+Buffer I/O error on dev sr0, logical block 0, lost async page write
+Buffer I/O error on dev sr0, logical block 1, lost async page write
+Buffer I/O error on dev sr0, logical block 2, lost async page write
+Buffer I/O error on dev sr0, logical block 3, lost async page write
+Buffer I/O error on dev sr0, logical block 4, lost async page write
+Buffer I/O error on dev sr0, logical block 5, lost async page write
+Buffer I/O error on dev sr0, logical block 6, lost async page write
+Buffer I/O error on dev sr0, logical block 7, lost async page write
+Buffer I/O error on dev sr0, logical block 8, lost async page write
+Buffer I/O error on dev sr0, logical block 9, lost async page write
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 127 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 254 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 381 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 508 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 635 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 762 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 889 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 1016 op 0x1:(WRITE) flags 0x4800 phys_seg 127 prio class 0
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop7: detected capacity change from 0 to 160
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop0: detected capacity change from 0 to 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop0): unsupported inode size: 4096
+EXT4-fs (loop0): blocksize: 2048
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+netlink: 31584 bytes leftover after parsing attributes in process `syz-executor.4'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop7: detected capacity change from 0 to 160
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+cgroup: No subsys list or none specified
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 512
+EXT4-fs (loop4): couldn't mount as ext2 due to feature incompatibilities
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop4): mounted filesystem without journal. Opts: ,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+ext4 filesystem being mounted at /syzkaller-testdir3068942084/syzkaller.1W7Nyi/748/file0 supports timestamps until 2038 (0x7fffffff)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): orphan cleanup on readonly fs
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop4: detected capacity change from 0 to 512
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+loop6: detected capacity change from 0 to 512
+EXT4-fs (loop6): orphan cleanup on readonly fs
+EXT4-fs error (device loop6): ext4_quota_enable:6313: inode #4: comm syz-executor.6: iget: bogus i_mode (177401)
+EXT4-fs error (device loop6): ext4_quota_enable:6315: comm syz-executor.6: Bad quota inode # 4
+EXT4-fs warning (device loop6): ext4_enable_quotas:6352: Failed to enable quota tracking (type=1, err=-117). Please run e2fsck to fix.
+EXT4-fs (loop6): Cannot turn on quotas: error -117
+EXT4-fs (loop6): mounted filesystem without journal. Opts: grpquota,acl,errors=continue. Quota mode: writeback.
+loop4: detected capacity change from 0 to 512
+device lo entered promiscuous mode
+device lo left promiscuous mode

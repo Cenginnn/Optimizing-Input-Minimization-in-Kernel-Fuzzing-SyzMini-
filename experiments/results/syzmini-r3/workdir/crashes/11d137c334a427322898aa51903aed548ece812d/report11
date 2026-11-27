@@ -1,0 +1,12 @@
+syz_open_dev$sg(&(0x7f0000000040), 0x9, 0x200000)
+ioctl$SCSI_IOCTL_SYNC(0xffffffffffffffff, 0x4)
+r0 = openat$bsg(0xffffffffffffff9c, &(0x7f0000000780), 0x0, 0x0)
+read$snapshot(r0, &(0x7f0000000000)=""/19, 0x13)
+read$snapshot(0xffffffffffffffff, &(0x7f0000005040), 0x0)
+2026/11/25 21:34:46 SYZFATAL: executor 5 failed 11 times: executor 5: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3999664 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,10 @@
+UT_TCP_FIN={0x8, 0x5, 0x80000001}, @IPVS_CMD_ATTR_SERVICE={0x30, 0x1, 0x0, 0x1, [@IPVS_SVC_ATTR_AF={0x6, 0x1, 0xa}, @IPVS_SVC_ATTR_ADDR={0x14, 0x3, @ipv6=@ipv4={'\x00', '\xff\xff', @initdev={0xac, 0x1e, 0x0, 0x0}}}, @IPVS_SVC_ATTR_FWMARK={0x8, 0x5, 0x2}, @IPVS_SVC_ATTR_SCHED_NAME={0x7, 0x6, 'lc\x00'}]}, @IPVS_CMD_ATTR_TIMEOUT_UDP={0x8, 0x6, 0x800}]}, 0xc4}, 0x1, 0x0, 0x0, 0x1}, 0x40005)
+r2 = socket$inet6_udplite(0xa, 0x2, 0x88)
+getsockopt$inet6_int(r2, 0x29, 0x50, &(0x7f0000000080), &(0x7f00000000c0)=0x4)
+2026/11/26 05:01:33 SYZFATAL: executor 4 failed 11 times: executor 4: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

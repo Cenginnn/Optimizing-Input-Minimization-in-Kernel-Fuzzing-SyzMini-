@@ -1,0 +1,6 @@
+IPSOV4_A_MLSCATLOC={0x8, 0x9, 0x44f2a1ae}, @NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x1f64abd7}, @NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x7cc8aa8}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x308}, @NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x895ff64}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x53a7}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x20f7}]}, {0x14, 0xb, 0x0, 0x1, [@NLBL_CIPSOV4_A_MLSCATLOC={0x8, 0x9, 0x74e32bd6}, @NLBL_CIPSOV4_A_MLSCATREM={0x8, 0xa, 0x6b20}]}]}]}, 0x304}, 0x1, 0x0, 0xffffffff00000000, 0x44800}, 0x4080)
+2026/11/26 03:46:24 SYZFATAL: executor 7 failed 11 times: executor 7: exit status 67 err exit status 67
+SYZFAIL: ebtable checkpoint: socket(AF_INET, SOCK_STREAM, IPPROTO_TCP)
+ (errno 2: No such file or directory)
+loop exited with status 67
+exit status 67

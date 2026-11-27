@@ -1,0 +1,11 @@
+18014000300ff020000000000000000000000000001140004d634d6995efaa700ff0100000000000000001f96bfe7787c8f064339fe0000000000011400018008000100e000000108000200ffffffff0c00028005000100110000002c00018014000300fe80000000000000000000000000003614000400ff0100000000000000000000000000010c0002800500010000000000200001801400018008000100e000000208000200ac14144306c5d7608fa3cca9362a7056ea21198ee85481f86a72e2c5ce07"], 0x120}, 0x1, 0x0, 0x0, 0xa0}, 0x10)
+recvfrom(0xffffffffffffffff, &(0x7f0000000240)=""/164, 0xa4, 0x0, 0x0, 0x0)
+15:13:54 executing program 4:
+mount$tmpfs(0x0, &(0x7f0000000140)='./cgroup/cgroup.procs\x00', &(0x7f00000001c0), 0x8800, &(0x7f0000000280)={[{@huge_never}, {@size={'size', 0x3d, [0x39, 0x6b, 0x31, 0x33, 0x38, 0x70, 0x34, 0x6b, 0x31, 0x70]}}, {@huge_always}, {@gid}, {}, {@nr_blocks={'nr_blocks', 0x3d, [0x32, 0x30, 0x33, 0x34, 0x2d, 0x2d, 0x67, 0x33]}}, {@huge_always}], [{@smackfshat}, {@fsmagic={'fsmagic', 0x3d, 0x6}}, {@appraise_type}, {@smackfsdef}, {@uid_eq}, {@smackfsfloor={'smackfsfloor', 0x3d, '\x00'}}]})
+2026/11/25 15:13:54 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

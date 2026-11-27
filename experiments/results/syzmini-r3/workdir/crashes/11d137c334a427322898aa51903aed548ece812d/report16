@@ -1,0 +1,12 @@
+sendmsg$DCCPDIAG_GETSOCK(r0, &(0x7f0000000400)={&(0x7f0000000380)={0x10, 0x0, 0x0, 0x400}, 0xc, &(0x7f00000003c0)={0x0}, 0x300, 0x0, 0xf0ffffff, 0x2000c040}, 0x20004000)
+01:00:06 executing program 1:
+epoll_ctl$EPOLL_CTL_MOD(0xffffffffffffffff, 0x3, 0xffffffffffffffff, 0xfffffffffffffffd)
+r0 = epoll_create1(0x0)
+epoll_wait(r0, &(0x7f0000000000)=[{}, {}, {}, {}], 0x4, 0x4)
+2026/11/26 01:00:06 SYZFATAL: executor 3 failed 11 times: executor 3: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3590064 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

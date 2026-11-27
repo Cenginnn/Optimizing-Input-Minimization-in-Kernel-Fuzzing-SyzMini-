@@ -1,0 +1,9 @@
+getsockopt$SO_TIMESTAMP(r7, 0x1, 0x3f, &(0x7f0000000000), &(0x7f00000000c0)=0x4)
+fsconfig$FSCONFIG_SET_BINARY(r0, 0x2, &(0x7f0000000080)=':/\\)-(]\x00', &(0x7f00000001c0)='w', 0x1)
+2026/11/26 03:53:58 SYZFATAL: executor 2 failed 11 times: executor 2: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

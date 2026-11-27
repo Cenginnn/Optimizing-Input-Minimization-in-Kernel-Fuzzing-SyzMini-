@@ -1,0 +1,12 @@
+ioctl$TIOCGWINSZ(r1, 0x5413, &(0x7f0000000040))
+ioctl$TIOCCONS(r1, 0x541d)
+ioctl$RTC_UIE_OFF(0xffffffffffffffff, 0x7004)
+ioctl$sock_inet6_tcp_SIOCOUTQ(r0, 0x890b, &(0x7f0000000040))
+ioctl$TCGETA(r1, 0x5405, &(0x7f00000001c0))
+2026/11/26 13:53:17 SYZFATAL: executor 1 failed 11 times: executor 1: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67

@@ -1,0 +1,78 @@
+------------[ cut here ]------------
+WARNING: CPU: 0 PID: 27680 at drivers/scsi/scsi_lib.c:990 scsi_alloc_sgtables+0x65f/0x6b0
+Modules linked in:
+CPU: 0 PID: 27680 Comm: syz-executor.4 Not tainted 5.15.0+ #2
+Hardware name: QEMU Ubuntu 26.04 PC (i440FX + PIIX, 1996), BIOS 1.17.0-debian-1.17.0-1ubuntu1 04/01/2014
+RIP: 0010:scsi_alloc_sgtables+0x65f/0x6b0
+Code: 1c ff 48 c7 c7 40 de 12 85 e8 bd a3 37 ff 48 c7 c0 00 00 00 80 48 2b 05 df a8 6b 01 48 89 04 24 e9 75 fe ff ff e8 81 f6 1c ff <0f> 0b 41 bc 0a 00 00 00 e9 4a fc ff ff 41 bc 09 00 00 00 e9 3f fc
+RSP: 0018:ffffc900002075c8 EFLAGS: 00010286
+RAX: 0000000000000236 RBX: ffff888003852410 RCX: ffffffff8207356f
+RDX: 0000000000040000 RSI: ffffc9000ac44000 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000003 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: ffff88800344a000
+R13: ffff888003852300 R14: ffffffff857a9aa0 R15: ffff88800385231c
+FS:  0000555555d19480(0000) GS:ffff88806d400000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b31d21000 CR3: 0000000028864006 CR4: 0000000000370ef0
+DR0: 00000000200001c0 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000ffff0ff0 DR7: 0000000000000600
+Call Trace:
+ scsi_queue_rq+0x1469/0x16f0
+ blk_mq_dispatch_rq_list+0x2d8/0x11e0
+ __blk_mq_sched_dispatch_requests+0x17b/0x2b0
+ blk_mq_sched_dispatch_requests+0xa9/0x100
+ __blk_mq_run_hw_queue+0x6c/0xd0
+ __blk_mq_delay_run_hw_queue+0x382/0x390
+ blk_mq_run_hw_queue+0xfe/0x1c0
+ blk_mq_sched_insert_request+0x234/0x270
+ blk_execute_rq+0xd0/0x240
+ sg_io+0x3b0/0x930
+ scsi_ioctl+0x5b0/0xde0
+ sr_block_ioctl+0x171/0x190
+ blkdev_ioctl+0x1f1/0x460
+ block_ioctl+0x88/0xa0
+ __x64_sys_ioctl+0x129/0x170
+ do_syscall_64+0x38/0x90
+ entry_SYSCALL_64_after_hwframe+0x44/0xae
+RIP: 0033:0x7fc8fc5e4c9d
+Code: ff c3 66 2e 0f 1f 84 00 00 00 00 00 90 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 e8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fffd58125c8 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fc8fc734f80 RCX: 00007fc8fc5e4c9d
+RDX: 0000000020000540 RSI: 0000000000002285 RDI: 0000000000000003
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 00007fc8fc734f80
+R13: 00007fffd58127f0 R14: 00007fc8fc734f8c R15: 0000000000000000
+---[ end trace 203d786dccf141d9 ]---
+sg_write: data in/out 4060/126 bytes for SCSI command 0x0-- guessing data in;
+   program syz-executor.0 not setting count and/or reply_len properly
+program syz-executor.1 is using a deprecated SCSI ioctl, please convert it to SG_IO
+tmpfs: Unsupported parameter 'huge'
+SELinux: unrecognized netlink message: protocol=0 nlmsg_type=12336 sclass=netlink_route_socket pid=27706 comm=syz-executor.0
+EXT4-fs warning (device sda): ext4_group_extend:1805: can't shrink FS - resize aborted
+netlink: 'syz-executor.0': attribute type 10 has an invalid length.
+netlink: 188 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.4'.
+netlink: 4 bytes leftover after parsing attributes in process `syz-executor.4'.
+sr 1:0:0:0: [sr0] tag#0 unaligned transfer
+blk_update_request: I/O error, dev sr0, sector 0 op 0x0:(READ) flags 0x0 phys_seg 1 prio class 0
+netlink: 39280 bytes leftover after parsing attributes in process `syz-executor.7'.
+netlink: 'syz-executor.0': attribute type 21 has an invalid length.
+netlink: 44 bytes leftover after parsing attributes in process `syz-executor.0'.
+sg_write: data in/out 285/2221 bytes for SCSI command 0x2e-- guessing data in;
+   program syz-executor.6 not setting count and/or reply_len properly
+Process accounting paused
+sr 1:0:0:0: tag#0 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+sr 1:0:0:0: tag#0 CDB: opcode=0xdf (vendor)
+sr 1:0:0:0: tag#0 CDB[00]: df 16 0a 15 a3 9a 5a c3 bb 5a b9 b8 9c 71 da 4d
+sr 1:0:0:0: tag#0 CDB[10]: ac 31 85 38 f5 71 be f0 61 3a d1 e1 e9 e8 81 2a
+program syz-executor.6 is using a deprecated SCSI ioctl, please convert it to SG_IO
+sctp: [Deprecated]: syz-executor.0 (pid 27859) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+cgroup: name respecified
+netlink: 12 bytes leftover after parsing attributes in process `syz-executor.7'.
+device lo entered promiscuous mode
+netlink: 352 bytes leftover after parsing attributes in process `syz-executor.1'.
+device lo left promiscuous mode
+sctp: [Deprecated]: syz-executor.0 (pid 27956) Use of int in maxseg socket option.
+Use struct sctp_assoc_value instead
+netlink: 'syz-executor.2': attribute type 10 has an invalid length.

@@ -1,0 +1,10 @@
+r4 = socket$inet6_sctp(0xa, 0x1, 0x84)
+getsockopt$inet_sctp6_SCTP_CONTEXT(0xffffffffffffffff, 0x84, 0x11, &(0x7f0000000040)={<r5=>0x0, 0x9}, &(0x7f0000000080)=0x8)
+getsockopt$inet_sctp6_SCTP_STREAM_SCHEDULER_VALUE(r4, 0x84, 0x7c, &(0x7f00000000c0)={r5, 0x200, 0xfffe}, &(0x7f0000000100)=0x8)
+2026/11/26 12:56:37 SYZFATAL: executor 0 failed 11 times: executor 0: exit status 67 err exit status 67
+SYZFAIL: too much cover
+thr=0, cov=3179440 (errno 14: Bad address)
+SYZFAIL: child failed
+ (errno 0: Success)
+loop exited with status 67
+exit status 67
